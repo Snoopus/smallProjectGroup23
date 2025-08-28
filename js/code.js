@@ -60,10 +60,10 @@ function doLogin()
 }
 
 // Attempt to make register function
-function doRegister(){
-	window.location.href = "register.html"; // redirection to register page
-	doLogin();
-}
+// function doRegister(){
+// 	window.location.href = "register.html"; // redirection to register page
+// 	doLogin();
+// }
 
 function saveCookie()
 {
