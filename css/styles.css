@@ -1,7 +1,7 @@
 
- body 
+body 
 {
-    /* background-image: url('../retroNw_1.jpg'); */
+    /* background-image: url('../retroNw_1.jpg');*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -48,6 +48,32 @@
     background-color: #c91e1e1f;
 }
 
+#contactList table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+#contactList th {
+    background-color: #f4f4f4;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+}
+
+#contactList td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#contactList tr:hover {
+    background-color: #f5f5f5;
+}
+
 .button-container {
     text-align: center;
     margin: 20px 0;
@@ -78,11 +104,32 @@
 {
 	font-size: 30px;
 }
+#registerFirstName
+{
+	font-size: 30px;
+}
+#registerLastName
+{
+	font-size: 30px;
+}
+#registerUserName
+{
+	font-size: 30px;
+}
+#registerPassword
+{
+	font-size: 30px;
+}
 #searchText
 {
 	font-size: 30px;
 }
 #colorText
+{
+	font-size: 30px;
+}
+
+#contactText
 {
 	font-size: 30px;
 }
@@ -124,6 +171,24 @@ input[type="text"],input[type="password"]{
     margin-left: 10%;
     text-align: center;
 }
+
+#contactTextFirstName
+{
+	font-size: 30px;
+}
+#contactTextLastName
+{
+	font-size: 30px;
+}
+#contactTextPhone
+{
+	font-size: 30px;
+}
+#contactTextEmail
+{
+	font-size: 30px;
+}
+
 
 #logoutButton{
     width: 20%;
