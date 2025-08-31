@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>COP 4331 LAMP Stack Demo</title>
+    <script type="text/javascript" src="js/code.js"></script>
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            readCookie();
+        }, false);
+    </script>
+
+</head>
+
+<body>
+
+    <h1 id="title">Contact Directory</h1>
+
+    <div id="accessUIDiv">
+        <br />
+
+        <input type="text" id="searchText" placeholder="Enter Data Here" />
+        <div class="button-container">
+            <button type="button" id="searchContactButton" class="buttons" onclick="searchContact();"> Search
+                Contact</button><br />
+        </div>
+        <span id="contactSearchResult"></span>
+        <div id="contactList"></div><br /><br />
+
+        <input type="text" id="contactTextFirstName" placeholder="First Name">
+        <input type="text" id="contactTextLastName" placeholder="Last Name">
+        <input type="text" id="contactTextPhone" placeholder="xxx-xxx-xxxx">
+        <input type="text" id="contactTextEmail" placeholder="contact@example.com">
+
+        <div class="button-container">
+            <button type="button" id="addContactButton" class="buttons" onclick="addContact();">Add
+                Contact</button><br />
+        </div>
+        <span id="contactAddResult"></span>
+    </div>
+
+    <div id="loggedInDiv">
+        <span id="userName"></span><br />
+        <button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
+    </div>
+
+</body>
+
+</html>

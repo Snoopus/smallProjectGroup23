@@ -1,8 +1,9 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
+	
 <head>
 	<title>Contact Manager Register Page</title>
-	<!-- <script type="text/javascript" src="js/md5.js"></script> -->
+	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="js/code.js"></script>
 	<link href="css/styles.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
@@ -14,12 +15,47 @@
 
 	<div id="loginDiv">
 		<span id="inner-title">Please enter your information below:</span>
+		<form id="registerForm" onsubmit="event.preventDefault(); doRegister();">
+			<input type="text" id="registerFirstName" placeholder="Firs tName" /><br />
+			<input type="text" id="registerLastName" placeholder="Last Name" /><br />
+			<input type="text" id="registerUserName" placeholder="User Name" /><br />
+			<input type="password" id="registerPassword" placeholder="Password" /><br />
+			<!-- <input type="password" id="loginPassword" placeholder="Confirm Password" /><br /> -->
+			<div class="button-container">
+				<button type="submit" id="registerButton" class="buttons">Register!</button>
+			</div>
+			<span id="registerResult"></span>
+		</form>
+	</div>
+
+</body>
+
+</html>
+
+<!-- vvv DELETE if code above works well vvv -->
+
+<!-- <html>
+
+<head>
+	<title>Contact Manager Register Page</title> -->
+	<!-- <script type="text/javascript" src="js/md5.js"></script> -->
+	<!-- <script type="text/javascript" src="js/code.js"></script>
+	<link href="css/styles.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> -->
+<!-- </head>
+
+<body>
+
+	<h1 id="title">Need to register here first!</h1>
+
+	<div id="loginDiv">
+		<span id="inner-title">Please enter your information below:</span>
 		<input type="text" id="loginName" placeholder="First Name" /><br />
         <input type="text" id="loginName" placeholder="Last Name" /><br />
         <input type="text" id="loginName" placeholder="User name" /><br />
-		<input type="password" id="loginPassword" placeholder="Password" /><br />
+		<input type="password" id="loginPassword" placeholder="Password" /><br /> -->
         <!-- <input type="password" id="loginPassword" placeholder="Confirm Password" /><br /> -->
-		<div class="button-container">
+		<!-- <div class="button-container">
 			<button type="button" id="registerButton" class="buttons" onclick="doLogin();">Register!</button>
 		</div>
 		<span id="loginResult"></span>
@@ -27,4 +63,4 @@
 
 </body>
 
-</html>
+</html> -->
