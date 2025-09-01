@@ -10,16 +10,15 @@
 	// $color = $inData["color"];
 	// $userId = $inData["userId"];
 
-	// $conn = new mysqli("localhost", "TheBeast", "We_LoveCOP4331", "COP4331"); // TAKE ME OUT!!!
-	$conn = new mysqli("localhost", "projectUser", "Userproject9876!", "COP4331"); UNCOMMENT ME!!!
+	$conn = new mysqli("localhost", "projectUser", "Userproject9876!", "COP4331");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Contacts (UserId,FirstName,LastName,Phone,Email) VALUES(?,?,?,?,?)");
-		$stmt->bind_param("sssss", $userId, $firstName, $lastName, $phone, $email);
+		$stmt = $conn->prepare("INSERT into Contacts (FirstName,LastName,Phone,Email,UserId) VALUES(?,?,?,?,?)");
+		$stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $userId);
 		
 		// $stmt = $conn->prepare("INSERT into Colors (UserId,Name) VALUES(?,?)");
 		// $stmt->bind_param("ss", $userId, $color);

@@ -33,7 +33,7 @@ function doLogin()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				let jsonObject = JSON.parse( xhr.responseText );
+				let jsonObject = JSON.parse(xhr.responseText);
 				userId = jsonObject.id;
 		
 				if( userId < 1 )
@@ -196,7 +196,7 @@ function addContact()
     };
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/AddContact.' + extension;
+    let url = urlBase + '/AddContacts.' + extension;
     
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -342,7 +342,7 @@ function searchContact()
                 }
                 resultHTML += "</table>";
                 
-                document.getElementById("colorList").innerHTML = resultHTML;
+                //document.getElementById("colorList").innerHTML = resultHTML;
                 document.getElementById("contactSearchResult").innerHTML = "Contacts retrieved";
             }
         };
