@@ -13,7 +13,7 @@
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
-	}
+	}	
 	else
 	{
 		$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password =?");

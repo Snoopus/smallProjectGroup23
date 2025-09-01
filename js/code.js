@@ -33,7 +33,7 @@ function doLogin()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				let jsonObject = JSON.parse( xhr.responseText );
+				let jsonObject = JSON.parse(xhr.responseText);
 				userId = jsonObject.id;
 		
 				if( userId < 1 )
