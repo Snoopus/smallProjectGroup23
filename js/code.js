@@ -342,7 +342,7 @@ function searchContact()
                 }
                 resultHTML += "</table>";
                 
-                document.getElementById("colorList").innerHTML = resultHTML;
+                //document.getElementById("colorList").innerHTML = resultHTML;
                 document.getElementById("contactSearchResult").innerHTML = "Contacts retrieved";
             }
         };
