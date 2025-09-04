@@ -59,108 +59,108 @@ let lastName = "";
 
 // }
 
-// function doRegister()
+function doRegister()
+{
+    // Get the input values
+    let firstName = document.getElementById("registerFirstName").value;
+    let lastName = document.getElementById("registerLastName").value;
+    let login = document.getElementById("registerUserName").value;
+    let password = document.getElementById("registerPassword").value;
+
+    // Clear any previous error messages
+    document.getElementById("registerResult").innerHTML = "";
+
+    // Validate inputs
+    if (!firstName || !lastName || !login || !password) {
+        document.getElementById("registerResult").innerHTML = "Please fill in all fields";
+        return;
+    }
+
+    let tmp = {
+        firstName: firstName,
+        lastName: lastName,
+        login: login,
+        password: password
+    };
+    let jsonPayload = JSON.stringify(tmp);
+    let url = urlBase + '/Register.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function() 
+        {
+            if (this.readyState == 4 && this.status == 200) 
+            {
+                let jsonObject = JSON.parse(xhr.responseText);
+                
+                if (jsonObject.error) {
+                    document.getElementById("registerResult").innerHTML = jsonObject.error;
+                    return;
+                }
+
+                userId = jsonObject.id;
+                firstName = jsonObject.firstName;
+                lastName = jsonObject.lastName;
+
+                saveCookie();
+                
+                // Registration successful, redirect to login page
+                window.location.href = "index.html";
+            }
+        };
+        xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("registerResult").innerHTML = err.message;
+	}
+
+
+}
+
+// function saveCookie()
 // {
-//     // Get the input values
-//     let firstName = document.getElementById("registerFirstName").value;
-//     let lastName = document.getElementById("registerLastName").value;
-//     let login = document.getElementById("registerUserName").value;
-//     let password = document.getElementById("registerPassword").value;
-
-//     // Clear any previous error messages
-//     document.getElementById("registerResult").innerHTML = "";
-
-//     // Validate inputs
-//     if (!firstName || !lastName || !login || !password) {
-//         document.getElementById("registerResult").innerHTML = "Please fill in all fields";
-//         return;
-//     }
-
-//     let tmp = {
-//         firstName: firstName,
-//         lastName: lastName,
-//         login: login,
-//         password: password
-//     };
-//     let jsonPayload = JSON.stringify(tmp);
-//     let url = urlBase + '/Register.' + extension;
-
-//     let xhr = new XMLHttpRequest();
-//     xhr.open("POST", url, true);
-//     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-//     try
-//     {
-//         xhr.onreadystatechange = function() 
-//         {
-//             if (this.readyState == 4 && this.status == 200) 
-//             {
-//                 let jsonObject = JSON.parse(xhr.responseText);
-                
-//                 if (jsonObject.error) {
-//                     document.getElementById("registerResult").innerHTML = jsonObject.error;
-//                     return;
-//                 }
-
-//                 userId = jsonObject.id;
-//                 firstName = jsonObject.firstName;
-//                 lastName = jsonObject.lastName;
-
-//                 saveCookie();
-                
-//                 // Registration successful, redirect to login page
-//                 window.location.href = "index.html";
-//             }
-//         };
-//         xhr.send(jsonPayload);
-// 	}
-// 	catch(err)
-// 	{
-// 		document.getElementById("registerResult").innerHTML = err.message;
-// 	}
-
-
+// 	let minutes = 20;
+// 	let date = new Date();
+// 	date.setTime(date.getTime()+(minutes*60*1000));	
+// 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 // }
 
-function saveCookie()
-{
-	let minutes = 20;
-	let date = new Date();
-	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
-}
-
-function readCookie()
-{
-	userId = -1;
-	let data = document.cookie;
-	let splits = data.split(",");
-	for(var i = 0; i < splits.length; i++) 
-	{
-		let thisOne = splits[i].trim();
-		let tokens = thisOne.split("=");
-		if( tokens[0] == "firstName" )
-		{
-			firstName = tokens[1];
-		}
-		else if( tokens[0] == "lastName" )
-		{
-			lastName = tokens[1];
-		}
-		else if( tokens[0] == "userId" )
-		{
-			userId = parseInt( tokens[1].trim() );
-		}
-	}
+// function readCookie()
+// {
+// 	userId = -1;
+// 	let data = document.cookie;
+// 	let splits = data.split(",");
+// 	for(var i = 0; i < splits.length; i++) 
+// 	{
+// 		let thisOne = splits[i].trim();
+// 		let tokens = thisOne.split("=");
+// 		if( tokens[0] == "firstName" )
+// 		{
+// 			firstName = tokens[1];
+// 		}
+// 		else if( tokens[0] == "lastName" )
+// 		{
+// 			lastName = tokens[1];
+// 		}
+// 		else if( tokens[0] == "userId" )
+// 		{
+// 			userId = parseInt( tokens[1].trim() );
+// 		}
+// 	}
 	
-	if( userId < 0 )
-	{
-		window.location.href = "index.html";
-	}
-	else
-	{
-//		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-	}
-}
+// 	if( userId < 0 )
+// 	{
+// 		window.location.href = "index.html";
+// 	}
+// 	else
+// 	{
+// //		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+// 	}
+// }
 
 // function doLogout()
 // {
