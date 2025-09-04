@@ -1,10 +1,10 @@
 // const urlBase = 'http://COP4331-5.com/LAMPAPI';
-const urlBase = 'https://poosd.ilovenarwhals.xyz/LAMPAPI';
-const extension = 'php';
+// const urlBase = 'https://poosd.ilovenarwhals.xyz/LAMPAPI';
+// const extension = 'php';
 
-let userId = 0;
-let firstName = "";
-let lastName = "";
+// let userId = 0;
+// let firstName = "";
+// let lastName = "";
 
 function doLogin()
 {
