@@ -109,6 +109,24 @@ function searchContact()
                     document.getElementById("contactList").innerHTML = "";
                 } else {
                     document.getElementById("contactSearchResult").innerHTML = "Contacts found";
+                    // Create table header
+                    let resultHTML = "<table border='1' style='width:100%; border-collapse: collapse;'>";
+                    resultHTML += "<tr><th>Name</th><th>Phone</th><th>Email</th></tr>";
+                    
+                    // Add each contact as a row
+                    for(let i = 0; i < jsonObject.results.length; i++)
+                    {
+                        let contact = jsonObject.results[i];
+                        resultHTML += "<tr>";
+                        resultHTML += "<td>" + contact.FirstName + " " + contact.LastName + "</td>";
+                        resultHTML += "<td>" + contact.Phone + "</td>";
+                        resultHTML += "<td>" + contact.Email + "</td>";
+                        resultHTML += "</tr>";
+                    }
+                    resultHTML += "</table>";
+                    
+                    // Display the results
+                    document.getElementById("contactList").innerHTML = resultHTML;
                 }
                 
                 if (jsonObject.error) {
