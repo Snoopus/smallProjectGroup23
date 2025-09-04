@@ -83,6 +83,7 @@ function searchContact()
                 
                 if (jsonObject.error) {
                     document.getElementById("contactSearchResult").innerHTML = jsonObject.error;
+                    document.getElementById("contactList").innerHTML = "";
                     return;
                 }
 
