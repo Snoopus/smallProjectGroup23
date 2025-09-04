@@ -104,8 +104,12 @@ function searchContact()
                 
                 // Display the results
                 document.getElementById("contactList").innerHTML = resultHTML;
-                document.getElementById("contactSearchResult").innerHTML = 
-                    jsonObject.results.length > 0 ? "Contacts found" : "No contacts found";
+                if(jsonObject.results.length === 0) {
+                    document.getElementById("contactSearchResult").innerHTML = "No contacts found";
+                    document.getElementById("contactList").innerHTML = "";
+                } else {
+                    document.getElementById("contactSearchResult").innerHTML = "Contacts found";
+                }
                 
                 if (jsonObject.error) {
                     document.getElementById("contactSearchResult").innerHTML = jsonObject.error;
