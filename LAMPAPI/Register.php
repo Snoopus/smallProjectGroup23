@@ -51,11 +51,11 @@ Response format:
 	if($stmt->execute()) // If query succeeded:
 	{
 		$id = $conn->insert_id;
-		returnWithInfo($id);
+		respondWithInfo($id);
 	}
 	else
 	{
-		respondWithError("User insertion failed.")
+		respondWithError("User insertion failed.");
 	}
 
     // Clean up.
