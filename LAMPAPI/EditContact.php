@@ -1,26 +1,27 @@
 <?php
-/*	Register.php
+/*  EditContact.php
 Request format:
 {
-	"firstName": New user's first name.
-	"lastName": New user's last name. 
-	"login": New user's username, must be unique.
-	"password": New user's password.
+    "contactId": The contact to update.
+    "firstName": Contact's new first name.
+    "lastName" Contact's new last name.
+    "phone": Contact's new phone number.
+    "email": Contact's new email address.
 }
 
 Response format:
 {
-	"userId": Newly created User ID to make other requests with.
-	"error": blank if success, else describes the problem.
+    "error": blank if success, else describes the problem.
 }
 */
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
-	$firstName = $inData["firstName"];
+    $id = $inData["contactId"];
+    $firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
-	$login = $inData["login"];
-	$password = $inData["password"];
+	$phone = $inData["phone"];
+	$email = $inData["email"];
 
     // Access the database with API credentials. 
     //                  localhost   mysql api user  mysql api pass      db name
@@ -30,32 +31,24 @@ Response format:
 		respondWithError($conn->connect_error);
 	}	
 
-    // Deny if login already exists
-	$stmt = $conn->prepare("SELECT ID FROM Users WHERE Login=?");
-	$stmt->bind_param("s", $login);
+    // Update the current row in the table. 
+    $stmt = $conn->prepare("UPDATE Contacts 
+                            SET FirstName=?,
+                                LastName=?,
+                                Phone=?,
+                                Email=? 
+                            WHERE ID=?");
+    $stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $id);
     $stmt->execute();
-    $result = $stmt->get_result();
-    if($result->fetch_assoc()) // If result is not null:
-    {
-        respondWithError("Username already exists.");
-		$stmt->close();
-    	$conn->close();
-		return;
-    }
-	$stmt->close();
 
-	// Insert the new user. 
-	$stmt = $conn->prepare("INSERT INTO Users (firstName, lastName, Login, Password) VALUES (?, ?, ?, ?)");
-	$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
-	if($stmt->execute()) // If query succeeded:
-	{
-		$id = $conn->insert_id;
-		respondWithInfo($id);
-	}
-	else
-	{
-		respondWithError("User insertion failed.");
-	}
+    if($conn->affected_rows > 0)
+    {
+        respondWithInfo();
+    }
+    else // Nothing was changed.
+    {
+        respondWithError("No contact by that id.");
+    }
 
     // Clean up.
     $stmt->close();
@@ -81,15 +74,15 @@ Response format:
     // Sends response with error code and no useful data.
 	function respondWithError($err)
 	{
-		$retValue = '{"userId":0,"error":"' . $err . '"}';
+		$retValue = '{"error":"' . $err . '"}';
 		sendResponseInfoAsJson($retValue);
 	}
     
     // Function: respondWithInfo
     // Sends response with desired data and a blank error code. 
-	function respondWithInfo($id)
+	function respondWithInfo()
 	{
-		$retValue = '{"userId":' . $id . ',"error":""}';
+		$retValue = '{"error":""}';
 		sendResponseInfoAsJson($retValue);
 	}
 

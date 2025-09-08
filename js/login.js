@@ -28,9 +28,9 @@ function doLogin()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let jsonObject = JSON.parse(xhr.responseText);
-				userId = jsonObject.id;
+				userId = jsonObject.userId;
 		
-				if( userId < 1 )
+				if(userId < 1)
 				{		
 					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
 					return;

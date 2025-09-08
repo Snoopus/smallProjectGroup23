@@ -1,26 +1,19 @@
 <?php
-/*	Register.php
+/*  REPLACEME.php
 Request format:
 {
-	"firstName": New user's first name.
-	"lastName": New user's last name. 
-	"login": New user's username, must be unique.
-	"password": New user's password.
+
 }
 
 Response format:
 {
-	"userId": Newly created User ID to make other requests with.
-	"error": blank if success, else describes the problem.
+
 }
 */
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
-	$firstName = $inData["firstName"];
-	$lastName = $inData["lastName"];
-	$login = $inData["login"];
-	$password = $inData["password"];
+    $var = $inData["lorem"]
 
     // Access the database with API credentials. 
     //                  localhost   mysql api user  mysql api pass      db name
@@ -30,32 +23,20 @@ Response format:
 		respondWithError($conn->connect_error);
 	}	
 
-    // Deny if login already exists
-	$stmt = $conn->prepare("SELECT ID FROM Users WHERE Login=?");
-	$stmt->bind_param("s", $login);
+    // Query the database this user's row. 
+    $stmt = $conn->prepare("SQL QUERY HERE");
+    $stmt->bind_param("s", $var);
     $stmt->execute();
     $result = $stmt->get_result();
-    if($result->fetch_assoc()) // If result is not null:
-    {
-        respondWithError("Username already exists.");
-		$stmt->close();
-    	$conn->close();
-		return;
-    }
-	$stmt->close();
 
-	// Insert the new user. 
-	$stmt = $conn->prepare("INSERT INTO Users (firstName, lastName, Login, Password) VALUES (?, ?, ?, ?)");
-	$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
-	if($stmt->execute()) // If query succeeded:
-	{
-		$id = $conn->insert_id;
-		respondWithInfo($id);
-	}
-	else
-	{
-		respondWithError("User insertion failed.");
-	}
+    if($row = $result->fetch_assoc())
+    {
+        respondWithInfo($row['ID'], $row['firstName'], $row['lastName']);
+    }
+    else
+    {
+        respondWithError("No Records Found");
+    }
 
     // Clean up.
     $stmt->close();
@@ -81,15 +62,15 @@ Response format:
     // Sends response with error code and no useful data.
 	function respondWithError($err)
 	{
-		$retValue = '{"userId":0,"error":"' . $err . '"}';
+		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
 		sendResponseInfoAsJson($retValue);
 	}
     
     // Function: respondWithInfo
     // Sends response with desired data and a blank error code. 
-	function respondWithInfo($id)
+	function respondWithInfo($id, $firstName, $lastName)
 	{
-		$retValue = '{"userId":' . $id . ',"error":""}';
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResponseInfoAsJson($retValue);
 	}
 

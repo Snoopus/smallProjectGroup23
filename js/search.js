@@ -23,7 +23,7 @@ function addContact()
     };
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/AddContacts.' + extension;
+    let url = urlBase + '/AddContact.' + extension;
     
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -68,7 +68,7 @@ function searchContact()
     let tmp = {search:srch, userId:userId};
     let jsonPayload = JSON.stringify(tmp);
 
-    let url = urlBase + '/SearchContacts.' + extension;
+    let url = urlBase + '/SearchContact.' + extension;
     
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -101,9 +101,9 @@ function searchContact()
                     {
                         let contact = jsonObject.results[i];
                         resultHTML += "<tr>";
-                        resultHTML += "<td>" + contact.FirstName + " " + contact.LastName + "</td>";
-                        resultHTML += "<td>" + contact.Phone + "</td>";
-                        resultHTML += "<td>" + contact.Email + "</td>";
+                        resultHTML += "<td>" + contact.firstName + " " + contact.lastName + "</td>";
+                        resultHTML += "<td>" + contact.phone + "</td>";
+                        resultHTML += "<td>" + contact.email + "</td>";
                         resultHTML += "</tr>";
                     }
                     resultHTML += "</table>";
