@@ -1,13 +1,15 @@
 <?php
-/*  REPLACEME.php
+/*  EditUsername.php
 Request format:
 {
-
+    "userId": User whose username to change.
+    "newUser": The new username. 
+    "password": User's password to confirm the change. 
 }
 
 Response format:
 {
-
+    "error": blank if success, else describes the problem.  
 }
 */
 

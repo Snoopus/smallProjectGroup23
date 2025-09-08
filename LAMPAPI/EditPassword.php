@@ -1,13 +1,15 @@
 <?php
-/*  REPLACEME.php
+/*  EditPassword.php
 Request format:
 {
-
+    "userId": User whose password to change.
+    "oldPassword": Old (current) password.
+    "newPassword": New password to change to. 
 }
 
 Response format:
 {
-
+    "error": blank if success, else describes the problem.  
 }
 */
 

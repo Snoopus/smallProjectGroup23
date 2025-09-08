@@ -1,13 +1,14 @@
 <?php
-/*  REPLACEME.php
+/*  DeleteUser.php
 Request format:
 {
-
+    "userId": User to delete, permanently.
+    "password": User's password to confirm they want this. 
 }
 
 Response format:
 {
-
+    "error": blank if success, else describes the problem.  
 }
 */
 
