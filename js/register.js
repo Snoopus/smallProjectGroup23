@@ -42,7 +42,7 @@ function doRegister()
                     return;
                 }
 
-                userId = jsonObject.id;
+                userId = jsonObject.userId;
                 firstName = jsonObject.firstName;
                 lastName = jsonObject.lastName;
 

@@ -101,9 +101,9 @@ function searchContact()
                     {
                         let contact = jsonObject.results[i];
                         resultHTML += "<tr>";
-                        resultHTML += "<td>" + contact.FirstName + " " + contact.LastName + "</td>";
-                        resultHTML += "<td>" + contact.Phone + "</td>";
-                        resultHTML += "<td>" + contact.Email + "</td>";
+                        resultHTML += "<td>" + contact.firstName + " " + contact.lastName + "</td>";
+                        resultHTML += "<td>" + contact.phone + "</td>";
+                        resultHTML += "<td>" + contact.email + "</td>";
                         resultHTML += "</tr>";
                     }
                     resultHTML += "</table>";
