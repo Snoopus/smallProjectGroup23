@@ -9,7 +9,7 @@ Request format:
 
 Response format:
 {
-	"id": newly added user ID to make other requests with.
+	"userId": newly added user ID to make other requests with.
 	"error": blank if success, else describes the problem.
 }
 
@@ -82,7 +82,7 @@ Response format:
     // Sends response with error code and no useful data.
 	function respondWithError($err)
 	{
-		$retValue = '{"id":0,"error":"' . $err . '"}';
+		$retValue = '{"userId":0,"error":"' . $err . '"}';
 		sendResponseInfoAsJson($retValue);
 	}
     
@@ -90,7 +90,7 @@ Response format:
     // Sends response with desired data and a blank error code. 
 	function respondWithInfo($id)
 	{
-		$retValue = '{"id":' . $id . ',"error":""}';
+		$retValue = '{"userId":' . $id . ',"error":""}';
 		sendResponseInfoAsJson($retValue);
 	}
 

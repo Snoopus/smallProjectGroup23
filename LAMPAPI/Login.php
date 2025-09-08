@@ -7,7 +7,7 @@ Request format:
 
 Response format:
 {
-    "id": user's ID for other requests
+    "userId": user's ID for other requests
     "firstName": 
     "lastName":
     "error": blank if success, else describes the problem.  
@@ -24,9 +24,9 @@ Response format:
     // Access the database with API credentials. 
     //                  localhost   mysql api user  mysql api pass      db name
 	$conn = new mysqli("localhost", "projectUser", "Userproject9876!", "COP4331");
-	if( $conn->connect_error )
+	if($conn->connect_error)
 	{
-		respondWithError( $conn->connect_error );
+		respondWithError($conn->connect_error);
 	}	
 
     // Query the database this user's entry. 
@@ -35,9 +35,9 @@ Response format:
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if( $row = $result->fetch_assoc()  )
+    if($row = $result->fetch_assoc() )
     {
-        respondWithInfo( $row['ID'], $row['firstName'], $row['lastName'] );
+        respondWithInfo($row['ID'], $row['firstName'], $row['lastName']);
     }
     else
     {
@@ -58,7 +58,7 @@ Response format:
 
     // Function: sendResponseInfoAsJson
     // Sends the response JSON, given as a string by $obj. 
-	function sendResponseInfoAsJson( $obj )
+	function sendResponseInfoAsJson($obj)
 	{
 		header('Content-type: application/json');
 		echo $obj;
@@ -66,18 +66,18 @@ Response format:
 	
     // Function: respondWithError
     // Sends response with error code and no useful data.
-	function respondWithError( $err )
+	function respondWithError($err)
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-		sendResponseInfoAsJson( $retValue );
+		$retValue = '{"userId":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		sendResponseInfoAsJson($retValue);
 	}
     
     // Function: respondWithInfo
     // Sends response with desired data and a blank error code. 
-	function respondWithInfo( $id, $firstName, $lastName )
+	function respondWithInfo($id, $firstName, $lastName)
 	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-		sendResponseInfoAsJson( $retValue );
+		$retValue = '{"userId":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		sendResponseInfoAsJson($retValue);
 	}
 
 ?>
