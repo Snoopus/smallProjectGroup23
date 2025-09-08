@@ -16,8 +16,8 @@ Response format:
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
-    $search = $inData["search"]
-    $id = $inData["userId"]
+    $search = $inData["search"];
+    $id = $inData["userId"];
 
     $searchString = "%" . $search . "%"; //SQL uses % as wildcards.
 
@@ -40,8 +40,8 @@ Response format:
     $result = $stmt->get_result();
 
     // Iterate over each match. 
-    $count = 0
-    $resultArr = array()
+    $count = 0;
+    $resultArr = array();
     while($row = $result->fetch_assoc() )
     {
         $count++;
@@ -62,7 +62,7 @@ Response format:
     }
     else
     {
-        respondWithInfo($resultArr)
+        respondWithInfo($resultArr);
     }
 
     // Clean up.

@@ -41,7 +41,7 @@ Response format:
     }
     else
     {
-        respondWithError("Contact insertion failed.")
+        respondWithError("Contact insertion failed.");
     }
 
     // Clean up.

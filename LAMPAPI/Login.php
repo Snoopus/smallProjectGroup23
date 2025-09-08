@@ -18,8 +18,8 @@ Response format:
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
-    $user = $inData["login"]
-    $pass = $inData["password"]
+    $user = $inData["login"];
+    $pass = $inData["password"];
 
     // Access the database with API credentials. 
     //                  localhost   mysql api user  mysql api pass      db name
