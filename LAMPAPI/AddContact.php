@@ -31,6 +31,20 @@ Response format:
 		respondWithError($conn->connect_error);
 	}	
 
+    // Ensure associated User exists.
+    $stmt = $conn->prepare("SELECT * FROM Users WHERE ID=?");
+    $stmt->bind_param("s", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if(!($result->fetch_assoc())) // If result is null:
+    {
+        respondWithError("No user by that id.");
+		$stmt->close();
+    	$conn->close();
+		return;
+    }
+    $stmt->close();
+
     // Insert the new contact.
     $stmt = $conn->prepare("INSERT into Contacts (FirstName,LastName,Phone,Email,UserId) VALUES(?,?,?,?,?)");
 	$stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $userId);
