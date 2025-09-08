@@ -28,7 +28,7 @@ function doLogin()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let jsonObject = JSON.parse(xhr.responseText);
-				userId = jsonObject.userId;
+				userId = jsonObject["userId"];
 		
 				if( userId < 1  || userId === null )
 				{		
