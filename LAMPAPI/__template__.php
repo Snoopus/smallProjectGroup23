@@ -1,4 +1,5 @@
-<!-- REPLACEME.php
+<?php
+/*  REPLACEME.php
 Request format:
 {
 
@@ -8,9 +9,7 @@ Response format:
 {
 
 }
-
--->
-<?php
+*/
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
@@ -30,7 +29,7 @@ Response format:
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if($row = $result->fetch_assoc() )
+    if($row = $result->fetch_assoc())
     {
         respondWithInfo($row['ID'], $row['firstName'], $row['lastName']);
     }

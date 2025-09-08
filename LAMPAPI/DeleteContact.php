@@ -1,4 +1,5 @@
-<!-- DeleteContact.php
+<?php
+/*  DeleteContact.php
 Request format:
 {
     "contactId": The contact to delete. 
@@ -8,9 +9,7 @@ Response format:
 {
     "error": blank if success, else describes the problem.
 }
-
--->
-<?php
+*/
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();

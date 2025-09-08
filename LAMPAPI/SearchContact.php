@@ -1,18 +1,17 @@
-<!-- SearchContact.php
+<?php
+/*  SearchContact.php
 Request format:
 {
-    "search": search term used in all fields. 
+    "search": Search term to put through every field.
     "userId": User whose contacts to search through. 
 }
 
 Response format:
 {
-    "results": array of matching contacts.
+    "results": Array of hits, each an object representing a contact. 
     "error": blank if success, else describes the problem.
 }
-
--->
-<?php
+*/
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
@@ -42,7 +41,7 @@ Response format:
     // Iterate over each match. 
     $count = 0;
     $resultArr = array();
-    while($row = $result->fetch_assoc() )
+    while($row = $result->fetch_assoc())
     {
         $count++;
         // Create an array of "arrays" (maps in any other language).

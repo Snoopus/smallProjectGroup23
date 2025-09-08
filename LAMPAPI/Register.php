@@ -1,20 +1,19 @@
-<!-- Register.php
+<?php
+/*	Register.php
 Request format:
 {
-	"firstName": 
-	"lastName": 
-	"login": new user's username, must be unique.
-	"password": new user's password.
+	"firstName": New user's first name.
+	"lastName": New user's last name. 
+	"login": New user's username, must be unique.
+	"password": New user's password.
 }
 
 Response format:
 {
-	"userId": newly added user ID to make other requests with.
+	"userId": Newly created User ID to make other requests with.
 	"error": blank if success, else describes the problem.
 }
-
--->
-<?php
+*/
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();

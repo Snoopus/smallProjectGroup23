@@ -1,20 +1,19 @@
-<!-- Login.php
+<?php
+/*  Login.php
 Request format:
 {
-    "login": username
-    "password": password
+    "login": Username
+    "password": Password
 }
 
 Response format:
 {
-    "userId": user's ID for other requests
-    "firstName": 
-    "lastName":
+    "userId": User's ID for other requests.
+    "firstName": User's first name.
+    "lastName": User's last name.
     "error": blank if success, else describes the problem.  
 }
-
--->
-<?php
+*/
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
@@ -35,7 +34,7 @@ Response format:
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if($row = $result->fetch_assoc() )
+    if($row = $result->fetch_assoc())
     {
         respondWithInfo($row['ID'], $row['firstName'], $row['lastName']);
     }

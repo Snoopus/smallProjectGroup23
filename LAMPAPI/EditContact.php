@@ -1,20 +1,19 @@
-<!-- EditContact.php
+<?php
+/*  EditContact.php
 Request format:
 {
     "contactId": The contact to update.
-    "firstName":
-    "lastName"
-    "phone":
-    "email":
+    "firstName": Contact's new first name.
+    "lastName" Contact's new last name.
+    "phone": Contact's new phone number.
+    "email": Contact's new email address.
 }
 
 Response format:
 {
     "error": blank if success, else describes the problem.
 }
-
--->
-<?php
+*/
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();

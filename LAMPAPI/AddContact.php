@@ -1,10 +1,11 @@
-<!-- AddContact.php
+<?php
+/*  AddContact.php
 Request format:
 {
-    "firstName": 
-    "lastName": 
-    "phone": 
-    "email": 
+    "firstName": Contact's first name.
+    "lastName": Contact's last name.
+    "phone": Contact's phone number.
+    "email": Contact's email address.
     "userId": User this contact will belong to.
 }
 
@@ -12,9 +13,7 @@ Response format:
 {
     "error": blank if success, else describes the problem.
 }
-
--->
-<?php
+*/
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
