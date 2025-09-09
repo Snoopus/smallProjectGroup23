@@ -15,7 +15,9 @@ Response format:
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
-    $var = $inData["lorem"];
+    $id = $inData["userId"];
+    $newUser = $inData["newUser"];
+    $pass = $inData["password"];
 
     // Access the database with API credentials. 
     //                  localhost   mysql api user  mysql api pass      db name
@@ -25,25 +27,36 @@ Response format:
 		respondWithError($conn->connect_error);
 	}	
 
-    // Query the database this user's row. 
-    $stmt = $conn->prepare("SQL QUERY HERE");
-    $stmt->bind_param("s", $var);
+    // Verify this user is actually the one by checking password. 
+    $stmt = $conn->prepare("SELECT * FROM Users WHERE ID=? AND Password=?");
+    $stmt->bind_param("ss", $id, $pass);
     $stmt->execute();
     $result = $stmt->get_result();
-
-    if($row = $result->fetch_assoc())
+    if(!($result->fetch_assoc())) // If result is null:
     {
-        respondWithInfo($row['ID'], $row['firstName'], $row['lastName']);
+        respondWithError("Incorrect user/password.");
+        $stmt->close();
+        $conn->close();
+        return;
     }
-    else
+    $stmt->close();
+
+    // Update the username. 
+    $stmt = $conn->prepare("UPDATE Users SET Login=? WHERE ID=?");
+    $stmt->bind_param("ss", $newUser, $id);
+    $stmt->execute();
+    if($conn->affected_rows > 0)
     {
-        respondWithError("No Records Found");
+        respondWithInfo();
+    }
+    else // Nothing was changed.
+    {
+        respondWithError("Username update failed.");
     }
 
     // Clean up.
     $stmt->close();
     $conn->close();
-	
 
     // Function: getRequestInfo
     // Deserializes the request JSON into an associative array.
@@ -64,15 +77,15 @@ Response format:
     // Sends response with error code and no useful data.
 	function respondWithError($err)
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"error":"' . $err . '"}';
 		sendResponseInfoAsJson($retValue);
 	}
     
     // Function: respondWithInfo
     // Sends response with desired data and a blank error code. 
-	function respondWithInfo($id, $firstName, $lastName)
+	function respondWithInfo()
 	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		$retValue = '{"error":""}';
 		sendResponseInfoAsJson($retValue);
 	}
 
