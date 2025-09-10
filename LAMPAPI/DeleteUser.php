@@ -14,7 +14,9 @@ Response format:
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
-    $var = $inData["lorem"];
+    $id = $inData["userId"];
+    $pass = $inData["password"];
+
 
     // Access the database with API credentials. 
     //                  localhost   mysql api user  mysql api pass      db name
@@ -24,20 +26,32 @@ Response format:
 		respondWithError($conn->connect_error);
 	}	
 
-    // Query the database this user's row. 
-    $stmt = $conn->prepare("SQL QUERY HERE");
-    $stmt->bind_param("s", $var);
+    // Verify this user is actually the one by checking password. 
+    $stmt = $conn->prepare("SELECT * FROM Users WHERE ID=? AND Password=?");
+    $stmt->bind_param("ss", $id, $pass);
     $stmt->execute();
     $result = $stmt->get_result();
+    if(!($result->fetch_assoc())) // If result is null:
+    {
+        respondWithError("Incorrect user/password.");
+        $stmt->close();
+        $conn->close();
+        return;
+    }
+    $stmt->close();
 
-    if($row = $result->fetch_assoc())
+    $stmt = $conn->prepare("DELETE FROM Users WHERE ID=? AND Password=?");
+    $stmt->bind_param("ss", $id, $pass);
+    $stmt->execute();
+    if($conn->affected_rows > 0)
     {
-        respondWithInfo($row['ID'], $row['firstName'], $row['lastName']);
+        respondWithInfo();
     }
-    else
+    else // Nothing was actually deleted.
     {
-        respondWithError("No Records Found");
+        respondWithError("User deletion failed.");
     }
+
 
     // Clean up.
     $stmt->close();
@@ -63,15 +77,15 @@ Response format:
     // Sends response with error code and no useful data.
 	function respondWithError($err)
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"error":"' . $err . '"}';
 		sendResponseInfoAsJson($retValue);
 	}
     
     // Function: respondWithInfo
     // Sends response with desired data and a blank error code. 
-	function respondWithInfo($id, $firstName, $lastName)
+	function respondWithInfo()
 	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		$retValue = '{"error":""}';
 		sendResponseInfoAsJson($retValue);
 	}
 
