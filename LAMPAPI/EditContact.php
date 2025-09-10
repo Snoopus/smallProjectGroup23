@@ -40,7 +40,6 @@ Response format:
                             WHERE ID=?");
     $stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $id);
     $stmt->execute();
-
     if($conn->affected_rows > 0)
     {
         respondWithInfo();

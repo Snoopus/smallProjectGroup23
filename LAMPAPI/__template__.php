@@ -28,7 +28,6 @@ Response format:
     $stmt->bind_param("s", $var);
     $stmt->execute();
     $result = $stmt->get_result();
-
     if($row = $result->fetch_assoc())
     {
         respondWithInfo($row['ID'], $row['firstName'], $row['lastName']);

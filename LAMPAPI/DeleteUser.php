@@ -40,6 +40,7 @@ Response format:
     }
     $stmt->close();
 
+    // Delete the user.
     $stmt = $conn->prepare("DELETE FROM Users WHERE ID=? AND Password=?");
     $stmt->bind_param("ss", $id, $pass);
     $stmt->execute();
@@ -51,7 +52,6 @@ Response format:
     {
         respondWithError("User deletion failed.");
     }
-
 
     // Clean up.
     $stmt->close();

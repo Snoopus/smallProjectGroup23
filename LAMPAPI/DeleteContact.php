@@ -27,7 +27,6 @@ Response format:
     $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID=?");
     $stmt->bind_param("s", $id);
     $stmt->execute();
-
     if($conn->affected_rows > 0)
     {
         respondWithInfo();
