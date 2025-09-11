@@ -1,31 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-	
+
 <head>
-	<title>Contact Manager Register Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Register Portal</title>
 	<script type="text/javascript" src="js/code.js"></script>
 	<script type="text/javascript" src="js/register.js"></script>
-	<link href="css/styles.css" rel="stylesheet">
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 
 <body>
+	<nav class="navbar bg-primary" data-bs-theme="dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">
+				<img src="images/logo.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+				Narwhal Ltd
+			</a>
+			<button type="button" id="logout" class="btn btn-warning" onclick=doLogout();>Logout</button>
+		</div>
+	</nav>
 
-	<h1 id="title">Need to register here first!</h1>
+	<div class="container">
+		<div class="row justify-content-center align-items-center min-vh-100">
+			<div class="col-md-6 col-lg-4">
+				<div class="card shadow">
+					<div class="card-header bg-primary text-white text-center py-3">
+						<h3 class="mb-0">Sign up</h3>
+					</div>
+					<div class="card-body p-4">
+						<form class="needs-validation" novalidate
+							onsubmit="event.preventDefault(); validateAndSubmit(); doRegister()">
+							<div class="mb-3">
+								<label for="userFirstName" class="form-label">First name</label>
+								<input type="text" class="form-control" id="userFirstName" placeholder="First Name"
+									required>
+								<div class="invalid-feedback">
+									Please enter a First name.
+								</div>
+							</div>
 
-	<div id="loginDiv">
-		<span id="inner-title">Please enter your information below:</span>
-		<form id="registerForm" onsubmit="event.preventDefault(); doRegister();">
-			<input type="text" id="registerFirstName" placeholder="First Name" /><br />
-			<input type="text" id="registerLastName" placeholder="Last Name" /><br />
-			<input type="text" id="registerUserName" placeholder="User Name" /><br />
-			<input type="password" id="registerPassword" placeholder="Password" /><br />
-			<!-- <input type="password" id="loginPassword" placeholder="Confirm Password" /><br /> -->
-			<div class="button-container">
-				<button type="submit" id="registerButton" class="buttons">Register!</button>
+							<div class="mb-3">
+								<label for="userLastName" class="form-label">Last name</label>
+								<input type="text" class="form-control" id="userLastName" placeholder="Last Name"
+									required>
+								<div class="invalid-feedback">
+									Please enter a Last name.
+								</div>
+							</div>
+
+							<div class="mb-3">
+								<label for="userName" class="form-label">username</label>
+								<input type="text" class="form-control" id="userName" placeholder="username" required>
+								<div class="invalid-feedback">
+									Please enter a username.
+								</div>
+							</div>
+
+							<div class="mb-3">
+								<label for="userPassword" class="form-label">Password</label>
+								<!-- vvv TODO: Validation and password re-entry matching vvv -->
+								<input type="password" class="form-control" id="userPassword" placeholder="password"
+									required>
+								<div class="invalid-feedback">
+									Please enter a password.
+								</div>
+							</div>
+
+							<div class="mb-3">
+								<label for="userPassword-repeat" class="form-label">Password</label>
+								<!-- vvv TODO: Validation and password re-entry matching vvv -->
+								<input type="password" class="form-control" id="userPassword-repeat"
+									placeholder="Repeat password" required>
+								<div class="invalid-feedback">
+									Please enter same password.
+								</div>
+							</div>
+
+							<div class="d-grid">
+								<button type="submit" id="signUpButton" class="btn btn-primary">
+									Sign Up
+								</button>
+							</div>
+							<div id="registerResult" class="text-danger mt-3 text-center"></div>
+						</form>
+					</div>
+				</div>
 			</div>
-			<span id="registerResult"></span>
-		</form>
+		</div>
+
 	</div>
 
 </body>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Add contacts</title>
+        <!-- Bootstrap CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/contacts.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <script type="text/javascript" src="js/code.js"></script>
+        <script type="text/javascript" src="js/addContact.js"></script>
+        <!-- Bootstrap Bundle with Popper -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                readCookie();
+            }, false);
+        </script>
+    </head>
+
+<body class="bg-light">
+    <nav class="navbar bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                Narwhal Ltd
+            </a>
+            <button type="button" id="logout" class="btn btn-warning" onclick=doLogout();>Logout</button>
+            <button type="button" id="goToContacts" class="btn btn-info" onclick='window.location.href = "search.html"';>Go to Contacts</button>
+        </div>
+    </nav>
+    <div class="container py-5">
+        <h1 id="title" class="text-center mb-4">Add your contact here!</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form class="needs-validation" novalidate onsubmit="event.preventDefault(); validateAndSubmit(); addContact();">
+                    <div class="mb-3">
+                        <label for="contactTextFirstName" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="contactTextFirstName" placeholder="First Name"
+                            required>
+                        <div class="invalid-feedback">
+                            Please enter a first name.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="contactTextLastName" class="form-label">Last name</label>
+                        <input type="text" class="form-control" id="contactTextLastName" placeholder="Last Name"
+                            required>
+                        <div class="invalid-feedback">
+                            Please enter a last name.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="contactTextPhone" class="form-label">Phone number</label>
+                        <input type="tel" class="form-control" id="contactTextPhone" placeholder="xxx-xxx-xxxx"
+                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                        <div class="invalid-feedback">
+                            Please enter a valid phone number (format: xxx-xxx-xxxx).
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="contactTextEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="contactTextEmail" placeholder="contact@example.com"
+                            pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                        <div class="invalid-feedback">
+                            Please enter a valid email address.
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" id="addContactButton" class="btn btn-primary">
+                            Add Contact
+                        </button>
+                    </div>
+                </form>
+                <div id="contactAddResult" class="mt-3 text-center"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
