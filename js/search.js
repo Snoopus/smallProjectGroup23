@@ -113,11 +113,11 @@ function searchContact() {
                 for (let i = 0; i < jsonObject.results.length; i++) {
                     let contact = jsonObject.results[i];
                     resultHTML += "<tr>";
-                    resultHTML += "<td>" + contact.FirstName + " " + contact.LastName + "</td>";
-                    resultHTML += "<td>" + contact.Phone + "</td>";
-                    resultHTML += "<td>" + contact.Email + "</td>";
-                    resultHTML += "<td><button class='btn btn-info btn-sm me-2' onclick='editContact(" + contact.ID + ")'>Edit</button>" +
-                        "<button class='btn btn-danger btn-sm' onclick='deleteContact(" + contact.ID + ")'>Delete</button></td>";
+                    resultHTML += "<td>" + contact.firstName + " " + contact.lastName + "</td>";
+                    resultHTML += "<td>" + contact.phone + "</td>";
+                    resultHTML += "<td>" + contact.email + "</td>";
+                    resultHTML += "<td><button class='btn btn-info btn-sm me-2' onclick='editContact(" + contact.id + ")'>Edit</button>" +
+                        "<button class='btn btn-danger btn-sm' onclick='deleteContact(" + contact.id + ")'>Delete</button></td>";
                     resultHTML += "</tr>";
                 }
                 resultHTML += "</tbody></table>";
