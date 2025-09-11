@@ -3,10 +3,10 @@
 function doRegister()
 {
     // Get the input values
-    let firstName = document.getElementById("registerFirstName").value;
-    let lastName = document.getElementById("registerLastName").value;
-    let login = document.getElementById("registerUserName").value;
-    let password = document.getElementById("registerPassword").value;
+    let firstName = document.getElementById("userFirstName").value;
+    let lastName = document.getElementById("userLastName").value;
+    let login = document.getElementById("userName").value;
+    let password = document.getElementById("userPassword").value;
 
     // Clear any previous error messages
     document.getElementById("registerResult").innerHTML = "";
@@ -49,7 +49,7 @@ function doRegister()
                 saveCookie();
                 
                 // Registration successful, redirect to login page
-                window.location.href = "index.html";
+                window.location.href = "search.html";
             }
         };
         xhr.send(jsonPayload);
