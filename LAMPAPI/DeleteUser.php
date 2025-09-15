@@ -44,13 +44,25 @@ Response format:
     $stmt = $conn->prepare("DELETE FROM Users WHERE ID=? AND Password=?");
     $stmt->bind_param("ss", $id, $pass);
     $stmt->execute();
-    if($conn->affected_rows > 0)
+    if($conn->affected_rows == 0) // Nothing was actually deleted.
+    {
+        respondWithError("User deletion failed.");
+        $stmt->close();
+        $conn->close();
+        return;
+    }
+    $stmt->close();
+
+    // Delete all the contacts belonging to that user.
+    $stmt = $conn->prepare("DELETE FROM Contacts WHERE UserID=?");
+    $stmt->bind_param("s", $id);
+    if($stmt->execute()) // If query succeeded:
     {
         respondWithInfo();
     }
-    else // Nothing was actually deleted.
+    else
     {
-        respondWithError("User deletion failed.");
+        respondWithError("Deleted user's contacts could not be deleted.");
     }
 
     // Clean up.
