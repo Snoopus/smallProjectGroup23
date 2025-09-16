@@ -1,27 +1,23 @@
 <?php
-/*  EditContact.php
+/*  EditPassword.php
 Request format:
 {
-    "contactId": The contact to update.
-    "firstName": Contact's new first name.
-    "lastName" Contact's new last name.
-    "phone": Contact's new phone number.
-    "email": Contact's new email address.
+    "userId": User whose password to change.
+    "oldPassword": Old (current) password.
+    "newPassword": New password to change to. 
 }
 
 Response format:
 {
-    "error": blank if success, else describes the problem.
+    "error": blank if success, else describes the problem.  
 }
 */
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
-    $id = $inData["contactId"];
-    $firstName = $inData["firstName"];
-	$lastName = $inData["lastName"];
-	$phone = $inData["phone"];
-	$email = $inData["email"];
+    $id = $inData["userId"];
+    $oldPass = $inData["oldPassword"];
+    $newPass = $inData["newPassword"];
 
     // Access the database with API credentials. 
     //                  localhost   mysql api user  mysql api pass      db name
@@ -31,14 +27,23 @@ Response format:
 		respondWithError($conn->connect_error);
 	}	
 
-    // Update the current row in the table. 
-    $stmt = $conn->prepare("UPDATE Contacts 
-                            SET FirstName=?,
-                                LastName=?,
-                                Phone=?,
-                                Email=? 
-                            WHERE ID=?");
-    $stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $id);
+    // Verify this user is actually the one by checking password. 
+    $stmt = $conn->prepare("SELECT * FROM Users WHERE ID=? AND Password=?");
+    $stmt->bind_param("ss", $id, $oldPass);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if(!($result->fetch_assoc())) // If result is null:
+    {
+        respondWithError("Incorrect user/password.");
+        $stmt->close();
+        $conn->close();
+        return;
+    }
+    $stmt->close();
+
+    // Update the username. 
+    $stmt = $conn->prepare("UPDATE Users SET Password=? WHERE ID=?");
+    $stmt->bind_param("ss", $newPass, $id);
     $stmt->execute();
     if($conn->affected_rows > 0)
     {
@@ -46,7 +51,7 @@ Response format:
     }
     else // Nothing was changed.
     {
-        respondWithError("No contact by that id.");
+        respondWithError("Password update failed.");
     }
 
     // Clean up.

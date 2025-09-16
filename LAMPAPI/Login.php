@@ -33,7 +33,6 @@ Response format:
     $stmt->bind_param("ss", $user, $pass);
     $stmt->execute();
     $result = $stmt->get_result();
-
     if($row = $result->fetch_assoc())
     {
         respondWithInfo($row['ID'], $row['firstName'], $row['lastName']);

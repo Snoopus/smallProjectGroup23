@@ -13,7 +13,7 @@ Response format:
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
-    $var = $inData["lorem"]
+    $var = $inData["lorem"];
 
     // Access the database with API credentials. 
     //                  localhost   mysql api user  mysql api pass      db name
@@ -28,7 +28,6 @@ Response format:
     $stmt->bind_param("s", $var);
     $stmt->execute();
     $result = $stmt->get_result();
-
     if($row = $result->fetch_assoc())
     {
         respondWithInfo($row['ID'], $row['firstName'], $row['lastName']);

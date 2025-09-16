@@ -1,27 +1,22 @@
 <?php
-/*  EditContact.php
+/*  DeleteUser.php
 Request format:
 {
-    "contactId": The contact to update.
-    "firstName": Contact's new first name.
-    "lastName" Contact's new last name.
-    "phone": Contact's new phone number.
-    "email": Contact's new email address.
+    "userId": User to delete, permanently.
+    "password": User's password to confirm they want this. 
 }
 
 Response format:
 {
-    "error": blank if success, else describes the problem.
+    "error": blank if success, else describes the problem.  
 }
 */
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
-    $id = $inData["contactId"];
-    $firstName = $inData["firstName"];
-	$lastName = $inData["lastName"];
-	$phone = $inData["phone"];
-	$email = $inData["email"];
+    $id = $inData["userId"];
+    $pass = $inData["password"];
+
 
     // Access the database with API credentials. 
     //                  localhost   mysql api user  mysql api pass      db name
@@ -31,22 +26,43 @@ Response format:
 		respondWithError($conn->connect_error);
 	}	
 
-    // Update the current row in the table. 
-    $stmt = $conn->prepare("UPDATE Contacts 
-                            SET FirstName=?,
-                                LastName=?,
-                                Phone=?,
-                                Email=? 
-                            WHERE ID=?");
-    $stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $id);
+    // Verify this user is actually the one by checking password. 
+    $stmt = $conn->prepare("SELECT * FROM Users WHERE ID=? AND Password=?");
+    $stmt->bind_param("ss", $id, $pass);
     $stmt->execute();
-    if($conn->affected_rows > 0)
+    $result = $stmt->get_result();
+    if(!($result->fetch_assoc())) // If result is null:
+    {
+        respondWithError("Incorrect user/password.");
+        $stmt->close();
+        $conn->close();
+        return;
+    }
+    $stmt->close();
+
+    // Delete the user.
+    $stmt = $conn->prepare("DELETE FROM Users WHERE ID=? AND Password=?");
+    $stmt->bind_param("ss", $id, $pass);
+    $stmt->execute();
+    if($conn->affected_rows == 0) // Nothing was actually deleted.
+    {
+        respondWithError("User deletion failed.");
+        $stmt->close();
+        $conn->close();
+        return;
+    }
+    $stmt->close();
+
+    // Delete all the contacts belonging to that user.
+    $stmt = $conn->prepare("DELETE FROM Contacts WHERE UserID=?");
+    $stmt->bind_param("s", $id);
+    if($stmt->execute()) // If query succeeded:
     {
         respondWithInfo();
     }
-    else // Nothing was changed.
+    else
     {
-        respondWithError("No contact by that id.");
+        respondWithError("Deleted user's contacts could not be deleted.");
     }
 
     // Clean up.

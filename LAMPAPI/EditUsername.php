@@ -1,27 +1,23 @@
 <?php
-/*  EditContact.php
+/*  EditUsername.php
 Request format:
 {
-    "contactId": The contact to update.
-    "firstName": Contact's new first name.
-    "lastName" Contact's new last name.
-    "phone": Contact's new phone number.
-    "email": Contact's new email address.
+    "userId": User whose username to change.
+    "newUser": The new username. 
+    "password": User's password to confirm the change. 
 }
 
 Response format:
 {
-    "error": blank if success, else describes the problem.
+    "error": blank if success, else describes the problem.  
 }
 */
 
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
-    $id = $inData["contactId"];
-    $firstName = $inData["firstName"];
-	$lastName = $inData["lastName"];
-	$phone = $inData["phone"];
-	$email = $inData["email"];
+    $id = $inData["userId"];
+    $newUser = $inData["newUser"];
+    $pass = $inData["password"];
 
     // Access the database with API credentials. 
     //                  localhost   mysql api user  mysql api pass      db name
@@ -31,14 +27,23 @@ Response format:
 		respondWithError($conn->connect_error);
 	}	
 
-    // Update the current row in the table. 
-    $stmt = $conn->prepare("UPDATE Contacts 
-                            SET FirstName=?,
-                                LastName=?,
-                                Phone=?,
-                                Email=? 
-                            WHERE ID=?");
-    $stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $id);
+    // Verify this user is actually the one by checking password. 
+    $stmt = $conn->prepare("SELECT * FROM Users WHERE ID=? AND Password=?");
+    $stmt->bind_param("ss", $id, $pass);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if(!($result->fetch_assoc())) // If result is null:
+    {
+        respondWithError("Incorrect user/password.");
+        $stmt->close();
+        $conn->close();
+        return;
+    }
+    $stmt->close();
+
+    // Update the username. 
+    $stmt = $conn->prepare("UPDATE Users SET Login=? WHERE ID=?");
+    $stmt->bind_param("ss", $newUser, $id);
     $stmt->execute();
     if($conn->affected_rows > 0)
     {
@@ -46,13 +51,12 @@ Response format:
     }
     else // Nothing was changed.
     {
-        respondWithError("No contact by that id.");
+        respondWithError("Username update failed.");
     }
 
     // Clean up.
     $stmt->close();
     $conn->close();
-	
 
     // Function: getRequestInfo
     // Deserializes the request JSON into an associative array.
