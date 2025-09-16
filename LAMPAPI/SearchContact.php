@@ -33,8 +33,9 @@ Response format:
                             AND (FirstName LIKE ? 
                             OR LastName LIKE ? 
                             OR Phone LIKE ? 
-                            OR Email LIKE ?)");
-    $stmt->bind_param("sssss", $id, $searchString, $searchString, $searchString, $searchString);
+                            OR Email LIKE ?
+                            OR CONCAT(FirstName, ' ', LastName) LIKE ?)");
+    $stmt->bind_param("ssssss", $id, $searchString, $searchString, $searchString, $searchString, $searchString);
     $stmt->execute();
     $result = $stmt->get_result();
 
