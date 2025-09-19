@@ -1,4 +1,5 @@
 window.addEventListener('DOMContentLoaded', function() {
+    readCookie();
     document.getElementById('inner-title').textContent = 'Logged in as ' + firstName + ' ' + lastName + '.';
     console.log('Account page loaded');
     console.log('User ID:', userId);
