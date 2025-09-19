@@ -144,7 +144,7 @@ function editPassword() {
         modalBg.remove();
     };
 
-    btnContainer.appendChild(deleteBtn);
+    btnContainer.appendChild(changePasswordBtn);
     btnContainer.appendChild(cancelBtn);
 
     modalBox.appendChild(label);
