@@ -108,19 +108,59 @@ function editPassword() {
     modalBox.style.minWidth = '320px';
     modalBox.style.textAlign = 'center';
 
-    // Modal content
-    let label = document.createElement('div');
-    label.textContent = 'Enter password to confirm';
-    label.style.marginBottom = '15px';
-    label.id = 'modalLabel';
+    // Form container for labels and inputs
+    let formContainer = document.createElement('div');
+    formContainer.style.display = 'flex';
+    formContainer.style.flexDirection = 'column';
+    formContainer.style.alignItems = 'stretch';
+    formContainer.style.gap = '10px';
 
-    let input = document.createElement('input');
-    input.type = 'password';
-    input.placeholder = 'Password';
-    input.style.width = '90%';
-    input.style.marginBottom = '20px';
-    input.style.padding = '8px';
-    input.id = 'passwordInput';
+    // Old password row
+    let oldPassRow = document.createElement('div');
+    oldPassRow.style.display = 'flex';
+    oldPassRow.style.alignItems = 'center';
+    let oldPassLabel = document.createElement('label');
+    oldPassLabel.textContent = 'Old password';
+    oldPassLabel.style.width = '110px';
+    oldPassLabel.style.marginRight = '10px';
+    oldPassLabel.setAttribute('for', 'oldPasswordInput');
+    let oldPassInput = document.createElement('input');
+    oldPassInput.type = 'password';
+    oldPassInput.placeholder = 'Enter old password';
+    oldPassInput.style.flex = '1';
+    oldPassInput.style.padding = '8px';
+    oldPassInput.id = 'oldPasswordInput';
+    oldPassRow.appendChild(oldPassLabel);
+    oldPassRow.appendChild(oldPassInput);
+
+    // New password row
+    let newPassRow = document.createElement('div');
+    newPassRow.style.display = 'flex';
+    newPassRow.style.alignItems = 'center';
+    let newPassLabel = document.createElement('label');
+    newPassLabel.textContent = 'New password';
+    newPassLabel.style.width = '110px';
+    newPassLabel.style.marginRight = '10px';
+    newPassLabel.setAttribute('for', 'newPasswordInput');
+    let newPassInput = document.createElement('input');
+    newPassInput.type = 'password';
+    newPassInput.placeholder = 'Enter new password';
+    newPassInput.style.flex = '1';
+    newPassInput.style.padding = '8px';
+    newPassInput.id = 'newPasswordInput';
+    newPassRow.appendChild(newPassLabel);
+    newPassRow.appendChild(newPassInput);
+
+    formContainer.appendChild(oldPassRow);
+    formContainer.appendChild(newPassRow);
+
+    // Status indicator
+    let statusIndicator = document.createElement('div');
+    statusIndicator.id = 'passwordStatus';
+    statusIndicator.style.margin = '10px 0 10px 0';
+    statusIndicator.style.minHeight = '20px';
+    statusIndicator.style.color = '#d9534f'; // Bootstrap danger color
+    statusIndicator.textContent = '';
 
     // Buttons container
     let btnContainer = document.createElement('div');
@@ -132,7 +172,7 @@ function editPassword() {
     changePasswordBtn.textContent = 'Change Password';
     changePasswordBtn.className = 'btn btn-danger';
     changePasswordBtn.onclick = function() {
-        let success = changePasswordConfirm(input.value);
+        let success = changePasswordConfirm();
         if(success){
             modalBg.remove();
             doLogout();
@@ -149,8 +189,8 @@ function editPassword() {
     btnContainer.appendChild(changePasswordBtn);
     btnContainer.appendChild(cancelBtn);
 
-    modalBox.appendChild(label);
-    modalBox.appendChild(input);
+    modalBox.appendChild(formContainer);
+    modalBox.appendChild(statusIndicator);
     modalBox.appendChild(btnContainer);
 
     modalBg.appendChild(modalBox);
@@ -159,7 +199,11 @@ function editPassword() {
 
 function changePasswordConfirm(){
     let url = urlBase + "/EditPassword." + extension;
-    let inputPassword = document.getElementById("passwordInput").value;
-    document.getElementById("modalLabel").innerHTML = "input was " + inputPassword + ".";
+    let oldPassword = document.getElementById("oldPasswordInput").value;
+    let newPassword = document.getElementById("newPasswordInput").value;
+    document.getElementById("modalLabel").innerHTML = "input was " + oldPassword + " and " + newPassword + ".";
+    if(oldPassword === newPassword){
+        return true;
+    }
     return false;
 }
