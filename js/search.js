@@ -77,7 +77,7 @@ function editContact(rowIndex, contactId) {
 
     // Action buttons Save/Cancel
     let actionOnTd = cellFName.parentElement.querySelector("td:last-child");
-    actionOnTd.innerHTML = "<button class='btn btn-success' onclick='saveContact(" + rowIndex + "," + contactId + ")'>Save</button>" + "<button class='btn btn-secondary' onclick='cancelEdit(" + rowIndex + "," + JSON.stringify({fName,lName,phone,email}) + ")'>Cancel</button>"
+    actionOnTd.innerHTML = "<button class='btn btn-success btn-sm me-2' onclick='saveContact(" + rowIndex + "," + contactId + ")'><i class='bi bi-check2'></i></button>" + "<button class='btn btn-danger btn-sm' onclick='cancelEdit(" + rowIndex + "," + JSON.stringify({fName,lName,phone,email}) + ")'><i class='bi bi-x-circle'></i></button>"
 
 }
 
