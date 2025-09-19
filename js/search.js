@@ -23,8 +23,7 @@ function searchContact() {
                 }
 
                 // Create table with Bootstrap classes
-                // NEW: Changed table to add borders
-                let resultHTML = "<table class='table table-striped table-bordered table-hover'>";
+                let resultHTML = "<table class='w-auto table center-table table-striped table-bordered table-hover'>";
                 resultHTML += "<thead class='table-primary'><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Actions</th></tr></thead>";
                 resultHTML += "<tbody>";
 
