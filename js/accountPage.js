@@ -111,6 +111,7 @@ function editPassword() {
     let label = document.createElement('div');
     label.textContent = 'Enter password to confirm';
     label.style.marginBottom = '15px';
+    label.id = 'modalLabel';
 
     let input = document.createElement('input');
     input.type = 'password';
@@ -158,5 +159,6 @@ function editPassword() {
 function changePasswordConfirm(){
     let url = urlBase + "/EditPassword." + extension;
     let inputPassword = document.getElementById("passwordInput").value;
+    document.getElementById("modalLabel").innerHTML = "input was " + inputPassword + ".";
     return false;
 }
