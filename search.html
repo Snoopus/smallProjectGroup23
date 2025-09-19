@@ -26,10 +26,11 @@
         <nav class="navbar bg-primary" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="images/logo.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <img src="images/narwhal_logo_3.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     Narwhal Ltd
                 </a>
-                <button type="button" id="logout" class="btn btn-warning" onclick=doLogout();>Logout</button>
+                <button type="button" id="addContactButton" class="btn btn-warning" onclick='window.location.href = "addContacts.html"'>Add New Contact</button>
+                <button type="button" id="logout" class="btn btn-danger" onclick=doLogout();>Logout</button>
             </div>
         </nav>
         <div class="container">
@@ -41,17 +42,10 @@
                         </div>
                         <div class="card-body p-4">
                             <form>
-                                <div class="mb-3">
-                                    <input type="text" name="search" id="searchText" class="form-control"
-                                        placeholder="Search contacts..." />
-                                </div>
-                                <div class="d-grid gap-2 mb-3">
-                                    <button type="button" class="btn btn-primary" id="searchButton"
-                                        onclick="searchContact();"><i class="bi bi-search"> </i>Search Contact</button>
-                                </div>
-                                <div class="d-grid">
-                                    <button type="button" id="addContactButton" class="btn btn-secondary"
-                                        onclick='window.location.href = "addContacts.html"'>Add New Contact</button>
+                                <div class="d-flex">
+                                    <input type="text" name="search" id="searchText" class="form-control" placeholder="Search contact..." />
+                                    <!-- Search button -->
+                                    <button type="button" class="btn btn-primary btn-sm ms-2" id="searchButton" onclick="searchContact();"><i class="bi bi-search"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -63,7 +57,7 @@
                 <div id="contactList" class="d-flex justify-content-center"></div>
 
                 <!-- TODO: Modal for contact deletion -->
-                    <!-- Coming soon... -->
+                <!-- Coming soon... -->
 
                 <!-- NEW: Result message area -->
                 <div id="contactDeleteResult"></div>
