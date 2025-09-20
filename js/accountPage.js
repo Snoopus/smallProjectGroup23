@@ -132,7 +132,7 @@ function deleteUserConfirm(){
                 setTimeout(function() {
                     doLogout();
                 }, 1000);
-                // Success, close return true to close modal box.
+                // Success
                 return true;
             }
         };
@@ -291,7 +291,7 @@ function changePasswordConfirm(modalBg){
                 setTimeout(function() {
                     modalBg.remove();
                 }, 1000);
-                // Success, close return true to close modal box.
+                // Success
                 return true;
             }
         };
