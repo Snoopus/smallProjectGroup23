@@ -76,7 +76,7 @@ function deleteUser() {
     deleteAccountBtn.textContent = 'Delete Account';
     deleteAccountBtn.className = 'btn btn-danger';
     deleteAccountBtn.onclick = function() {
-        deleteUserConfirm(modalBg);
+        deleteUserConfirm();
     };
 
     let cancelBtn = document.createElement('button');
@@ -130,7 +130,6 @@ function deleteUserConfirm(){
                 document.getElementById("passwordStatus").innerHTML = "Account deleted. Logging out...";
 
                 setTimeout(function() {
-                    modalBg.remove();
                     doLogout();
                 }, 1000);
                 // Success, close return true to close modal box.
