@@ -174,12 +174,7 @@ function editPassword() {
     changePasswordBtn.textContent = 'Change Password';
     changePasswordBtn.className = 'btn btn-danger';
     changePasswordBtn.onclick = function() {
-        let success = changePasswordConfirm();
-        if(success){
-            setTimeout(function() {
-                modalBg.remove();
-            }, 1000);
-        }
+        changePasswordConfirm(modalBg);
     };
 
     let cancelBtn = document.createElement('button');
@@ -200,7 +195,7 @@ function editPassword() {
     document.body.appendChild(modalBg);
 };
 
-function changePasswordConfirm(){
+function changePasswordConfirm(modalBg){
     let url = urlBase + "/EditPassword." + extension;
     let oldPassword = document.getElementById("oldPasswordInput").value;
     let newPassword = document.getElementById("newPasswordInput").value;
@@ -231,9 +226,13 @@ function changePasswordConfirm(){
                     document.getElementById("passwordStatus").innerHTML = response.error;
                     return;
                 }
+                document.getElementById("oldPasswordInput").value = "";
+                document.getElementById("newPasswordInput").value = "";
                 document.getElementById("passwordStatus").innerHTML = "Password changed successfully";
 
-                
+                setTimeout(function() {
+                    modalBg.remove();
+                }, 1000);
                 // Success, close return true to close modal box.
                 return true;
             }
