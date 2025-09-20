@@ -31,18 +31,40 @@ function deleteUser() {
     modalBox.style.minWidth = '320px';
     modalBox.style.textAlign = 'center';
 
-    // Modal content
-    let label = document.createElement('div');
-    label.textContent = 'Enter password to confirm';
-    label.style.marginBottom = '15px';
+    // Form container for labels and inputs
+    let formContainer = document.createElement('div');
+    formContainer.style.display = 'flex';
+    formContainer.style.flexDirection = 'column';
+    formContainer.style.alignItems = 'stretch';
+    formContainer.style.gap = '10px';
 
-    let input = document.createElement('input');
-    input.type = 'password';
-    input.placeholder = 'Password';
-    input.style.width = '90%';
-    input.style.marginBottom = '20px';
-    input.style.padding = '8px';
-    input.id = 'passwordInput';
+    // Old password row
+    let oldPassRow = document.createElement('div');
+    oldPassRow.style.display = 'flex';
+    oldPassRow.style.alignItems = 'center';
+    let oldPassLabel = document.createElement('label');
+    oldPassLabel.textContent = 'Password';
+    oldPassLabel.style.width = '110px';
+    oldPassLabel.style.marginRight = '10px';
+    oldPassLabel.setAttribute('for', 'oldPasswordInput');
+    let oldPassInput = document.createElement('input');
+    oldPassInput.type = 'password';
+    oldPassInput.placeholder = 'Enter password';
+    oldPassInput.style.flex = '1';
+    oldPassInput.style.padding = '8px';
+    oldPassInput.id = 'oldPasswordInput';
+    oldPassRow.appendChild(oldPassLabel);
+    oldPassRow.appendChild(oldPassInput);
+
+    formContainer.appendChild(oldPassRow);
+
+    // Status indicator
+    let statusIndicator = document.createElement('div');
+    statusIndicator.id = 'passwordStatus';
+    statusIndicator.style.margin = '10px 0 10px 0';
+    statusIndicator.style.minHeight = '20px';
+    statusIndicator.style.color = '#d9534f'; // Bootstrap danger color
+    statusIndicator.textContent = '';
 
     // Buttons container
     let btnContainer = document.createElement('div');
@@ -50,17 +72,11 @@ function deleteUser() {
     btnContainer.style.justifyContent = 'space-between';
     btnContainer.style.gap = '10px';
 
-    let deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'Delete Account';
-    deleteBtn.className = 'btn btn-danger';
-    deleteBtn.onclick = function() {
-        let success = deleteUserConfirm(input.value);
-        if(success){
-            setTimeout(function() {
-                modalBg.remove();
-                doLogout();
-            }, 1000);
-        }
+    let deleteAccountBtn = document.createElement('button');
+    deleteAccountBtn.textContent = 'Delete Account';
+    deleteAccountBtn.className = 'btn btn-danger';
+    deleteAccountBtn.onclick = function() {
+        deleteUserConfirm(modalBg);
     };
 
     let cancelBtn = document.createElement('button');
@@ -70,11 +86,11 @@ function deleteUser() {
         modalBg.remove();
     };
 
-    btnContainer.appendChild(deleteBtn);
+    btnContainer.appendChild(deleteAccountBtn);
     btnContainer.appendChild(cancelBtn);
 
-    modalBox.appendChild(label);
-    modalBox.appendChild(input);
+    modalBox.appendChild(formContainer);
+    modalBox.appendChild(statusIndicator);
     modalBox.appendChild(btnContainer);
 
     modalBg.appendChild(modalBox);
@@ -83,8 +99,51 @@ function deleteUser() {
 
 function deleteUserConfirm(){
     let url = urlBase + "/DeleteUser." + extension;
-    let inputPassword = document.getElementById("passwordInput").value;
-    return false;
+    let oldPassword = document.getElementById("oldPasswordInput").value;
+
+    if (!oldPassword) {
+        document.getElementById("passwordStatus").innerHTML = "Please fill in all fields";
+        return false;
+    }
+
+    let tmp = {
+        userId: userId,
+        password: oldPassword
+    };
+    let jsonPayload = JSON.stringify(tmp);
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function() 
+        {
+            if (this.readyState == 4 && this.status == 200) 
+            {
+                let response = JSON.parse(xhr.responseText);
+                if (response.error) {
+                    document.getElementById("passwordStatus").innerHTML = response.error;
+                    return;
+                }
+                document.getElementById("oldPasswordInput").value = "";
+                document.getElementById("passwordStatus").innerHTML = "Account deleted. Logging out...";
+
+                setTimeout(function() {
+                    modalBg.remove();
+                    doLogout();
+                }, 1000);
+                // Success, close return true to close modal box.
+                return true;
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        document.getElementById("passwordStatus").innerHTML = err.message;
+        return false;
+    }
 }
 
 function editPassword() {
