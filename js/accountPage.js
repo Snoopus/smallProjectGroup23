@@ -205,6 +205,11 @@ function changePasswordConfirm(){
     let oldPassword = document.getElementById("oldPasswordInput").value;
     let newPassword = document.getElementById("newPasswordInput").value;
 
+    if (!oldPassword || !newPassword) {
+        document.getElementById("passwordStatus").innerHTML = "Please fill in all fields";
+        return false;
+    }
+
     let tmp = {
         userId: userId,
         oldPassword: oldPassword,
@@ -241,6 +246,4 @@ function changePasswordConfirm(){
         return false;
     }
 
-    document.getElementById("passwordStatus").innerHTML = "There was an error.";
-    return false;
 }
