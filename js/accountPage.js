@@ -201,7 +201,7 @@ function changePasswordConfirm(){
     let url = urlBase + "/EditPassword." + extension;
     let oldPassword = document.getElementById("oldPasswordInput").value;
     let newPassword = document.getElementById("newPasswordInput").value;
-    document.getElementById("modalLabel").innerHTML = "input was " + oldPassword + " and " + newPassword + ".";
+    document.getElementById("passwordStatus").innerHTML = "input was " + oldPassword + " and " + newPassword + ".";
     if(oldPassword === newPassword){
         return true;
     }
