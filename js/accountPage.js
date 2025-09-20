@@ -56,8 +56,10 @@ function deleteUser() {
     deleteBtn.onclick = function() {
         let success = deleteUserConfirm(input.value);
         if(success){
-            modalBg.remove();
-            doLogout();
+            setTimeout(function() {
+                modalBg.remove();
+                doLogout();
+            }, 1000);
         }
     };
 
@@ -174,8 +176,9 @@ function editPassword() {
     changePasswordBtn.onclick = function() {
         let success = changePasswordConfirm();
         if(success){
-            modalBg.remove();
-            doLogout();
+            setTimeout(function() {
+                modalBg.remove();
+            }, 1000);
         }
     };
 
@@ -201,9 +204,43 @@ function changePasswordConfirm(){
     let url = urlBase + "/EditPassword." + extension;
     let oldPassword = document.getElementById("oldPasswordInput").value;
     let newPassword = document.getElementById("newPasswordInput").value;
-    document.getElementById("passwordStatus").innerHTML = "input was " + oldPassword + " and " + newPassword + ".";
-    if(oldPassword === newPassword){
-        return true;
+
+    let tmp = {
+        userId: userId,
+        oldPassword: oldPassword,
+        newPassword: newPassword
+    };
+    let jsonPayload = JSON.stringify(tmp);
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function() 
+        {
+            if (this.readyState == 4 && this.status == 200) 
+            {
+                let response = JSON.parse(xhr.responseText);
+                if (response.error) {
+                    document.getElementById("passwordStatus").innerHTML = response.error;
+                    return;
+                }
+                document.getElementById("passwordStatus").innerHTML = "Password changed successfully";
+
+                
+                // Success, close return true to close modal box.
+                return true;
+            }
+        };
+        xhr.send(jsonPayload);
     }
+    catch(err)
+    {
+        document.getElementById("passwordStatus").innerHTML = err.message;
+        return false;
+    }
+
+    document.getElementById("passwordStatus").innerHTML = "There was an error.";
     return false;
 }
