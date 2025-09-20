@@ -43,9 +43,9 @@
                         <div class="card-body p-4">
                             <form>
                                 <div class="d-flex">
-                                    <input type="text" name="search" id="searchText" class="form-control" placeholder="Search contact..." />
+                                    <input type="text" name="search" class="form-control" id="searchText" oninput="checkInput();"/>
                                     <!-- Search button -->
-                                    <button type="button" class="btn btn-primary btn-sm ms-2" id="searchButton" onclick="searchContact();"><i class="bi bi-search"></i></button>
+                                    <button type="button" class="btn btn-primary btn-sm ms-2" id="searchButton" disabled onclick="searchContact();"><i class="bi bi-search"></i></button>
                                 </div>
                             </form>
                         </div>

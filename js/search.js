@@ -55,7 +55,20 @@ function searchContact() {
 
 }
 
-// NEW: edit function to add functionality to edit contact button
+// Checking user input for characters excluding whitespaces.
+function checkInput() {
+  let searchText = document.getElementById('searchText');
+  let searchButton = document.getElementById('searchButton');
+  
+  // Strip input of whitespace in front and end of string
+  if (searchText.value.trim() !== '') {
+    searchButton.disabled = false; // Enable the button
+  } else {
+    searchButton.disabled = true; // Disable the button
+  }
+}
+
+// Edit function to add functionality to edit contact button
 function editContact(rowIndex, contactId) {
     // Get current row values
     let cellFName = document.getElementById("firstName_" + rowIndex);
@@ -97,7 +110,7 @@ function cancelEdit(rowIndex, original_values) {
 function saveContact(rowIndex, contactId) {
     document.getElementById("contactDeleteResult").innerHTML = "";
 
-    // Gather edits
+    // Gather edits and trim white space from front and end.
     let firstName = document.getElementById("edited_fName_" + rowIndex).value.trim();
     let lastName = document.getElementById("edited_lName_" + rowIndex).value.trim();
     let phone = document.getElementById("edited_phone_" + rowIndex).value.trim();
