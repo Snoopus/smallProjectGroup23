@@ -45,6 +45,8 @@ function doRegister()
                 userId = jsonObject.userId;
                 // firstName = jsonObject.firstName;
                 // lastName = jsonObject.lastName;
+                console.log(firstName);
+                console.log(lastName);
 
                 saveCookie();
                 
