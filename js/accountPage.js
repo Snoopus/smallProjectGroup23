@@ -264,7 +264,7 @@ function changePasswordConfirm(modalBg){
     }
 
     if (oldPassword === newPassword) {
-        document.getElementById("passwordStatus").innerHTML = "New password must be different from old password";
+        document.getElementById("passwordStatus").innerHTML = "New password must be different from old password.";
         return false;
     }
 
