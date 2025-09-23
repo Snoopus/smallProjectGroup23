@@ -60,7 +60,7 @@ function doLogout()
 
 function validateAndSubmit() {
     // Get the form
-    const form = document.querySelector('.needs-validation');
+    let form = document.querySelector('.needs-validation');
 
     // Check if the form is valid
     if (!form.checkValidity()) {
@@ -68,6 +68,8 @@ function validateAndSubmit() {
         form.classList.add('was-validated');
         return false;
     }
-    return;
+	// Form is valid
+	form.classList.add('was-validated');
+    return true;
 }
 
