@@ -58,16 +58,3 @@ function addContact()
         document.getElementById("contactAddResult").innerHTML = err.message;
     }
 }
-
-function validateAndSubmit() {
-    // Get the form
-    const form = document.querySelector('.needs-validation');
-
-    // Check if the form is valid
-    if (!form.checkValidity()) {
-        // If the form is not valid, show the validation messages
-        form.classList.add('was-validated');
-        return false;
-    }
-    return;
-}
