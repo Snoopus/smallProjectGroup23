@@ -3,8 +3,8 @@
 function doRegister()
 {
     // Get the input values
-    let firstName = document.getElementById("userFirstName").value;
-    let lastName = document.getElementById("userLastName").value;
+    firstName = document.getElementById("userFirstName").value;
+    lastName = document.getElementById("userLastName").value;
     let login = document.getElementById("userName").value;
     let password = document.getElementById("userPassword").value;
 
@@ -43,8 +43,8 @@ function doRegister()
                 }
 
                 userId = jsonObject.userId;
-                firstName = document.getElementById("userFirstName").value;
-                lastName = document.getElementById("userLastName").value;
+                // firstName = document.getElementById("userFirstName").value;
+                // lastName = document.getElementById("userLastName").value;
                 console.log("Firstname: " + firstName + " Lastname: " + lastName + " UserID: " + userId);
 
                 saveCookie();
