@@ -11,13 +11,16 @@ Response format:
 }
 */
 
+    // Get environment variables.
+    $env = parse_ini_file("../.env");
+
     // Read and parse request JSON. 
 	$inData = getRequestInfo();
     $var = $inData["lorem"];
 
     // Access the database with API credentials. 
-    //                  localhost   mysql api user  mysql api pass      db name
-	$conn = new mysqli("localhost", "projectUser", "Userproject9876!", "COP4331");
+    //                  localhost   mysql api user     mysql api pass   db name
+	$conn = new mysqli("localhost", $env["API_USER"], $env["API_PASS"], $env["API_DB"]);
 	if($conn->connect_error)
 	{
 		respondWithError($conn->connect_error);
