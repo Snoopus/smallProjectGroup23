@@ -44,6 +44,20 @@ Response format:
     }
     $stmt->close();
 
+    // Search for the new username to ensure we won't have 2 the same. 
+    $stmt = $conn->prepare("SELECT * FROM Users WHERE Login=?");
+    $stmt->bind_param("s", $newUser);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if($result->fetch_assoc()) // If result is not null:
+    {
+        respondWithError("Username already exists.");
+        $stmt->close();
+        $conn->close();
+        return;
+    }
+    $stmt->close();
+
     // Update the username. 
     $stmt = $conn->prepare("UPDATE Users SET Login=? WHERE ID=?");
     $stmt->bind_param("ss", $newUser, $id);
