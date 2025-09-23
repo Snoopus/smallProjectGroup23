@@ -57,15 +57,17 @@ function searchContact() {
 
 // Checking user input for characters excluding whitespaces.
 function checkInput() {
-  let searchText = document.getElementById('searchText');
-  let searchButton = document.getElementById('searchButton');
-  
-  // Strip input of whitespace in front and end of string
-  if (searchText.value.trim() !== '') {
-    searchButton.disabled = false; // Enable the button
-  } else {
-    searchButton.disabled = true; // Disable the button
-  }
+    let searchText = document.getElementById('searchText');
+    let searchButton = document.getElementById('searchButton');
+
+    // Strip input of whitespace in front and end of string
+    if (searchText.value.trim() !== '') {
+        searchButton.disabled = false; // Enable the button
+        searchButton.classList.remove('btn-secondary'); // Remove Gray color
+        searchButton.classList.add('btn-primary'); // Add blue color
+    } else {
+        searchButton.disabled = true; // Disable the button
+    }
 }
 
 // Edit function to add functionality to edit contact button
@@ -90,7 +92,7 @@ function editContact(rowIndex, contactId) {
 
     // Action buttons Save/Cancel
     let actionOnTd = cellFName.parentElement.querySelector("td:last-child");
-    actionOnTd.innerHTML = "<button class='btn btn-success btn-sm me-2' onclick='saveContact(" + rowIndex + "," + contactId + ")'><i class='bi bi-check2'></i></button>" + "<button class='btn btn-danger btn-sm' onclick='cancelEdit(" + rowIndex + "," + JSON.stringify({fName,lName,phone,email}) + ")'><i class='bi bi-x-circle'></i></button>"
+    actionOnTd.innerHTML = "<button class='btn btn-success btn-sm me-2' onclick='saveContact(" + rowIndex + "," + contactId + ")'><i class='bi bi-check2'></i></button>" + "<button class='btn btn-danger btn-sm' onclick='cancelEdit(" + rowIndex + "," + JSON.stringify({ fName, lName, phone, email }) + ")'><i class='bi bi-x-circle'></i></button>"
 
 }
 
@@ -115,11 +117,24 @@ function saveContact(rowIndex, contactId) {
     let lastName = document.getElementById("edited_lName_" + rowIndex).value.trim();
     let phone = document.getElementById("edited_phone_" + rowIndex).value.trim();
     let email = document.getElementById("edited_email_" + rowIndex).value.trim();
-    
+
     // Minimum requirement check 
     if (!firstName || !lastName) {
         document.getElementById("contactDeleteResult").innerHTML = "First and Last name required!"
+        return;
     }
+
+    // Exit edit mode before API call
+    document.getElementById("firstName_" + rowIndex).innerHTML = firstName;
+    document.getElementById("lastName_" + rowIndex).innerHTML = lastName;
+    document.getElementById("phone_" + rowIndex).innerHTML = phone;
+    document.getElementById("email_" + rowIndex).innerHTML = email;
+
+    // Action buttons Save/Cancel
+    let actionCell = document.getElementById("firstName_" + rowIndex).parentElement.querySelector("td:last-child");
+    actionCell.innerHTML = "<button class='btn btn-info btn-sm me-2' onclick='editContact(" + rowIndex + "," + contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
+        "<button class='btn btn-danger btn-sm' onclick='deleteContact(" + contactId + ")'><i class='bi bi-trash3'></i></button>";
+
     let payload = {
         contactId: Number(contactId),
         userId: Number(userId),
@@ -130,19 +145,20 @@ function saveContact(rowIndex, contactId) {
     };
 
     let url = urlBase + "/EditContact." + extension;
-    
+
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhr.onreadystatechange = function () {
-        if(this.readyState === 4) {
+        if (this.readyState === 4) {
             let resp = {};
-            try { resp = JSON.parse(this.responseText); } catch {}
+            try { resp = JSON.parse(this.responseText); } catch { }
             if (this.status !== 200 || resp.error) {
                 document.getElementById("contactDeleteResult").innerHTML = resp.error || "Update failed.";
                 return;
             }
-            // Success --> reload contact list with updated data
+            document.getElementById("contactDeleteResult").innerHTML = "Contact updated successfully.";
+            // Success reload contact list with updated data
             searchContact();
         }
     };
@@ -179,21 +195,21 @@ function deleteContact(contactId) {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
-            xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function () {
 
-                if (this.readyState == 4 && this.status == 200) {
-                    let response = JSON.parse(xhr.responseText);
-                    if (response.error) {
-                        document.getElementById("contactDeleteResult").innerHTML = response.error;
-                        return;
-                    }
-                    document.getElementById("contactDeleteResult").innerHTML = "Contact deleted successfully";
-
-                    // Refresh the contact list
-                    searchContact();
+            if (this.readyState == 4 && this.status == 200) {
+                let response = JSON.parse(xhr.responseText);
+                if (response.error) {
+                    document.getElementById("contactDeleteResult").innerHTML = response.error;
+                    return;
                 }
-            };
-            xhr.send(jsonPayload);
+                document.getElementById("contactDeleteResult").innerHTML = "Contact deleted successfully";
+
+                // Refresh the contact list
+                searchContact();
+            }
+        };
+        xhr.send(jsonPayload);
     }
     catch (err) {
         document.getElementById("contactDeleteResult").innerHTML = err.message;
