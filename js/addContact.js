@@ -46,6 +46,9 @@ function addContact()
                 document.getElementById("contactTextLastName").value = "";
                 document.getElementById("contactTextPhone").value = "";
                 document.getElementById("contactTextEmail").value = "";
+
+                // Clear validation
+                document.querySelector('.needs-validation').classList.remove('was-validated');
                 
                 // Refresh the contact list
                 searchContact();
