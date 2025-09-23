@@ -34,7 +34,7 @@
 						<form class="needs-validation" novalidate
 							onsubmit="event.preventDefault(); validateAndSubmit(); doRegister()">
 							<div class="mb-3">
-								<label for="userFirstName" class="form-label">First name</label>
+								<label for="userFirstName" class="form-label">First name*</label>
 								<input type="text" class="form-control" id="userFirstName" placeholder="First Name"
 									required>
 								<div class="invalid-feedback">
@@ -43,7 +43,7 @@
 							</div>
 
 							<div class="mb-3">
-								<label for="userLastName" class="form-label">Last name</label>
+								<label for="userLastName" class="form-label">Last name*</label>
 								<input type="text" class="form-control" id="userLastName" placeholder="Last Name"
 									required>
 								<div class="invalid-feedback">
@@ -52,17 +52,17 @@
 							</div>
 
 							<div class="mb-3">
-								<label for="userName" class="form-label">username</label>
-								<input type="text" class="form-control" id="userName" placeholder="username" required>
+								<label for="userName" class="form-label">Username*</label>
+								<input type="text" class="form-control" id="userName" placeholder="Username" required>
 								<div class="invalid-feedback">
 									Please enter a username.
 								</div>
 							</div>
 
 							<div class="mb-3">
-								<label for="userPassword" class="form-label">Password</label>
+								<label for="userPassword" class="form-label">Password*</label>
 								<!-- vvv TODO: Validation and password re-entry matching vvv -->
-								<input type="password" class="form-control" id="userPassword" placeholder="password"
+								<input type="password" class="form-control" id="userPassword" placeholder="Password"
 									required>
 								<div class="invalid-feedback">
 									Please enter a password.
@@ -70,10 +70,10 @@
 							</div>
 
 							<div class="mb-3">
-								<label for="userPassword-repeat" class="form-label">Password</label>
+								<label for="userPassword-repeat" class="form-label">Confirm Password*</label>
 								<!-- vvv TODO: Validation and password re-entry matching vvv -->
 								<input type="password" class="form-control" id="userPassword-repeat"
-									placeholder="Repeat password" required>
+									placeholder="Confirm Password" required>
 								<div class="invalid-feedback">
 									Please enter same password.
 								</div>

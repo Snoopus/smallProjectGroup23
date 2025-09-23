@@ -9,7 +9,7 @@ function addContact()
     document.getElementById("contactAddResult").innerHTML = "";
     
     // Validate inputs
-    if (!firstName || !lastName || !phone || !email) {
+    if (!firstName || !lastName) {
         document.getElementById("contactAddResult").innerHTML = "Please fill in all fields";
         return;
     }
