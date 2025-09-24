@@ -14,8 +14,8 @@
 <body>
 	<nav class="navbar bg-primary" data-bs-theme="dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">
-				<img src="images/logo.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+			<a class="navbar-brand" title="Narwhal Ltd logo">
+				<img src="images/narwhal_logo_1.png" class="img-fluid" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
 				Narwhal Ltd
 			</a>
 		</div>
@@ -26,9 +26,9 @@
 		<span id="inner-title" class="d-block text-center">Login/Sign up</span>
 		<form id="loginForm"><!-- onsubmit="doLogin();"> -->
 			<div class="d-flex justify-content-center gap-3 mt-3">
-				<button type="button" id="loginButton" class="btn btn-primary"
+				<button type="button" id="loginButton" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="left" title="Login"
 					onclick='window.location.href = "login.html"'>Login</button>
-				<button type="button" id="signUpButton" class="btn btn-primary"
+				<button type="button" id="signUpButton" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="right" title="Sign Up"
 					onclick='window.location.href = "register.html"'>Sign Up</button>
 			</div>
 			<span id="loginResult"></span>

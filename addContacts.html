@@ -2,35 +2,34 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add contacts</title>
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <script type="text/javascript" src="js/code.js"></script>
+    <script type="text/javascript" src="js/addContact.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="js/bootstrap.bundle.min.js"></script>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Add contacts</title>
-        <!-- Bootstrap CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-        <script type="text/javascript" src="js/code.js"></script>
-        <script type="text/javascript" src="js/addContact.js"></script>
-        <!-- Bootstrap Bundle with Popper -->
-        <script src="js/bootstrap.bundle.min.js"></script>
-
-        <script type="text/javascript">
-            document.addEventListener('DOMContentLoaded', function () {
-                readCookie();
-            }, false);
-        </script>
-    </head>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            readCookie();
+        }, false);
+    </script>
+</head>
 
 <body class="bg-light">
     <nav class="navbar bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="images/logo.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            <a class="navbar-brand" href="#" title="Narwhal Ltd logo">
+                <img src="images/narwhal_logo_1.png" class="img-fluid" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                 Narwhal Ltd
             </a>
-            <button type="button" id="goToContacts" class="btn btn-warning" onclick='window.location.href = "search.html"';>Go to Search</button>
-            <button type="button" id="logout" class="btn btn-danger" onclick=doLogout();>Logout</button>
+            <button type="button" id="goToContacts" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Search contact"
+                onclick='window.location.href = "search.html"' ;>Search contact</button>
+            <button type="button" id="logout" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Logout" onclick=doLogout();>Logout</button>
         </div>
     </nav>
     <div class="container py-5">
@@ -38,11 +37,11 @@
 
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form class="needs-validation" novalidate onsubmit="event.preventDefault(); validateAndSubmit(); addContact();">
+                <form class="needs-validation" novalidate
+                    onsubmit="event.preventDefault(); validateAndSubmit(); addContact();">
                     <div class="mb-3">
                         <label for="contactTextFirstName" class="form-label">First name</label>
-                        <input type="text" class="form-control" id="contactTextFirstName" placeholder="First Name"
-                            required>
+                        <input type="text" class="form-control" id="contactTextFirstName" placeholder="First Name" title="Please fill out this field." required>
                         <div class="invalid-feedback">
                             Please enter a first name.
                         </div>
@@ -50,7 +49,7 @@
 
                     <div class="mb-3">
                         <label for="contactTextLastName" class="form-label">Last name</label>
-                        <input type="text" class="form-control" id="contactTextLastName" placeholder="Last Name"
+                        <input type="text" class="form-control" id="contactTextLastName" placeholder="Last Name" title="Please fill out this field."
                             required>
                         <div class="invalid-feedback">
                             Please enter a last name.
@@ -59,7 +58,7 @@
 
                     <div class="mb-3">
                         <label for="contactTextPhone" class="form-label">Phone number</label>
-                        <input type="tel" class="form-control" id="contactTextPhone" placeholder="xxx-xxx-xxxx"
+                        <input type="tel" class="form-control" id="contactTextPhone" placeholder="xxx-xxx-xxxx" title="Add number if desired."
                             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
                         <div class="invalid-feedback">
                             Please enter a valid phone number (format: xxx-xxx-xxxx).
@@ -69,14 +68,14 @@
                     <div class="mb-3">
                         <label for="contactTextEmail" class="form-label">Email</label>
                         <input type="email" class="form-control" id="contactTextEmail" placeholder="contact@example.com"
-                            pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                            title="Add email if desired." pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
                         <div class="invalid-feedback">
                             Please enter a valid email address.
                         </div>
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" id="addContactButton" class="btn btn-primary">
+                        <button type="submit" id="addContactButton" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add contact">
                             Add Contact
                         </button>
                     </div>
@@ -85,10 +84,7 @@
             </div>
         </div>
     </div>
-
-
-
-
+    
 </body>
 
 </html>

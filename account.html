@@ -15,12 +15,12 @@
 <body>
 	<nav class="navbar bg-primary" data-bs-theme="dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">
-				<img src="images/narwhal_logo_3.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+			<a class="navbar-brand" href="#" title="Narwhal Ltd logo">
+				<img src="images/narwhal_logo_1.png" class="img-fluid" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
 				Narwhal Ltd
 			</a>
-			<button type="button" id="searchButton" class="btn btn-warning" onclick='window.location.href = "search.html"'>Go to Search</button>
-            <button type="button" id="logout" class="btn btn-danger" onclick=doLogout();>Logout</button>
+			<button type="button" id="searchButton" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Search contact." onclick='window.location.href = "search.html"'>Search contact</button>
+            <button type="button" id="logout" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout" onclick=doLogout();>Logout</button>
 		</div>
 	</nav>
 
@@ -29,9 +29,9 @@
 		<span id="inner-title" class="d-block text-center"></span>
 		<form id="accountForm"><!-- onsubmit="doLogin();"> -->
 			<div class="d-flex justify-content-center gap-3 mt-3">
-				<button type="button" id="changePasswordButton" class="btn btn-primary"
+				<button type="button" id="changePasswordButton" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="left" title="Change Password"
 					onclick='editPassword();'>Change Password</button>
-				<button type="button" id="deleteAccountButton" class="btn btn-danger"
+				<button type="button" id="deleteAccountButton" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Delete your account."
 					onclick='deleteUser();'>Delete Account</button>
 			</div>
 			<span id="operationResult"></span>

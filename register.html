@@ -15,8 +15,8 @@
 <body>
 	<nav class="navbar bg-primary" data-bs-theme="dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">
-				<img src="images/logo.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+			<a class="navbar-brand" title="Narwhal Ltd logo">
+				<img src="images/narwhal_logo_1.png" class="img-fluid" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
 				Narwhal Ltd
 			</a>
 		</div>
@@ -34,7 +34,7 @@
 							onsubmit="event.preventDefault(); validateAndSubmit(); doRegister()">
 							<div class="mb-3">
 								<label for="userFirstName" class="form-label">First name*</label>
-								<input type="text" class="form-control" id="userFirstName" placeholder="First Name"
+								<input type="text" class="form-control" id="userFirstName" title="Type first name" placeholder="First Name"
 									required>
 								<div class="invalid-feedback">
 									Please enter a First name.
@@ -43,7 +43,7 @@
 
 							<div class="mb-3">
 								<label for="userLastName" class="form-label">Last name*</label>
-								<input type="text" class="form-control" id="userLastName" placeholder="Last Name"
+								<input type="text" class="form-control" id="userLastName" title="Type last name" placeholder="Last Name"
 									required>
 								<div class="invalid-feedback">
 									Please enter a Last name.
@@ -52,7 +52,7 @@
 
 							<div class="mb-3">
 								<label for="userName" class="form-label">Username*</label>
-								<input type="text" class="form-control" id="userName" placeholder="Username" required>
+								<input type="text" class="form-control" id="userName" title="Type Username" placeholder="Username" required>
 								<div class="invalid-feedback">
 									Please enter a username.
 								</div>
@@ -60,8 +60,7 @@
 
 							<div class="mb-3">
 								<label for="userPassword" class="form-label">Password*</label>
-								<!-- vvv TODO: Validation and password re-entry matching vvv -->
-								<input type="password" class="form-control" id="userPassword" placeholder="Password"
+								<input type="password" class="form-control" id="userPassword" title="Type password" placeholder="Password"
 									required>
 								<div class="invalid-feedback">
 									Please enter a password.
@@ -70,8 +69,7 @@
 
 							<div class="mb-3">
 								<label for="userPassword-repeat" class="form-label">Confirm Password*</label>
-								<!-- vvv TODO: Validation and password re-entry matching vvv -->
-								<input type="password" class="form-control" id="userPassword-repeat"
+								<input type="password" class="form-control" title="Re-enter password" id="userPassword-repeat"
 									placeholder="Confirm Password" required>
 								<div class="invalid-feedback">
 									Please enter same password.
@@ -79,7 +77,7 @@
 							</div>
 
 							<div class="d-grid">
-								<button type="submit" id="signUpButton" class="btn btn-primary">
+								<button type="submit" id="signUpButton" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="right" title="Sign Up">
 									Sign Up
 								</button>
 							</div>

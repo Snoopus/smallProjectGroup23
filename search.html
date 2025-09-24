@@ -25,8 +25,8 @@
     <body class="bg-light">
         <nav class="navbar bg-primary" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#" onclick='window.location.href = "account.html"'>
-                    <img src="images/narwhal_logo_3.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                <a class="navbar-brand" href="#" onclick='window.location.href = "account.html"' title="Narwhal Ltd logo">
+                    <img src="images/narwhal_logo_1.png" class="img-fluid" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     Narwhal Ltd
                 </a>
                 <button type="button" id="addContactButton" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add contact" onclick='window.location.href = "addContacts.html"'>Add New Contact</button>
@@ -43,7 +43,7 @@
                         <div class="card-body p-4">
                             <form onsubmit="event.preventDefault(); searchContact();">
                                 <div class="d-flex">
-                                    <input type="text" name="search" class="form-control" id="searchText" oninput="checkInput();"/>
+                                    <input type="text" name="search" class="form-control" id="searchText" title="Search contact." oninput="checkInput();"/>
                                     <!-- Search button -->
                                     <button type="button" class="btn btn-secondary btn-sm ms-2" id="searchButton" data-bs-toggle="tooltip" data-bs-placement="right" title="Search" disabled ><i class="bi bi-search"></i></button>
                                 </div>
