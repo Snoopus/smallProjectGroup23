@@ -12,12 +12,12 @@
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 
-<!-- NEW: Deleted the logout button in the navigation bar since it served no purpose  -->
 <body class="bg-light">
 	<nav class="navbar bg-primary" data-bs-theme="dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">
-				<img src="images/logo.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+			<a class="navbar-brand" title="Narwhal Ltd logo">
+				<img src="images/narwhal_logo_1.png" class="img-fluid" alt="Logo" width="30" height="24"
+					class="d-inline-block align-text-top">
 				Narwhal Ltd
 			</a>
 		</div>
@@ -31,22 +31,30 @@
 						<h3 class="mb-0">Sign In</h3>
 					</div>
 					<div class="card-body p-4">
-						<form id="loginForm" onsubmit="event.preventDefault(); doLogin();">
+						<form class="needs-validation" novalidate id="loginForm"
+							onsubmit="event.preventDefault(); validateAndSubmit(); doLogin();">
 							<div class="mb-3">
 								<label for="loginName" class="form-label">Username</label>
 								<input type="text" class="form-control" id="loginName" placeholder="Enter username"
 									required />
+								<div class="invalid-feedback">
+									Please enter a User Name.
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="loginPassword" class="form-label">Password</label>
 								<input type="password" class="form-control" id="loginPassword"
 									placeholder="Enter password" required />
+								<div class="invalid-feedback">
+									Please enter a User Password.
+								</div>
 							</div>
 							<div class="d-grid">
-								<button type="submit" id="loginButton" class="btn btn-primary">Sign In</button>
+								<button type="submit" id="loginButton" class="btn btn-primary" data-bs-toggle="tooltip"
+									data-bs-placement="right" title="Sign In">Sign In</button>
 							</div>
 							<div id="loginResult" class="text-danger mt-3 text-center"></div>
-							Don't have an account? <a href="register.html">Sign Up</a>
+							Don't have an account? <a href="register.html">Create One</a>
 						</form>
 					</div>
 				</div>
