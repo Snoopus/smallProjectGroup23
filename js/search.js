@@ -67,6 +67,8 @@ function checkInput() {
         searchButton.classList.add('btn-primary'); // Add blue color
     } else {
         searchButton.disabled = true; // Disable the button
+        searchButton.classList.remove('btn-primary'); // Remove blue color
+        searchButton.classList.add('btn-secondary'); // Add gray color
     }
 }
 

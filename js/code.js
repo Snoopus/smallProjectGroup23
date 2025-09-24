@@ -1,4 +1,3 @@
-
 const urlBase = 'https://poosd.ilovenarwhals.xyz/LAMPAPI';
 const extension = 'php';
 
@@ -73,3 +72,10 @@ function validateAndSubmit() {
     return true;
 }
 
+// Show Tooltip when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+})
