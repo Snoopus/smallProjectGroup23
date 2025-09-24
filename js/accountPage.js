@@ -23,7 +23,7 @@ function changeUser() {
 
     // Create modal box
     let modalBox = document.createElement('div');
-    modalBox.style.background = '#fff';
+    modalBox.style.background = '#211f1fff';
     modalBox.style.padding = '30px 20px';
     modalBox.style.borderRadius = '10px';
     modalBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
@@ -185,7 +185,7 @@ function deleteUser() {
 
     // Create modal box
     let modalBox = document.createElement('div');
-    modalBox.style.background = '#fff';
+    modalBox.style.background = '#211f1fff';
     modalBox.style.padding = '30px 20px';
     modalBox.style.borderRadius = '10px';
     modalBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
@@ -322,7 +322,7 @@ function editPassword() {
 
     // Create modal box
     let modalBox = document.createElement('div');
-    modalBox.style.background = '#fff';
+    modalBox.style.background = '#211f1fff';
     modalBox.style.padding = '30px 20px';
     modalBox.style.borderRadius = '10px';
     modalBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
