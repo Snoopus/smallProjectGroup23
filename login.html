@@ -35,7 +35,7 @@
 							onsubmit="event.preventDefault(); validateAndSubmit(); doLogin();">
 							<div class="mb-3">
 								<label for="loginName" class="form-label">Username</label>
-								<input type="text" class="form-control" data-bs-theme="light" id="loginName" placeholder="Enter username"
+								<input type="text" class="form-control" data-bs-theme="light" id="loginName" title="Input Username" placeholder="Enter username"
 									required />
 								<div class="invalid-feedback">
 									Please enter a User Name.
@@ -43,7 +43,7 @@
 							</div>
 							<div class="mb-3">
 								<label for="loginPassword" class="form-label">Password</label>
-								<input type="password" class="form-control" data-bs-theme="light" id="loginPassword"
+								<input type="password" class="form-control" data-bs-theme="light" id="loginPassword" title="Input Password"
 									placeholder="Enter password" required />
 								<div class="invalid-feedback">
 									Please enter a User Password.
@@ -53,7 +53,7 @@
 								<button type="submit" id="loginButton" class="btn btn-primary" data-bs-toggle="tooltip"
 									data-bs-placement="right" title="Sign In">Sign In</button>
 							</div>
-							<div id="loginResult" class="text-danger mt-3 text-center"></div>Don't have an account? <a
+							<div id="loginResult" class="text-danger mt-3 text-center"></div>Don't have an account? <a title="Create account page link"
 								href="register.html">Create One</a>
 						</form>
 					</div>
