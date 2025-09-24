@@ -3,39 +3,51 @@
 
 <head>
 	<meta charset="UTF-8">
+	<!-- Responsive view port for proper scaling on mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Contact Manager Account Page</title>
 	<script type="text/javascript" src="js/code.js"></script>
-    <script type="text/javascript" src="js/accountPage.js"></script>
+	<script type="text/javascript" src="js/accountPage.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 
-<body>
-	<nav class="navbar bg-primary" data-bs-theme="dark">
+<body class="d-flex flex-column min-vh-100">
+	<!-- Navigation bar -->
+	<nav class="navbar bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#" title="Narwhal Ltd logo">
-				<img src="images/narwhal_logo_1.png" class="img-fluid" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+			<a class="navbar-brand" title="Narwhal Ltd logo">
+				<img src="images/narwhal_logo_1.png" class="img-fluid" alt="Narwhal Ltd logo" width="30" height="30">
 				Narwhal Ltd
 			</a>
-			<button type="button" id="searchButton" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Search contact." onclick='window.location.href = "search.html"'>Search contact</button>
-            <button type="button" id="logout" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout" onclick=doLogout();>Logout</button>
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				<button type="button" id="searchButton" class="btn btn-warning" data-bs-toggle="tooltip"
+					data-bs-placement="bottom" title="Search contact."
+					onclick='window.location.href = "search.html"'>Search
+					contact</button>
+				<button type="button" id="logout" class="btn btn-danger" data-bs-toggle="tooltip"
+					data-bs-placement="bottom" title="Logout" onclick=doLogout();>Logout</button>
+			</div>
 		</div>
 	</nav>
-
-	<h1 id="title" class="text-center mt-4">My Account</h1>
-	<div class="mb-3">
-		<span id="inner-title" class="d-block text-center"></span>
-		<form id="accountForm"><!-- onsubmit="doLogin();"> -->
-			<div class="d-flex justify-content-center gap-3 mt-3">
-				<button type="button" id="changePasswordButton" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="left" title="Change Password"
-					onclick='editPassword();'>Change Password</button>
-				<button type="button" id="deleteAccountButton" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Delete your account."
-					onclick='deleteUser();'>Delete Account</button>
-			</div>
-			<span id="operationResult"></span>
-		</form>
+	<!-- Main content -->
+	<div class="text-center">
+		<h1 id="title" class="text-center mt-4">My Account</h1>
+		<div class="mb-3">
+			<span id="inner-title" class="d-block text-center"></span>
+			<form id="accountForm">
+				<div class="d-flex justify-content-center gap-3 mt-3">
+					<button type="button" id="changePasswordButton" class="btn btn-primary" data-bs-toggle="tooltip"
+						data-bs-placement="left" title="Change Password" onclick='editPassword();'>Change
+						Password</button>
+					<button type="button" id="deleteAccountButton" class="btn btn-danger" data-bs-toggle="tooltip"
+						data-bs-placement="right" title="Delete your account." onclick='deleteUser();'>Delete
+						Account</button>
+				</div>
+				<span id="operationResult"></span>
+			</form>
+		</div>
 	</div>
 
 </body>
