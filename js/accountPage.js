@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', function() {
     console.log('Last Name:', lastName);
 });
 
-function editUsername() {
+function changeUser() {
     // Create modal background
     let modalBg = document.createElement('div');
     modalBg.style.position = 'fixed';
