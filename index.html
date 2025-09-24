@@ -3,36 +3,44 @@
 
 <head>
 	<meta charset="UTF-8">
+	<!-- Responsive view port for proper scaling on mobile devices -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Contact Manager Register Page</title>
 	<script type="text/javascript" src="js/code.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> -->
 </head>
 
-<body>
-	<nav class="navbar bg-primary" data-bs-theme="dark">
+<body class="d-flex flex-column min-vh-100">
+	<!-- Navigation bar -->
+	<nav class="navbar bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand" title="Narwhal Ltd logo">
-				<img src="images/narwhal_logo_1.png" class="img-fluid" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+			<span class="navbar-brand" title="Narwhal Ltd logo">
+				<img src="images/narwhal_logo_1.png" class="img-fluid" alt="Narwhal Ltd logo" width="30" height="30">
 				Narwhal Ltd
-			</a>
+			</span>
 		</div>
 	</nav>
-
-	<h1 id="title" class="text-center mt-4">My pod contact manager</h1>
-	<div class="mb-3">
-		<span id="inner-title" class="d-block text-center">Login/Sign up</span>
-		<form id="loginForm"><!-- onsubmit="doLogin();"> -->
-			<div class="d-flex justify-content-center gap-3 mt-3">
-				<button type="button" id="loginButton" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="left" title="Login"
-					onclick='window.location.href = "login.html"'>Login</button>
-				<button type="button" id="signUpButton" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="right" title="Sign Up"
-					onclick='window.location.href = "register.html"'>Sign Up</button>
+	<!-- Main content -->
+	<div class="flex-grow-1 d-flex align-items-center justify-content-center">
+		<div class="text-center">
+			<h1 id="title" class="my-4">It's is another day in paradise!</h1>
+			<div class="mb-3">
+				<span id="inner-title" class="d-block mb-3" style="color: #0d71e4;">Login/Sign up</span>
+				<form id="loginForm">
+					<div class="d-flex justify-content-center gap-3">
+						<button type="button" id="loginButton" class="btn btn-primary" data-bs-toggle="tooltip"
+							data-bs-placement="left" title="Login"
+							onclick='window.location.href = "login.html"'>Login</button>
+						<button type="button" id="signUpButton" class="btn btn-primary" data-bs-toggle="tooltip"
+							data-bs-placement="right" title="Sign Up"
+							onclick='window.location.href = "register.html"'>Sign Up</button>
+					</div>
+				</form>
 			</div>
-			<span id="loginResult"></span>
-		</form>
+			<h2 id="bottom_title" class="my-5">Stay cool and just keep swimming.</h2>
+		</div>
 	</div>
 
 </body>
