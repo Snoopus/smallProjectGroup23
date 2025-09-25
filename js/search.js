@@ -23,8 +23,8 @@ function searchContact() {
                 }
 
                 // Create table with Bootstrap classes
-                let resultHTML = "<table class='table table-responsive-sm center-table table-striped table-hover rounded'>";
-                resultHTML += "<thead class='table-primary'><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Actions</th></tr></thead>";
+                let resultHTML = "<table class='table table-striped table-hover table-responsive-md'>";
+                resultHTML += "<thead class='table-warning'><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Actions</th></tr></thead>";
                 resultHTML += "<tbody>";
 
                 // Add each contact as a row
@@ -35,7 +35,7 @@ function searchContact() {
                     resultHTML += "<td id='lastName_" + i + "'>" + contact.lastName + "</td>";
                     resultHTML += "<td id='phone_" + i + "'>" + contact.phone + "</td>";
                     resultHTML += "<td id='email_" + i + "'>" + contact.email + "</td>";
-                    resultHTML += "<td><button class='btn btn-info btn-sm me-2' onclick='editContact(" + i + "," + contact.contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
+                    resultHTML += "<td><button class='btn btn-primary btn-sm me-2' onclick='editContact(" + i + "," + contact.contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
                         "<button class='btn btn-danger btn-sm' onclick='deleteContact(" + contact.contactId + ")'><i class='bi bi-trash3'></i></button></td>";
                     resultHTML += "</tr>";
                 }
