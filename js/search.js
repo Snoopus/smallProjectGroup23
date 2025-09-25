@@ -18,9 +18,13 @@ function searchContact() {
                 let jsonObject = JSON.parse(xhr.responseText);
 
                 if (jsonObject.error) {
-                    document.getElementById("contactSearchResult").innerHTML = jsonObject.error;
-                    
-                    // TODO: Add Modify and display error message w/ red color.
+                    let errorElement = document.getElementById("contactSearchResult");
+                    errorElement.innerHTML = '<div class="text-danger">' + jsonObject.error + '</div>';
+
+                    // Clear error message after 1 second
+                    setTimeout(() => {
+                        errorElement.innerHTML = "";
+                    }, 1000);
 
                     return;
                 }
@@ -73,6 +77,9 @@ function checkInput() {
         searchButton.classList.remove('btn-primary'); // Remove blue color
         searchButton.classList.add('btn-secondary'); // Add gray color
     }
+    // Clear the table and results when input is empty
+    document.getElementById("contactSearchResult").innerHTML = "";
+    document.getElementById("contactList").innerHTML = "";
 }
 
 // Edit function to add functionality to edit contact button
@@ -159,7 +166,10 @@ function saveContact(rowIndex, contactId) {
             let resp = {};
             try { resp = JSON.parse(this.responseText); } catch { }
             if (this.status !== 200 || resp.error) {
-                document.getElementById("contactSearchResult").innerHTML = resp.error || "Update failed.";
+                let errorMsg = resp.error || "Update failed."
+                if (errorMsg) {
+                    document.getElementById("contactSearchResult").innerHTML = '<div class="text-warning">No change made.</div>';
+                }
                 return;
             }
             document.getElementById("contactSearchResult").innerHTML = "Contact updated successfully.";
