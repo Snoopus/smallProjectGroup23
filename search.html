@@ -30,19 +30,20 @@
             </a>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button type="button" id="goContactsButton" class="btn btn-warning" data-bs-toggle="tooltip"
-					data-bs-placement="bottom" title="Add Contacts."
-					onclick='window.location.href = "addContacts.html"'>Add Contacts
-					</button>
-				<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    data-bs-placement="bottom" title="Add Contacts."
+                    onclick='window.location.href = "addContacts.html"'>Add Contacts
+                </button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom"
                     title="User account" href="#" onclick='window.location.href = "account.html"' id="accountButton">
                 </button>
-				<button type="button" id="logout" class="btn btn-danger" data-bs-toggle="tooltip"
-					data-bs-placement="bottom" title="Logout" onclick=doLogout();>Logout</button>
+                <button type="button" id="logout" class="btn btn-danger" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Logout" onclick=doLogout();>Logout</button>
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="row align-items-center justify-content-center min-vh-100">
+    <div class="container mt-5">
+        <!-- Search Contact Section -->
+        <div class="row justify-content-center">
             <div class="col-md-auto col-lg-6">
                 <div class="card shadow h-auto">
                     <div class="card-header bg-primary text-white text-center py-3">
@@ -53,25 +54,26 @@
                             <div class="d-flex">
                                 <input type="text" name="search" class="form-control" id="searchText"
                                     title="Enter contact information." oninput="checkInput();" />
-                                <!-- Search button -->
                                 <button type="button" class="btn btn-secondary btn-sm ms-2" id="searchButton"
                                     data-bs-toggle="tooltip" data-bs-placement="right" title="Search" disabled
                                     onclick="searchContact()" disabled>
-                                    <i class="bi bi-search"></i></button>
+                                    <i class="bi bi-search"></i>
+                                </button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <!-- Placed table outside of the card for better view -->
-            <div id="contactSearchResult" class="mt-auto text-center"></div>
-            <!-- Centered table  -->
-            <div id="contactList" class="d-flex justify-content-center"></div>
-
-            <!-- TODO: Modal for contact deletion -->
-            <!-- Coming soon... -->
         </div>
-    </div>
+        <!-- Results section -->
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div id="contactSearchResult" class="mt-5 text-center"></div>
+                <div id="contactList" class="container mt-5 align-items-center justify-content-center"></div>
+                <!-- TODO: Modal for contact deletion -->
+                <!-- Coming soon... -->
+            </div>
+        </div>
     </div>
 </body>
 
