@@ -17,6 +17,7 @@
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             readCookie();
+            accountButtonText();
         }, false);
     </script>
 </head>
@@ -30,14 +31,15 @@
                 Narwhal Ltd
             </a>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    title="User account" href="#" onclick='window.location.href = "account.html"'><i
-                        class="bi bi-person"></i></button>
-                <button type="button" id="goToContacts" class="btn btn-warning" data-bs-toggle="tooltip"
-                    data-bs-placement="bottom" title="Search contact" onclick='window.location.href = "search.html"'
-                    ;>Search contact</button>
-                <button type="button" id="logout" class="btn btn-danger" data-bs-toggle="tooltip"
-                    data-bs-placement="right" title="Logout" onclick=doLogout();>Logout</button>
+                <button type="button" id="goSearchButton" class="btn btn-warning" data-bs-toggle="tooltip"
+					data-bs-placement="bottom" title="Search contact."
+					onclick='window.location.href = "search.html"'>Go to Search
+					</button>
+				<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    title="User account" href="#" onclick='window.location.href = "account.html"' id="accountButton">
+                </button>
+				<button type="button" id="logout" class="btn btn-danger" data-bs-toggle="tooltip"
+					data-bs-placement="bottom" title="Logout" onclick=doLogout();>Logout</button>
             </div>
         </div>
     </nav>
