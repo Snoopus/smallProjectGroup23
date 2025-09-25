@@ -81,5 +81,5 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 
 function accountButtonText() {
-	document.getElementById("accountButton").innerHTML = firstName + " " + lastName; // + " <i class='bi bi-person'></i>";
+	document.getElementById("accountButton").innerHTML = firstName + " " + lastName + " <i class='bi bi-person'></i>";
 }
