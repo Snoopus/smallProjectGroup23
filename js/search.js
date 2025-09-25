@@ -23,7 +23,7 @@ function searchContact() {
                 }
 
                 // Create table with Bootstrap classes
-                let resultHTML = "<table class='w-auto table center-table table-striped table-bordered table-hover'>";
+                let resultHTML = "<table class='table table-responsive-sm center-table table-striped table-hover rounded'>";
                 resultHTML += "<thead class='table-primary'><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Actions</th></tr></thead>";
                 resultHTML += "<tbody>";
 
@@ -41,10 +41,10 @@ function searchContact() {
                 }
                 resultHTML += "</tbody></table>";
 
-                // Display the results
+                // Display the results needs to be fixed
                 document.getElementById("contactList").innerHTML = resultHTML;
                 document.getElementById("contactSearchResult").innerHTML =
-                    jsonObject.results.length > 0 ? "Contacts found" : "No contacts found";
+                    jsonObject.results.length > 0 ? "" : "No contacts found";
             }
         };
         xhr.send(jsonPayload);
@@ -112,7 +112,7 @@ function cancelEdit(rowIndex, original_values) {
 
 // New: function to save the edited cells
 function saveContact(rowIndex, contactId) {
-    document.getElementById("contactDeleteResult").innerHTML = "";
+    document.getElementById("contactSearchResult").innerHTML = "";
 
     // Gather edits and trim white space from front and end.
     let firstName = document.getElementById("edited_fName_" + rowIndex).value.trim();
@@ -122,7 +122,7 @@ function saveContact(rowIndex, contactId) {
 
     // Minimum requirement check 
     if (!firstName || !lastName) {
-        document.getElementById("contactDeleteResult").innerHTML = "First and Last name required!"
+        document.getElementById("contactSearchResult").innerHTML = "First and Last name required!"
         return;
     }
 
@@ -156,10 +156,10 @@ function saveContact(rowIndex, contactId) {
             let resp = {};
             try { resp = JSON.parse(this.responseText); } catch { }
             if (this.status !== 200 || resp.error) {
-                document.getElementById("contactDeleteResult").innerHTML = resp.error || "Update failed.";
+                document.getElementById("contactSearchResult").innerHTML = resp.error || "Update failed.";
                 return;
             }
-            document.getElementById("contactDeleteResult").innerHTML = "Contact updated successfully.";
+            document.getElementById("contactSearchResult").innerHTML = "Contact updated successfully.";
             // Success reload contact list with updated data
             searchContact();
         }
@@ -170,12 +170,12 @@ function saveContact(rowIndex, contactId) {
 // NEW: delete function to add functionality to delete contact button
 function deleteContact(contactId) {
     // Clear previous messages
-    document.getElementById("contactDeleteResult").innerHTML = "";
+    document.getElementById("contactSearchResult").innerHTML = "";
 
     let idNum = Number(contactId);
     // Validate contact to delete
     if (!Number.isInteger(idNum) || idNum <= 0) {
-        document.getElementById("contactDeleteResult").innerHTML = "Invalid contact!";
+        document.getElementById("contactSearchResult").innerHTML = "Invalid contact!";
         return;
     }
 
@@ -202,10 +202,10 @@ function deleteContact(contactId) {
             if (this.readyState == 4 && this.status == 200) {
                 let response = JSON.parse(xhr.responseText);
                 if (response.error) {
-                    document.getElementById("contactDeleteResult").innerHTML = response.error;
+                    document.getElementById("contactSearchResult").innerHTML = response.error;
                     return;
                 }
-                document.getElementById("contactDeleteResult").innerHTML = "Contact deleted successfully";
+                document.getElementById("contactSearchResult").innerHTML = "Contact deleted successfully";
 
                 // Refresh the contact list
                 searchContact();
@@ -214,6 +214,6 @@ function deleteContact(contactId) {
         xhr.send(jsonPayload);
     }
     catch (err) {
-        document.getElementById("contactDeleteResult").innerHTML = err.message;
+        document.getElementById("contactSearchResult").innerHTML = err.message;
     }
 }
