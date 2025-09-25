@@ -17,6 +17,7 @@
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             readCookie();
+            accountButtonText();
         }, false);
     </script>
 </head>
@@ -35,7 +36,7 @@
 					onclick='window.location.href = "search.html"'>Go to Search
 					</button>
 				<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    title="User account" href="#" onclick='window.location.href = "account.html"'><i
+                    title="User account" href="#" onclick='window.location.href = "account.html"' id="accountButton"><i
                         class="bi bi-person"></i></button>
 				<button type="button" id="logout" class="btn btn-danger" data-bs-toggle="tooltip"
 					data-bs-placement="bottom" title="Logout" onclick=doLogout();>Logout</button>

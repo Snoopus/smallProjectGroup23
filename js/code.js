@@ -79,3 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 })
+
+function accountButtonText() {
+	document.getElementById("accountButton").innerHTML = firstName + " " + lastName; // + " <i class='bi bi-person'></i>";
+}
