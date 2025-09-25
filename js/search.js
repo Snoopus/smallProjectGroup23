@@ -19,6 +19,9 @@ function searchContact() {
 
                 if (jsonObject.error) {
                     document.getElementById("contactSearchResult").innerHTML = jsonObject.error;
+                    
+                    // TODO: Add Modify and display error message w/ red color.
+
                     return;
                 }
 
@@ -134,7 +137,7 @@ function saveContact(rowIndex, contactId) {
 
     // Action buttons Save/Cancel
     let actionCell = document.getElementById("firstName_" + rowIndex).parentElement.querySelector("td:last-child");
-    actionCell.innerHTML = "<button class='btn btn-info btn-sm me-2' onclick='editContact(" + rowIndex + "," + contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
+    actionCell.innerHTML = "<button class='btn btn-primary btn-sm me-2' onclick='editContact(" + rowIndex + "," + contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
         "<button class='btn btn-danger btn-sm' onclick='deleteContact(" + contactId + ")'><i class='bi bi-trash3'></i></button>";
 
     let payload = {
