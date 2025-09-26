@@ -167,7 +167,7 @@ function saveContact(rowIndex, contactId) {
             try { resp = JSON.parse(this.responseText); } catch { }
             if (this.status !== 200 || resp.error) {
                 let errorMsg = resp.error || "Update failed."
-                if (errorMsg != "") {
+                if (errorMsg != "No contact by that id.") {
                     document.getElementById("contactSearchResult").innerHTML = '<div class="text-warning">No change made.</div>';
                 }
                 return;
