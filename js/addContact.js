@@ -1,3 +1,12 @@
+function formatPhoneNum(phone) {
+    let strippedPh = phone.replace(/\D/g, '')
+    if (strippedPh.length === 10) {
+        
+        return strippedPh.replace(/(\d{3})(\d{3})(\d{4})/, '($1)-$2-$3');
+    }
+    return 0;
+}
+
 function addContact() {
     let firstName = document.getElementById("contactTextFirstName").value;
     let lastName = document.getElementById("contactTextLastName").value;
