@@ -1,7 +1,7 @@
 function formatPhoneNum(phone) {
     let strippedPh = phone.replace(/\D/g, '')
     if (strippedPh.length === 10) {
-        
+
         return strippedPh.replace(/(\d{3})(\d{3})(\d{4})/, '($1)-$2-$3');
     }
     return 0;
@@ -18,10 +18,42 @@ function addContact() {
 
     // Validate inputs
     if (!firstName || !lastName) {
-        document.getElementById("contactAddResult").innerHTML = "Please fill in all fields";
+        let element = document.getElementById("contactAddResult");
+        element.innerHTML = "First and Last name are required!";
+        setTimeout(() => {
+            element.innerHTML = "";
+        }, 2000);
         return;
     }
+    // Validate phone number
+    if (phone) {
+        let numbersOnly = phone.replace(/\D/g, '');
 
+        if (numbersOnly.length !== 10) {
+            let element = document.getElementById("contactAddResult");
+            element.innerHTML = "Phone number must be 10 digits!";
+            setTimeout(() => {
+                element.innerHTML = "";
+            }, 2000);
+            return;
+        }
+
+        phone = numbersOnly;
+    }
+    // email validation
+    if (email) {
+        // Regex pattern
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email)) {
+            let element = document.getElementById("contactAddResult");
+            element.innerHTML = "Please valid email address!";
+            setTimeout(() => {
+                element.innerHTML = "";
+            }, 2000);
+            return;
+        }
+    }
     let tmp = {
         firstName: firstName,
         lastName: lastName,
