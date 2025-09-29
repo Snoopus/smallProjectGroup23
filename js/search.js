@@ -40,7 +40,7 @@ function searchContact() {
                     resultHTML += "<tr id='row_" + i + "' data-id='" + contact.contactId + "'>";
                     resultHTML += "<td id='firstName_" + i + "'>" + contact.firstName + "</td>";
                     resultHTML += "<td id='lastName_" + i + "'>" + contact.lastName + "</td>";
-                    resultHTML += "<td id='phone_" + i + "'>" + contact.phone + "</td>";
+                    resultHTML += "<td id='phone_" + i + "'>" + formatPhoneNum(contact.phone) + "</td>";
                     resultHTML += "<td id='email_" + i + "'>" + contact.email + "</td>";
                     resultHTML += "<td><button class='btn btn-primary btn-sm me-2' onclick='editContact(" + i + "," + contact.contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
                         "<button class='btn btn-danger btn-sm' onclick='deleteContact(" + contact.contactId + ")'><i class='bi bi-trash3'></i></button></td>";
@@ -139,7 +139,7 @@ function saveContact(rowIndex, contactId) {
     // Exit edit mode before API call
     document.getElementById("firstName_" + rowIndex).innerHTML = firstName;
     document.getElementById("lastName_" + rowIndex).innerHTML = lastName;
-    document.getElementById("phone_" + rowIndex).innerHTML = phone;
+    document.getElementById("phone_" + rowIndex).innerHTML = formatPhoneNum(phone);
     document.getElementById("email_" + rowIndex).innerHTML = email;
 
     // Action buttons Save/Cancel
