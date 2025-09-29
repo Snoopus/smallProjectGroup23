@@ -180,53 +180,153 @@ function saveContact(rowIndex, contactId) {
     xhr.send(JSON.stringify(payload))
 }
 
-// NEW: delete function to add functionality to delete contact button
+// // NEW: delete function to add functionality to delete contact button
+// function deleteContact(contactId) {
+//     // Clear previous messages
+//     document.getElementById("contactSearchResult").innerHTML = "";
+
+//     let idNum = Number(contactId);
+//     // Validate contact to delete
+//     if (!Number.isInteger(idNum) || idNum <= 0) {
+//         document.getElementById("contactSearchResult").innerHTML = "Invalid contact!";
+//         return;
+//     }
+
+//     // TODO: To be changed to modal component
+//     if (!confirm("You are about to delete this contact! Confirm by clicking okay.")) {
+//         return;
+//     }
+
+//     let tmp = {
+//         contactId: idNum,
+//         userId: userId
+//     };
+
+//     let jsonPayload = JSON.stringify(tmp);
+
+//     let url = urlBase + '/DeleteContact.' + extension;
+
+//     let xhr = new XMLHttpRequest();
+//     xhr.open("POST", url, true);
+//     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+//     try {
+//         xhr.onreadystatechange = function () {
+
+//             if (this.readyState == 4 && this.status == 200) {
+//                 let response = JSON.parse(xhr.responseText);
+//                 if (response.error) {
+//                     document.getElementById("contactSearchResult").innerHTML = response.error;
+//                     return;
+//                 }
+//                 document.getElementById("contactSearchResult").innerHTML = "Contact deleted successfully";
+
+//                 // Refresh the contact list
+//                 searchContact();
+//             }
+//         };
+//         xhr.send(jsonPayload);
+//     }
+//     catch (err) {
+//         document.getElementById("contactSearchResult").innerHTML = err.message;
+//     }
+// }
+
+// Global variable to store the contact ID for deletion
+let pendingDeleteId = null;
+
+// Starts deletion process via confirmation modal
 function deleteContact(contactId) {
     // Clear previous messages
     document.getElementById("contactSearchResult").innerHTML = "";
 
     let idNum = Number(contactId);
+   
     // Validate contact to delete
     if (!Number.isInteger(idNum) || idNum <= 0) {
-        document.getElementById("contactSearchResult").innerHTML = "Invalid contact!";
+        showMessage("Invalid contact!", 'danger');
         return;
     }
 
-    // TODO: To be changed to modal component
-    if (!confirm("You are about to delete this contact! Confirm by clicking okay.")) {
+    // Store the contact ID and show modal
+    pendingDeleteId = idNum;
+    let deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    deleteModal.show();
+}
+
+// Performs the deletion of a contact
+function executeDelete() {
+    // Check if we have contact ID
+    if (!pendingDeleteId) {
         return;
     }
 
+    // API payload
     let tmp = {
-        contactId: idNum,
+        contactId: pendingDeleteId,
         userId: userId
     };
 
     let jsonPayload = JSON.stringify(tmp);
-
     let url = urlBase + '/DeleteContact.' + extension;
 
+    // Send deletion request
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
         xhr.onreadystatechange = function () {
-
             if (this.readyState == 4 && this.status == 200) {
                 let response = JSON.parse(xhr.responseText);
                 if (response.error) {
-                    document.getElementById("contactSearchResult").innerHTML = response.error;
+                    showMessage(response.error, 'danger');
                     return;
                 }
-                document.getElementById("contactSearchResult").innerHTML = "Contact deleted successfully";
-
+                // Remove deleted contact row
+                let row = document.querySelector(`tr[data-id="${pendingDeleteId}"]`);
+                if (row) {
+                    row.remove();
+                }
                 // Refresh the contact list
-                searchContact();
+                searchContact(); 
+                showMessage("Contact deleted successfully", 'success');
             }
         };
         xhr.send(jsonPayload);
     }
     catch (err) {
-        document.getElementById("contactSearchResult").innerHTML = err.message;
+        showMessage(err.message, 'danger');
     }
+
+    // Reset the pending delete ID
+    pendingDeleteId = null;
 }
+
+// Shows status message w/ 1 second clearing 
+function showMessage(message, type = 'danger') {
+    let element = document.getElementById("contactSearchResult");
+    element.innerHTML = `<div class="text-${type} fw-bold text-center">${message}</div>`;
+
+    // Clear error message after 1 second
+    setTimeout(() => {
+        element.innerHTML = "";
+    }, 1000);
+}
+
+// Formats phone number for consistency 
+function formatPhoneNum(phone) {
+    let strippedPh = phone.replace(/\D/g, '')
+    return strippedPh.replace(/(\d{3})(\d{3})(\d{4})/, '($1)-$2-$3');
+}
+
+// Handles the delete confirmation modal
+document.addEventListener('DOMContentLoaded', function () {
+    // Handle the confirm delete button click
+    document.getElementById('confirmDeleteBtn').addEventListener('click', function () {
+        // Hide the modal
+        let deleteModal = bootstrap.Modal.getInstance(document.getElementById('deleteModal'));
+        deleteModal.hide();
+
+        // Execute the delete
+        executeDelete();
+    });
+});
