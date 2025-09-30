@@ -55,7 +55,7 @@ Response format:
 
     // Insert the new contact.
     $stmt = $conn->prepare("INSERT into Contacts (FirstName,LastName,Phone,Email,UserUUID,UUID) VALUES(?,?,?,?,?,?)");
-	$stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $userId, $uuid);
+	$stmt->bind_param("ssssss", $firstName, $lastName, $phone, $email, $userId, $uuid);
     if($stmt->execute()) // If query succeeded:
     {
         respondWithInfo();
