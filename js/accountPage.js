@@ -24,7 +24,7 @@ function changeUser() {
 
     // Create modal box
     let modalBox = document.createElement('div');
-    modalBox.style.background = '#211f1fff';
+    modalBox.style.background = '#24436a';
     modalBox.style.padding = '30px 20px';
     modalBox.style.borderRadius = '10px';
     modalBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
@@ -52,6 +52,8 @@ function changeUser() {
     oldPassInput.placeholder = 'Enter password';
     oldPassInput.style.flex = '1';
     oldPassInput.style.padding = '8px';
+    oldPassInput.style.backgroundColor = '#081221';
+    oldPassInput.style.color = '#ffffff';
     oldPassInput.id = 'oldPasswordInput';
     oldPassRow.appendChild(oldPassLabel);
     oldPassRow.appendChild(oldPassInput);
@@ -70,6 +72,8 @@ function changeUser() {
     newUserInput.placeholder = 'Enter new username';
     newUserInput.style.flex = '1';
     newUserInput.style.padding = '8px';
+    newUserInput.style.backgroundColor = '#081221';
+    newUserInput.style.color = '#ffffff';
     newUserInput.id = 'newUsernameInput';
     newUserRow.appendChild(newUserLabel);
     newUserRow.appendChild(newUserInput);
@@ -101,6 +105,9 @@ function changeUser() {
     let cancelBtn = document.createElement('button');
     cancelBtn.textContent = 'Cancel';
     cancelBtn.className = 'btn btn-secondary';
+    cancelBtn.style.backgroundColor = '#c0d6df';
+    cancelBtn.style.borderColor = '#c0d6df';
+    cancelBtn.style.color = '#000000';
     cancelBtn.onclick = function() {
         modalBg.remove();
     };
@@ -186,7 +193,7 @@ function deleteUser() {
 
     // Create modal box
     let modalBox = document.createElement('div');
-    modalBox.style.background = '#211f1fff';
+    modalBox.style.background = '#24436a';
     modalBox.style.padding = '30px 20px';
     modalBox.style.borderRadius = '10px';
     modalBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
@@ -214,6 +221,8 @@ function deleteUser() {
     oldPassInput.placeholder = 'Enter password';
     oldPassInput.style.flex = '1';
     oldPassInput.style.padding = '8px';
+    oldPassInput.style.backgroundColor = '#081221';
+    oldPassInput.style.color = '#ffffff';
     oldPassInput.id = 'oldPasswordInput';
     oldPassRow.appendChild(oldPassLabel);
     oldPassRow.appendChild(oldPassInput);
@@ -244,6 +253,9 @@ function deleteUser() {
     let cancelBtn = document.createElement('button');
     cancelBtn.textContent = 'Cancel';
     cancelBtn.className = 'btn btn-secondary';
+    cancelBtn.style.backgroundColor = '#c0d6df';
+    cancelBtn.style.borderColor = '#c0d6df';
+    cancelBtn.style.color = '#000000';
     cancelBtn.onclick = function() {
         modalBg.remove();
     };
@@ -323,7 +335,7 @@ function editPassword() {
 
     // Create modal box
     let modalBox = document.createElement('div');
-    modalBox.style.background = '#211f1fff';
+    modalBox.style.background = '#24436a';
     modalBox.style.padding = '30px 20px';
     modalBox.style.borderRadius = '10px';
     modalBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
@@ -351,6 +363,8 @@ function editPassword() {
     oldPassInput.placeholder = 'Enter old password';
     oldPassInput.style.flex = '1';
     oldPassInput.style.padding = '8px';
+    oldPassInput.style.backgroundColor = '#081221';
+    oldPassInput.style.color = '#ffffff';
     oldPassInput.id = 'oldPasswordInput';
     oldPassRow.appendChild(oldPassLabel);
     oldPassRow.appendChild(oldPassInput);
@@ -369,6 +383,8 @@ function editPassword() {
     newPassInput.placeholder = 'Enter new password';
     newPassInput.style.flex = '1';
     newPassInput.style.padding = '8px';
+    newPassInput.style.backgroundColor = '#081221';
+    newPassInput.style.color = '#ffffff';
     newPassInput.id = 'newPasswordInput';
     newPassRow.appendChild(newPassLabel);
     newPassRow.appendChild(newPassInput);
@@ -400,6 +416,9 @@ function editPassword() {
     let cancelBtn = document.createElement('button');
     cancelBtn.textContent = 'Cancel';
     cancelBtn.className = 'btn btn-secondary';
+    cancelBtn.style.backgroundColor = '#c0d6df';
+    cancelBtn.style.borderColor = '#c0d6df';
+    cancelBtn.style.color = '#000000';
     cancelBtn.onclick = function() {
         modalBg.remove();
     };

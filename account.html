@@ -17,18 +17,18 @@
 
 <body class="d-flex flex-column min-vh-100">
 	<!-- Navigation bar -->
-	<nav class="navbar bg-primary">
+	<nav class="navbar" style ="background-color: #142f51;">
 		<div class="container-fluid">
 			<a class="navbar-brand" title="Narwhal Ltd logo">
 				<img src="images/narwhal_logo_1.png" class="img-fluid" alt="Narwhal Ltd logo" width="30" height="30">
 				Narwhal Ltd
 			</a>
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				<button type="button" id="goSearchButton" class="btn btn-warning" data-bs-toggle="tooltip"
+				<button type="button" id="goSearchButton" class="btn" style="background-color: #4d7ab4; color: black;" data-bs-toggle="tooltip"
 					data-bs-placement="bottom" title="Search contact."
 					onclick='window.location.href = "search.html"'>Go to Search
 					</button>
-				<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+				<button type="button" class="btn" style="background-color: #c0d6df; color: black;" data-bs-toggle="tooltip" data-bs-placement="bottom"
                     title="User account" href="#" onclick='window.location.href = "account.html"' id="accountButton">
 				</button>
 				<button type="button" id="logout" class="btn btn-danger" data-bs-toggle="tooltip"
@@ -43,10 +43,10 @@
 			<span id="inner-title" class="d-block text-center"></span>
 			<form id="accountForm">
 				<div class="d-flex justify-content-center gap-3 mt-3">
-					<button type="button" id="editUsernameButton" class="btn btn-primary" data-bs-toggle="tooltip"
+					<button type="button" id="editUsernameButton" class="btn" style="background-color: #4d7ab4; color: black;"data-bs-toggle="tooltip"
 						data-bs-placement="left" title="Edit your username." onclick='changeUser();'>Edit
 						Username</button>
-					<button type="button" id="changePasswordButton" class="btn btn-primary" data-bs-toggle="tooltip"
+					<button type="button" id="changePasswordButton" class="btn" style="background-color: #4d7ab4; color: black;" data-bs-toggle="tooltip"
 						data-bs-placement="bottom" title="Change Password" onclick='editPassword();'>Change
 						Password</button>
 					<button type="button" id="deleteAccountButton" class="btn btn-danger" data-bs-toggle="tooltip"
