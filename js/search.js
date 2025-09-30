@@ -291,7 +291,7 @@ function updatePagination(currentPage, totalPages) {
     // Previous button
     paginationHTML += `
         <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
-            <button class="page-link" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>
+            <button class="page-link" style="background-color: #142f51;color: white;" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>
                 <i class="bi bi-chevron-left"></i>
             </button>
         </li>`;
@@ -300,14 +300,14 @@ function updatePagination(currentPage, totalPages) {
     for (let i = 1; i <= totalPages; i++) {
         paginationHTML += `
             <li class="page-item ${currentPage === i ? 'active' : ''}">
-                <button class="page-link" onclick="changePage(${i})">${i}</button>
+                <button class="page-link" style="${currentPage === i ? 'background-color: #c0d6df;color: black;' : 'background-color: #142f51;color: white;'}" onclick="changePage(${i})">${i}</button>
             </li>`;
     }
 
     // Next button
     paginationHTML += `
         <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
-            <button class="page-link" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>
+            <button class="page-link" style="background-color: #142f51;color: white;" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>
                 <i class="bi bi-chevron-right"></i>
             </button>
         </li>`;
