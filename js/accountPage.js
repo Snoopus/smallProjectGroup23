@@ -135,7 +135,7 @@ function changeUsernameConfirm(modalBg){
     let tmp = {
         userId: userId,
         newUser: newUsername,
-        password: Password
+        password: md5(Password)
     };
     let jsonPayload = JSON.stringify(tmp);
     
@@ -281,7 +281,7 @@ function deleteUserConfirm(){
 
     let tmp = {
         userId: userId,
-        password: oldPassword
+        password: md5(oldPassword)
     };
     let jsonPayload = JSON.stringify(tmp);
     
@@ -452,8 +452,8 @@ function changePasswordConfirm(modalBg){
 
     let tmp = {
         userId: userId,
-        oldPassword: oldPassword,
-        newPassword: newPassword
+        oldPassword: md5(oldPassword),
+        newPassword: md5(newPassword)
     };
     let jsonPayload = JSON.stringify(tmp);
     

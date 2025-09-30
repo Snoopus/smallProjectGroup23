@@ -21,7 +21,7 @@ function doRegister()
         firstName: validation.cleanData.firstName,
         lastName: validation.cleanData.lastName,
         login: validation.cleanData.login,
-        password: validation.cleanData.password
+        password: md5(validation.cleanData.password)
     };
     let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/Register.' + extension;
