@@ -105,7 +105,7 @@ function changeUser() {
     };
 
     let cancelBtn = document.createElement('button');
-    cancelBtn.textContent = 'Cancel';
+    cancelBtn.innerHTML = '<i class="bi bi-x-circle me-1"></i>Cancel';
     cancelBtn.className = 'btn btn-secondary';
     cancelBtn.style.backgroundColor = '#c0d6df';
     cancelBtn.style.borderColor = '#c0d6df';
@@ -254,7 +254,7 @@ function deleteUser() {
     };
 
     let cancelBtn = document.createElement('button');
-    cancelBtn.textContent = 'Cancel';
+    cancelBtn.textContent = '<i class="bi bi-x-circle me-1"></i>Cancel';
     cancelBtn.className = 'btn btn-secondary';
     cancelBtn.style.backgroundColor = '#c0d6df';
     cancelBtn.style.borderColor = '#c0d6df';
@@ -419,7 +419,7 @@ function editPassword() {
     };
 
     let cancelBtn = document.createElement('button');
-    cancelBtn.textContent = 'Cancel';
+    cancelBtn.innerHTML = '<i class="bi bi-x-circle me-1"></i>Cancel';
     cancelBtn.className = 'btn btn-secondary';
     cancelBtn.style.backgroundColor = '#c0d6df';
     cancelBtn.style.borderColor = '#c0d6df';
