@@ -43,7 +43,7 @@ function searchContact() {
                     resultHTML += "<td id='lastName_" + i + "' style='padding: 10px 15px; text-align: center; width: 18%;'>" + contact.lastName + "</td>";
                     resultHTML += "<td id='phone_" + i + "' style='padding: 10px 15px; text-align: center; width: 22%;'>" + formatPhoneNum(contact.phone) + "</td>";
                     resultHTML += "<td id='email_" + i + "' style='padding: 10px 15px; text-align: center; width: 25%;'>" + contact.email + "</td>";
-                    resultHTML += "<td style='padding: 10px 15px; text-align: center; width: 17%;'><button class='btn btn-sm me-2' style='background-color: #c0d6df; border-color: #c0d6df; color: #000;' onclick='editContact(" + i + ",'" + contact.contactId + "')'><i class='bi bi-pencil-square'></i></button>" +
+                    resultHTML += `<td style='padding: 10px 15px; text-align: center; width: 17%;'><button class='btn btn-sm me-2' style='background-color: #c0d6df; border-color: #c0d6df; color: #000;' onclick='editContact(${i},${contact.contactId})'><i class='bi bi-pencil-square'></i></button>` +
                         "<button class='btn btn-danger btn-sm' onclick='deleteContact('" + contact.contactId + "')'><i class='bi bi-trash3'></i></button></td>";
                     resultHTML += "</tr>";
                 }
