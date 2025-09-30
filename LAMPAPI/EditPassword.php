@@ -2,7 +2,7 @@
 /*  EditPassword.php
 Request format:
 {
-    "userId": User whose password to change.
+    "userId": User UUID whose password to change.
     "oldPassword": Old (current) password.
     "newPassword": New password to change to. 
 }
@@ -31,7 +31,7 @@ Response format:
 	}	
 
     // Verify this user is actually the one by checking password. 
-    $stmt = $conn->prepare("SELECT * FROM Users WHERE ID=? AND Password=?");
+    $stmt = $conn->prepare("SELECT * FROM Users WHERE UUID=? AND Password=?");
     $stmt->bind_param("ss", $id, $oldPass);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -45,7 +45,7 @@ Response format:
     $stmt->close();
 
     // Update the username. 
-    $stmt = $conn->prepare("UPDATE Users SET Password=? WHERE ID=?");
+    $stmt = $conn->prepare("UPDATE Users SET Password=? WHERE UUID=?");
     $stmt->bind_param("ss", $newPass, $id);
     $stmt->execute();
     if($conn->affected_rows > 0)

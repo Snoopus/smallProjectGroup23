@@ -2,7 +2,7 @@
 /*  DeleteContact.php
 Request format:
 {
-    "contactId": The contact to delete. 
+    "contactId": The contact UUID to delete. 
 }
 
 Response format:
@@ -27,7 +27,7 @@ Response format:
 	}	
 
     // Delete this contact from db. 
-    $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID=?");
+    $stmt = $conn->prepare("DELETE FROM Contacts WHERE UUID=?");
     $stmt->bind_param("s", $id);
     $stmt->execute();
     if($conn->affected_rows > 0)

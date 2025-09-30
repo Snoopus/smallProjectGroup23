@@ -2,7 +2,7 @@
 /*  DeleteUser.php
 Request format:
 {
-    "userId": User to delete, permanently.
+    "userId": User UUID to delete, permanently.
     "password": User's password to confirm they want this. 
 }
 
@@ -30,7 +30,7 @@ Response format:
 	}	
 
     // Verify this user is actually the one by checking password. 
-    $stmt = $conn->prepare("SELECT * FROM Users WHERE ID=? AND Password=?");
+    $stmt = $conn->prepare("SELECT * FROM Users WHERE UUID=? AND Password=?");
     $stmt->bind_param("ss", $id, $pass);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -44,7 +44,7 @@ Response format:
     $stmt->close();
 
     // Delete the user.
-    $stmt = $conn->prepare("DELETE FROM Users WHERE ID=? AND Password=?");
+    $stmt = $conn->prepare("DELETE FROM Users WHERE UUID=? AND Password=?");
     $stmt->bind_param("ss", $id, $pass);
     $stmt->execute();
     if($conn->affected_rows == 0) // Nothing was actually deleted.
@@ -57,7 +57,7 @@ Response format:
     $stmt->close();
 
     // Delete all the contacts belonging to that user.
-    $stmt = $conn->prepare("DELETE FROM Contacts WHERE UserID=?");
+    $stmt = $conn->prepare("DELETE FROM Contacts WHERE UserUUID=?");
     $stmt->bind_param("s", $id);
     if($stmt->execute()) // If query succeeded:
     {
