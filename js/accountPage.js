@@ -50,6 +50,7 @@ function changeUser() {
     let oldPassInput = document.createElement('input');
     oldPassInput.type = 'password';
     oldPassInput.placeholder = 'Enter password';
+    oldPassInput.className = 'form-control';
     oldPassInput.style.flex = '1';
     oldPassInput.style.padding = '8px';
     oldPassInput.style.backgroundColor = '#081221';
@@ -70,6 +71,7 @@ function changeUser() {
     let newUserInput = document.createElement('input');
     newUserInput.type = 'text';
     newUserInput.placeholder = 'Enter new username';
+    newUserInput.className = 'form-control';
     newUserInput.style.flex = '1';
     newUserInput.style.padding = '8px';
     newUserInput.style.backgroundColor = '#081221';
@@ -219,6 +221,7 @@ function deleteUser() {
     let oldPassInput = document.createElement('input');
     oldPassInput.type = 'password';
     oldPassInput.placeholder = 'Enter password';
+    oldPassInput.className = 'form-control';
     oldPassInput.style.flex = '1';
     oldPassInput.style.padding = '8px';
     oldPassInput.style.backgroundColor = '#081221';
@@ -361,6 +364,7 @@ function editPassword() {
     let oldPassInput = document.createElement('input');
     oldPassInput.type = 'password';
     oldPassInput.placeholder = 'Enter old password';
+    oldPassInput.className = 'form-control';
     oldPassInput.style.flex = '1';
     oldPassInput.style.padding = '8px';
     oldPassInput.style.backgroundColor = '#081221';
@@ -381,6 +385,7 @@ function editPassword() {
     let newPassInput = document.createElement('input');
     newPassInput.type = 'password';
     newPassInput.placeholder = 'Enter new password';
+    newPassInput.className = 'form-control';
     newPassInput.style.flex = '1';
     newPassInput.style.padding = '8px';
     newPassInput.style.backgroundColor = '#081221';
