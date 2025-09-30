@@ -2,10 +2,6 @@ window.addEventListener('DOMContentLoaded', function() {
     readCookie();
     accountButtonText();
     document.getElementById('inner-title').textContent = 'Logged in as ' + firstName + ' ' + lastName + '.';
-    console.log('Account page loaded');
-    console.log('User ID:', userId);
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
 });
 
 function changeUser() {
@@ -254,7 +250,7 @@ function deleteUser() {
     };
 
     let cancelBtn = document.createElement('button');
-    cancelBtn.textContent = '<i class="bi bi-x-circle me-1"></i>Cancel';
+    cancelBtn.innerHTML = '<i class="bi bi-x-circle me-1"></i>Cancel';
     cancelBtn.className = 'btn btn-secondary';
     cancelBtn.style.backgroundColor = '#c0d6df';
     cancelBtn.style.borderColor = '#c0d6df';
