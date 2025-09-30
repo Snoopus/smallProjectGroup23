@@ -3,7 +3,7 @@
 Request format:
 {
     "search": Search term to put through every field.
-    "userId": User whose contacts to search through. 
+    "userId": User UUID whose contacts to search through. 
 }
 
 Response format:
@@ -32,7 +32,7 @@ Response format:
 	}	
 
     // Query the database for anything even close to searchString. 
-    $stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=? 
+    $stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserUUID=? 
                             AND (FirstName LIKE ? 
                             OR LastName LIKE ? 
                             OR Phone LIKE ? 
@@ -54,7 +54,7 @@ Response format:
             "lastName" => $row["LastName"],
             "phone" => $row["Phone"],
             "email" => $row["Email"],
-            "contactId" => $row["ID"]
+            "contactId" => $row["UUID"]
         );
     }
     

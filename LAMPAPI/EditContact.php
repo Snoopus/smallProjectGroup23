@@ -2,7 +2,7 @@
 /*  EditContact.php
 Request format:
 {
-    "contactId": The contact to update.
+    "contactId": The contact UUID to update.
     "firstName": Contact's new first name.
     "lastName" Contact's new last name.
     "phone": Contact's new phone number.
@@ -40,7 +40,7 @@ Response format:
                                 LastName=?,
                                 Phone=?,
                                 Email=? 
-                            WHERE ID=?");
+                            WHERE UUID=?");
     $stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $id);
     $stmt->execute();
     if($conn->affected_rows > 0)

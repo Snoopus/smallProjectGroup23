@@ -6,7 +6,7 @@ Request format:
     "lastName": Contact's last name.
     "phone": Contact's phone number.
     "email": Contact's email address.
-    "userId": User this contact will belong to.
+    "userId": UserUUID this contact will belong to.
 }
 
 Response format:
@@ -14,6 +14,8 @@ Response format:
     "error": blank if success, else describes the problem.
 }
 */
+
+	require "./GenerateUUID.php";
 
     // Get environment variables.
     $env = parse_ini_file("../.env");
@@ -35,7 +37,7 @@ Response format:
 	}	
 
     // Ensure associated User exists.
-    $stmt = $conn->prepare("SELECT * FROM Users WHERE ID=?");
+    $stmt = $conn->prepare("SELECT * FROM Users WHERE UUID=?");
     $stmt->bind_param("s", $userId);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -48,9 +50,12 @@ Response format:
     }
     $stmt->close();
 
+    // Generate unique, not sequential, id. 
+    $uuid = uuidv4();
+
     // Insert the new contact.
-    $stmt = $conn->prepare("INSERT into Contacts (FirstName,LastName,Phone,Email,UserId) VALUES(?,?,?,?,?)");
-	$stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $userId);
+    $stmt = $conn->prepare("INSERT into Contacts (FirstName,LastName,Phone,Email,UserUUID,UUID) VALUES(?,?,?,?,?,?)");
+	$stmt->bind_param("ssssss", $firstName, $lastName, $phone, $email, $userId, $uuid);
     if($stmt->execute()) // If query succeeded:
     {
         respondWithInfo();

@@ -2,10 +2,6 @@ window.addEventListener('DOMContentLoaded', function() {
     readCookie();
     accountButtonText();
     document.getElementById('inner-title').textContent = 'Logged in as ' + firstName + ' ' + lastName + '.';
-    console.log('Account page loaded');
-    console.log('User ID:', userId);
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
 });
 
 function changeUser() {
@@ -24,7 +20,7 @@ function changeUser() {
 
     // Create modal box
     let modalBox = document.createElement('div');
-    modalBox.style.background = '#211f1fff';
+    modalBox.style.background = '#24436a';
     modalBox.style.padding = '30px 20px';
     modalBox.style.borderRadius = '10px';
     modalBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
@@ -50,8 +46,11 @@ function changeUser() {
     let oldPassInput = document.createElement('input');
     oldPassInput.type = 'password';
     oldPassInput.placeholder = 'Enter password';
+    oldPassInput.className = 'form-control';
     oldPassInput.style.flex = '1';
     oldPassInput.style.padding = '8px';
+    oldPassInput.style.backgroundColor = '#081221';
+    oldPassInput.style.color = '#ffffff';
     oldPassInput.id = 'oldPasswordInput';
     oldPassRow.appendChild(oldPassLabel);
     oldPassRow.appendChild(oldPassInput);
@@ -68,8 +67,11 @@ function changeUser() {
     let newUserInput = document.createElement('input');
     newUserInput.type = 'text';
     newUserInput.placeholder = 'Enter new username';
+    newUserInput.className = 'form-control';
     newUserInput.style.flex = '1';
     newUserInput.style.padding = '8px';
+    newUserInput.style.backgroundColor = '#081221';
+    newUserInput.style.color = '#ffffff';
     newUserInput.id = 'newUsernameInput';
     newUserRow.appendChild(newUserLabel);
     newUserRow.appendChild(newUserInput);
@@ -92,15 +94,18 @@ function changeUser() {
     btnContainer.style.gap = '10px';
 
     let changeUsernameBtn = document.createElement('button');
-    changeUsernameBtn.textContent = 'Change Username';
+    changeUsernameBtn.innerHTML = '<i class="bi bi-person-gear me-1"></i>Change Username';
     changeUsernameBtn.className = 'btn btn-danger';
     changeUsernameBtn.onclick = function() {
         changeUsernameConfirm(modalBg);
     };
 
     let cancelBtn = document.createElement('button');
-    cancelBtn.textContent = 'Cancel';
+    cancelBtn.innerHTML = '<i class="bi bi-x-circle me-1"></i>Cancel';
     cancelBtn.className = 'btn btn-secondary';
+    cancelBtn.style.backgroundColor = '#c0d6df';
+    cancelBtn.style.borderColor = '#c0d6df';
+    cancelBtn.style.color = '#000000';
     cancelBtn.onclick = function() {
         modalBg.remove();
     };
@@ -130,7 +135,7 @@ function changeUsernameConfirm(modalBg){
     let tmp = {
         userId: userId,
         newUser: newUsername,
-        password: Password
+        password: md5(Password)
     };
     let jsonPayload = JSON.stringify(tmp);
     
@@ -186,7 +191,7 @@ function deleteUser() {
 
     // Create modal box
     let modalBox = document.createElement('div');
-    modalBox.style.background = '#211f1fff';
+    modalBox.style.background = '#24436a';
     modalBox.style.padding = '30px 20px';
     modalBox.style.borderRadius = '10px';
     modalBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
@@ -212,8 +217,11 @@ function deleteUser() {
     let oldPassInput = document.createElement('input');
     oldPassInput.type = 'password';
     oldPassInput.placeholder = 'Enter password';
+    oldPassInput.className = 'form-control';
     oldPassInput.style.flex = '1';
     oldPassInput.style.padding = '8px';
+    oldPassInput.style.backgroundColor = '#081221';
+    oldPassInput.style.color = '#ffffff';
     oldPassInput.id = 'oldPasswordInput';
     oldPassRow.appendChild(oldPassLabel);
     oldPassRow.appendChild(oldPassInput);
@@ -235,15 +243,18 @@ function deleteUser() {
     btnContainer.style.gap = '10px';
 
     let deleteAccountBtn = document.createElement('button');
-    deleteAccountBtn.textContent = 'Delete Account';
+    deleteAccountBtn.innerHTML = '<i class="bi bi-trash3 me-1"></i>Delete Account';
     deleteAccountBtn.className = 'btn btn-danger';
     deleteAccountBtn.onclick = function() {
         deleteUserConfirm();
     };
 
     let cancelBtn = document.createElement('button');
-    cancelBtn.textContent = 'Cancel';
+    cancelBtn.innerHTML = '<i class="bi bi-x-circle me-1"></i>Cancel';
     cancelBtn.className = 'btn btn-secondary';
+    cancelBtn.style.backgroundColor = '#c0d6df';
+    cancelBtn.style.borderColor = '#c0d6df';
+    cancelBtn.style.color = '#000000';
     cancelBtn.onclick = function() {
         modalBg.remove();
     };
@@ -270,7 +281,7 @@ function deleteUserConfirm(){
 
     let tmp = {
         userId: userId,
-        password: oldPassword
+        password: md5(oldPassword)
     };
     let jsonPayload = JSON.stringify(tmp);
     
@@ -323,7 +334,7 @@ function editPassword() {
 
     // Create modal box
     let modalBox = document.createElement('div');
-    modalBox.style.background = '#211f1fff';
+    modalBox.style.background = '#24436a';
     modalBox.style.padding = '30px 20px';
     modalBox.style.borderRadius = '10px';
     modalBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
@@ -349,8 +360,11 @@ function editPassword() {
     let oldPassInput = document.createElement('input');
     oldPassInput.type = 'password';
     oldPassInput.placeholder = 'Enter old password';
+    oldPassInput.className = 'form-control';
     oldPassInput.style.flex = '1';
     oldPassInput.style.padding = '8px';
+    oldPassInput.style.backgroundColor = '#081221';
+    oldPassInput.style.color = '#ffffff';
     oldPassInput.id = 'oldPasswordInput';
     oldPassRow.appendChild(oldPassLabel);
     oldPassRow.appendChild(oldPassInput);
@@ -367,8 +381,11 @@ function editPassword() {
     let newPassInput = document.createElement('input');
     newPassInput.type = 'password';
     newPassInput.placeholder = 'Enter new password';
+    newPassInput.className = 'form-control';
     newPassInput.style.flex = '1';
     newPassInput.style.padding = '8px';
+    newPassInput.style.backgroundColor = '#081221';
+    newPassInput.style.color = '#ffffff';
     newPassInput.id = 'newPasswordInput';
     newPassRow.appendChild(newPassLabel);
     newPassRow.appendChild(newPassInput);
@@ -391,15 +408,18 @@ function editPassword() {
     btnContainer.style.gap = '10px';
 
     let changePasswordBtn = document.createElement('button');
-    changePasswordBtn.textContent = 'Change Password';
+    changePasswordBtn.innerHTML = '<i class="bi bi-key me-1"></i>Change Password';
     changePasswordBtn.className = 'btn btn-danger';
     changePasswordBtn.onclick = function() {
         changePasswordConfirm(modalBg);
     };
 
     let cancelBtn = document.createElement('button');
-    cancelBtn.textContent = 'Cancel';
+    cancelBtn.innerHTML = '<i class="bi bi-x-circle me-1"></i>Cancel';
     cancelBtn.className = 'btn btn-secondary';
+    cancelBtn.style.backgroundColor = '#c0d6df';
+    cancelBtn.style.borderColor = '#c0d6df';
+    cancelBtn.style.color = '#000000';
     cancelBtn.onclick = function() {
         modalBg.remove();
     };
@@ -432,8 +452,8 @@ function changePasswordConfirm(modalBg){
 
     let tmp = {
         userId: userId,
-        oldPassword: oldPassword,
-        newPassword: newPassword
+        oldPassword: md5(oldPassword),
+        newPassword: md5(newPassword)
     };
     let jsonPayload = JSON.stringify(tmp);
     

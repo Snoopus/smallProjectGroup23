@@ -10,10 +10,12 @@ Request format:
 
 Response format:
 {
-	"userId": Newly created User ID to make other requests with.
+	"userId": Newly created User UUID to make other requests with.
 	"error": blank if success, else describes the problem.
 }
 */
+
+	require "./GenerateUUID.php";
 
     // Get environment variables.
     $env = parse_ini_file("../.env");
@@ -34,7 +36,7 @@ Response format:
 	}	
 
     // Deny if login already exists
-	$stmt = $conn->prepare("SELECT ID FROM Users WHERE Login=?");
+	$stmt = $conn->prepare("SELECT * FROM Users WHERE Login=?");
 	$stmt->bind_param("s", $login);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -47,13 +49,15 @@ Response format:
     }
 	$stmt->close();
 
+	// Generate unique, not sequential, id. 
+    $uuid = uuidv4();
+
 	// Insert the new user. 
-	$stmt = $conn->prepare("INSERT INTO Users (firstName, lastName, Login, Password) VALUES (?, ?, ?, ?)");
-	$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+	$stmt = $conn->prepare("INSERT INTO Users (FirstName,LastName,Login,Password,UUID) VALUES (?,?,?,?,?)");
+	$stmt->bind_param("sssss", $firstName, $lastName, $login, $password, $uuid);
 	if($stmt->execute()) // If query succeeded:
 	{
-		$id = $conn->insert_id;
-		respondWithInfo($id);
+		respondWithInfo($uuid);
 	}
 	else
 	{
@@ -84,7 +88,7 @@ Response format:
     // Sends response with error code and no useful data.
 	function respondWithError($err)
 	{
-		$retValue = '{"userId":0,"error":"' . $err . '"}';
+		$retValue = '{"userId":"0","error":"' . $err . '"}';
 		sendResponseInfoAsJson($retValue);
 	}
     
@@ -92,7 +96,7 @@ Response format:
     // Sends response with desired data and a blank error code. 
 	function respondWithInfo($id)
 	{
-		$retValue = '{"userId":' . $id . ',"error":""}';
+		$retValue = '{"userId":"' . $id . '","error":""}';
 		sendResponseInfoAsJson($retValue);
 	}
 
