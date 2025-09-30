@@ -23,7 +23,7 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar bg-primary">
+    <nav class="navbar" style="background-color: #142f51;">
         <div class="container-fluid">
             <!-- Logo will redirect to landing page -->
             <a class="navbar-brand" title="Narwhal Ltd logo">
@@ -31,71 +31,81 @@
                 Narwhal Ltd
             </a>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" id="goSearchButton" class="btn btn-warning" data-bs-toggle="tooltip"
-					data-bs-placement="bottom" title="Search contact."
-					onclick='window.location.href = "search.html"'>Go to Search
-					</button>
-				<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    title="User account" href="#" onclick='window.location.href = "account.html"' id="accountButton">
+                <button type="button" id="goSearchButton" class="btn" style="background-color: #4d7ab4;color:black;"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Search contact."
+                    onclick='window.location.href = "search.html"'>Go to Search
                 </button>
-				<button type="button" id="logout" class="btn btn-danger" data-bs-toggle="tooltip"
-					data-bs-placement="bottom" title="Logout" onclick=doLogout();>Logout</button>
+                <button type="button" class="btn" style="background-color: #c0d6df;color:black;"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="User account" href="#"
+                    onclick='window.location.href = "account.html"' id="accountButton">
+                </button>
+                <button type="button" id="logout" class="btn btn-danger" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Logout" onclick=doLogout();>Logout</button>
             </div>
         </div>
     </nav>
-    <div class="container py-5">
-        <h1 id="title" class="text-center mb-4">Add your contact here:</h1>
-
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <form class="needs-validation" novalidate
-                    onsubmit="event.preventDefault(); validateAndSubmit(); addContact();">
-                    <div id="contactAddResult" class="mt-3 fw-bold text-center text-danger"></div>
-                    <div class="mb-3">
-                        <label for="contactTextFirstName" class="form-label">First name*</label>
-                        <input type="text" class="form-control" id="contactTextFirstName" placeholder="John"
-                            title="Please fill out this field." required>
-                        <div class="invalid-feedback">
-                            Please enter a first name.
-                        </div>
+    <!-- Main content -->
+    <div class="container">
+        <div class="row align-items-center justify-content-evenly min-vh-100">
+            <div class="col-md-6 col-lg-6">
+                <div class="card shadow">
+                    <div class="card-header text-center py-2" style="background-color: #4d7ab4;">
+                        <h3 class="mb-auto">Add your contact here</h3>
                     </div>
+                    <div class="card-body p-4" style="background-color: #24436a;">
+                        <form class="needs-validation" novalidate
+                            onsubmit="event.preventDefault(); validateAndSubmit(); addContact();">
+                            <div id="contactAddResult" class="mt-3 fw-bold text-center text-danger"></div>
+                            <div class="mb-3">
+                                <label for="contactTextFirstName" class="form-label">First name*</label>
+                                <input type="text" class="form-control" id="contactTextFirstName" placeholder="John"
+                                    title="Please fill out this field." required>
+                                <div class="invalid-feedback">
+                                    Please enter a first name.
+                                </div>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="contactTextLastName" class="form-label">Last name*</label>
-                        <input type="text" class="form-control" id="contactTextLastName" placeholder="Doe"
-                            title="Please fill out this field." required>
-                        <div class="invalid-feedback">
-                            Please enter a last name.
-                        </div>
-                    </div>
+                            <div class="mb-3">
+                                <label for="contactTextLastName" class="form-label">Last name*</label>
+                                <input type="text" class="form-control" id="contactTextLastName" placeholder="Doe"
+                                    title="Please fill out this field." required>
+                                <div class="invalid-feedback">
+                                    Please enter a last name.
+                                </div>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="contactTextPhone" class="form-label">Phone number</label>
-                        <input type="tel" class="form-control" id="contactTextPhone" placeholder="xxx-xxx-xxxx"
-                            title="Add number if desired." pattern="([0-9]{3}-[0-9]{3}-[0-9]{4})|([0-9]{10})">
-                        <div class="invalid-feedback">
-                            Please enter a valid phone number (format: xxx-xxx-xxxx or xxxxxxxxxx).
-                        </div>
-                    </div>
+                            <div class="mb-3">
+                                <label for="contactTextPhone" class="form-label">Phone number</label>
+                                <input type="tel" class="form-control" id="contactTextPhone" placeholder="xxx-xxx-xxxx"
+                                    title="Add number if desired." pattern="([0-9]{3}-[0-9]{3}-[0-9]{4})|([0-9]{10})">
+                                <div class="invalid-feedback">
+                                    Please enter a valid phone number (format: xxx-xxx-xxxx or xxxxxxxxxx).
+                                </div>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="contactTextEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="contactTextEmail" placeholder="contact@example.com"
-                            title="Add email if desired." pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
-                        <div class="invalid-feedback">
-                            Please enter a valid email address.
-                        </div>
-                    </div>
+                            <div class="mb-3">
+                                <label for="contactTextEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="contactTextEmail"
+                                    placeholder="contact@example.com" title="Add email if desired."
+                                    pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                                <div class="invalid-feedback">
+                                    Please enter a valid email address.
+                                </div>
+                            </div>
 
-                    <div class="d-grid">
-                        <button type="submit" id="addContactButton" class="btn btn-primary" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Add contact">
-                            Add Contact
-                        </button>
+                            <div class="d-grid">
+                                <button type="submit" id="addContactButton" class="btn"
+                                    style="background-color: #c0d6df;color: black;" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="Add contact">
+                                    Add Contact
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
+
     </div>
 
 </body>
