@@ -12,8 +12,8 @@
 	<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> -->
 </head>
 
-<body class="d-flex flex-column min-vh-100">
-	<nav class="navbar bg-primary">
+<body class="d-flex flex-column min-vh-100" style="background-color: #081221; background-image: url('images/dim_background.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+	<nav class="navbar" style ="background-color: #142f51;">
 		<div class="container-fluid">
 			<!-- Logo will redirect to landing page -->
 			<a class="navbar-brand" href="index.html" title="Narwhal Ltd logo">
@@ -27,15 +27,15 @@
 		<div class="row align-items-center justify-content-center min-vh-100">
 			<div class="col-md-8 col-12">
 				<div class="card shadow h-auto">
-					<div class="card-header bg-primary text-white text-center py-3">
+					<div class="card-header text-center py-3" style ="background-color: #4d7ab4; color: white;">
 						<h3 class="mb-0">Sign In</h3>
 					</div>
-					<div class="card-body p-4">
+					<div class="card-body p-4" style="background-color: #24436a; color: white;">
 						<form class="needs-validation" novalidate id="loginForm"
 							onsubmit="event.preventDefault(); validateAndSubmit(); doLogin();">
 							<div class="mb-3">
 								<label for="loginName" class="form-label">Username</label>
-								<input type="text" class="form-control" id="loginName" title="Input Username" placeholder="Example: JD123"
+								<input type="text" style="background-color: #081221; color: white;"class="form-control" id="loginName" title="Input Username" placeholder="Example: JD123"
 									required />
 								<div class="invalid-feedback">
 									Please enter a User Name.
@@ -43,17 +43,17 @@
 							</div>
 							<div class="mb-3">
 								<label for="loginPassword" class="form-label">Password</label>
-								<input type="password" class="form-control" id="loginPassword" title="Input Password"
+								<input type="password" style="background-color: #081221; color: white;"class="form-control" id="loginPassword" title="Input Password"
 									placeholder="Example: 123Abcd!" required />
 								<div class="invalid-feedback">
 									Please enter a User Password.
 								</div>
 							</div>
 							<div class="d-grid mt-5">
-								<button type="submit" id="loginButton" class="btn btn-primary" data-bs-toggle="tooltip"
+								<button type="submit" id="loginButton" style="background-color: #c0d6df; color: black;"class="btn btn-primary" data-bs-toggle="tooltip"
 									data-bs-placement="right" title="Sign In">Sign In</button>
 							</div>
-							<div id="loginResult" class="text-danger mt-3 text-center"></div>Don't have an account? <a title="Create account page link"
+							<div id="loginResult" class="text-danger mt-3 text-center" ></div>Don't have an account? <a title="Create account page link" style="color: #c0d6df;"
 								href="register.html">Create One</a>
 						</form>
 					</div>
