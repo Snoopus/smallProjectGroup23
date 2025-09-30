@@ -29,20 +29,21 @@ function searchContact() {
                     return;
                 }
 
-                // Create table with Bootstrap classes
-                let resultHTML = "<table class='table table-striped table-hover table-responsive-md'>";
-                resultHTML += "<thead class='table-warning'><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Actions</th></tr></thead>";
+                // Create table with Bootstrap classes and custom styling
+                let resultHTML = "<table class='table table-hover table-responsive-md' style='border-collapse: separate; border-spacing: 0; border-radius: 15px; overflow: hidden;'>";
+                resultHTML += "<thead style='background-color: #4d7ab4;'><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Actions</th></tr></thead>";
                 resultHTML += "<tbody>";
 
-                // Add each contact as a row
+                // Add each contact as a row with alternating colors
                 for (let i = 0; i < jsonObject.results.length; i++) {
                     let contact = jsonObject.results[i];
-                    resultHTML += "<tr id='row_" + i + "' data-id='" + contact.contactId + "'>";
+                    let rowColor = (i % 2 === 0) ? '#142f51' : '#24436a';
+                    resultHTML += "<tr id='row_" + i + "' data-id='" + contact.contactId + "' style='background-color: " + rowColor + ";'>";
                     resultHTML += "<td id='firstName_" + i + "'>" + contact.firstName + "</td>";
                     resultHTML += "<td id='lastName_" + i + "'>" + contact.lastName + "</td>";
                     resultHTML += "<td id='phone_" + i + "'>" + formatPhoneNum(contact.phone) + "</td>";
                     resultHTML += "<td id='email_" + i + "'>" + contact.email + "</td>";
-                    resultHTML += "<td><button class='btn btn-primary btn-sm me-2' onclick='editContact(" + i + "," + contact.contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
+                    resultHTML += "<td><button class='btn btn-sm me-2' style='background-color: #c0d6df; border-color: #c0d6df; color: #000;' onclick='editContact(" + i + "," + contact.contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
                         "<button class='btn btn-danger btn-sm' onclick='deleteContact(" + contact.contactId + ")'><i class='bi bi-trash3'></i></button></td>";
                     resultHTML += "</tr>";
                 }
@@ -142,9 +143,9 @@ function saveContact(rowIndex, contactId) {
     document.getElementById("phone_" + rowIndex).innerHTML = formatPhoneNum(phone);
     document.getElementById("email_" + rowIndex).innerHTML = email;
 
-    // Action buttons Save/Cancel
+    // Action buttons Save/Cancel - updated with custom edit button styling
     let actionCell = document.getElementById("firstName_" + rowIndex).parentElement.querySelector("td:last-child");
-    actionCell.innerHTML = "<button class='btn btn-primary btn-sm me-2' onclick='editContact(" + rowIndex + "," + contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
+    actionCell.innerHTML = "<button class='btn btn-sm me-2' style='background-color: #c0d6df; border-color: #c0d6df; color: #000;' onclick='editContact(" + rowIndex + "," + contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
         "<button class='btn btn-danger btn-sm' onclick='deleteContact(" + contactId + ")'><i class='bi bi-trash3'></i></button>";
 
     let payload = {
