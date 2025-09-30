@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
 	<meta charset="utf-8">
@@ -9,44 +9,52 @@
 	<script type="text/javascript" src="js/login.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> -->
 </head>
 
-<body class="bg-light">
-	<nav class="navbar bg-primary" data-bs-theme="dark">
+<body class="d-flex flex-column min-vh-100">
+	<nav class="navbar bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">
-				<img src="images/logo.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+			<!-- Logo will redirect to landing page -->
+			<a class="navbar-brand" href="index.html" title="Narwhal Ltd logo">
+				<img src="images/narwhal_logo_1.png" class="img-fluid" alt="Narwhal Ltd logo" width="30" height="30">
 				Narwhal Ltd
 			</a>
-			<button type="button" id="logout" class="btn btn-warning" onclick=doLogout();>Logout</button>
 		</div>
 	</nav>
-
+	<!-- Main content -->
 	<div class="container">
-		<div class="row justify-content-center align-items-center min-vh-100">
-			<div class="col-md-6 col-lg-4">
-				<div class="card shadow">
+		<div class="row align-items-center justify-content-center min-vh-100">
+			<div class="col-md-8 col-12">
+				<div class="card shadow h-auto">
 					<div class="card-header bg-primary text-white text-center py-3">
 						<h3 class="mb-0">Sign In</h3>
 					</div>
 					<div class="card-body p-4">
-						<form id="loginForm" onsubmit="event.preventDefault(); doLogin();">
+						<form class="needs-validation" novalidate id="loginForm"
+							onsubmit="event.preventDefault(); validateAndSubmit(); doLogin();">
 							<div class="mb-3">
 								<label for="loginName" class="form-label">Username</label>
-								<input type="text" class="form-control" id="loginName" placeholder="Enter username"
+								<input type="text" class="form-control" id="loginName" title="Input Username" placeholder="Example: JD123"
 									required />
+								<div class="invalid-feedback">
+									Please enter a User Name.
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="loginPassword" class="form-label">Password</label>
-								<input type="password" class="form-control" id="loginPassword"
-									placeholder="Enter password" required />
+								<input type="password" class="form-control" id="loginPassword" title="Input Password"
+									placeholder="Example: 123Abcd!" required />
+								<div class="invalid-feedback">
+									Please enter a User Password.
+								</div>
 							</div>
-							<div class="d-grid">
-								<button type="submit" id="loginButton" class="btn btn-primary">Sign In</button>
+							<div class="d-grid mt-5">
+								<button type="submit" id="loginButton" class="btn btn-primary" data-bs-toggle="tooltip"
+									data-bs-placement="right" title="Sign In">Sign In</button>
 							</div>
-							<div id="loginResult" class="text-danger mt-3 text-center"></div>
-							Don't have an account? <a href="register.html">Sign Up</a>
+							<div id="loginResult" class="text-danger mt-3 text-center"></div>Don't have an account? <a title="Create account page link"
+								href="register.html">Create One</a>
 						</form>
 					</div>
 				</div>

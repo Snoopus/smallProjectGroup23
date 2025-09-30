@@ -1,4 +1,3 @@
-
 const urlBase = 'https://poosd.ilovenarwhals.xyz/LAMPAPI';
 const extension = 'php';
 
@@ -60,7 +59,7 @@ function doLogout()
 
 function validateAndSubmit() {
     // Get the form
-    const form = document.querySelector('.needs-validation');
+    let form = document.querySelector('.needs-validation');
 
     // Check if the form is valid
     if (!form.checkValidity()) {
@@ -68,6 +67,19 @@ function validateAndSubmit() {
         form.classList.add('was-validated');
         return false;
     }
-    return;
+	// Form is valid
+	form.classList.add('was-validated');
+    return true;
 }
 
+// Show Tooltip when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+})
+
+function accountButtonText() {
+	document.getElementById("accountButton").innerHTML = firstName + " " + lastName + " <i class='bi bi-person'></i>";
+}

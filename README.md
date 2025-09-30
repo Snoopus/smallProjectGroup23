@@ -21,6 +21,29 @@ There are two tables: Users and Contacts
 
 ## API
 
-hi
+hello
+
 ## Front-End
-Hi
+
+HTML Files
+
+index.html (Landing  Page)
+register.html (Registration Page)
+login.html (login Page)
+search.html(Search Page)
+addContacts.html (Add contacts Page)
+account.html (User account Page)
+
+JavaScript Files
+
+code.js (Main JS file)
+login.js (Login functions)
+register.js (Register functions)
+search.js (Search functions)
+addContact.js (Add Contact functions)
+accountPage.js (User Account functions)
+
+CSS Files
+
+styles.css (Styling for special cases)
+bootstrap.min.css (Main styling file)
