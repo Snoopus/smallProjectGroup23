@@ -12,8 +12,8 @@
 	<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> -->
 </head>
 
-<body class="d-flex flex-column min-vh-100">
-	<nav class="navbar bg-primary">
+<body class="d-flex flex-column min-vh-100" style="background-color: #081221;">
+	<nav class="navbar" style ="background-color: #142f51;">
 		<div class="container-fluid">
 			<!-- Logo will redirect to landing page -->
 			<a class="navbar-brand" href="index.html" title="Narwhal Ltd logo">
@@ -27,15 +27,15 @@
 		<div class="row align-items-center justify-content-evenly min-vh-100">
 			<div class="col-md-6 col-lg-6">
 				<div class="card shadow">
-					<div class="card-header bg-primary text-white text-center py-2">
+					<div class="card-header text-center py-2" style ="background-color: #4d7ab4; color: white;">
 						<h3 class="mb-auto">Sign up</h3>
 					</div>
-					<div class="card-body p-4">
+					<div class="card-body p-4" style="background-color: #24436a; color: white;">
 						<form class="needs-validation" novalidate
 							onsubmit="event.preventDefault(); validateAndSubmit(); doRegister()">
 							<div class="mb-auto">
 								<label for="userFirstName" class="form-label">First name*</label>
-								<input type="text" class="form-control" id="userFirstName" title="Type first name"
+								<input type="text" style="background-color: #081221; color: white;" class="form-control" id="userFirstName" title="Type first name"
 									placeholder="First Name" required>
 								<div class="invalid-feedback">
 									Please enter a First name.
@@ -44,7 +44,7 @@
 
 							<div class="mb-2">
 								<label for="userLastName" class="form-label">Last name*</label>
-								<input type="text" class="form-control" id="userLastName" title="Type last name"
+								<input type="text" style="background-color: #081221; color: white;" class="form-control" id="userLastName" title="Type last name"
 									placeholder="Last Name" required>
 								<div class="invalid-feedback">
 									Please enter a Last name.
@@ -53,7 +53,7 @@
 
 							<div class="mb-2">
 								<label for="userName" class="form-label">Username*</label>
-								<input type="text" class="form-control" id="userName" title="Type Username"
+								<input type="text" style="background-color: #081221; color: white;" class="form-control" id="userName" title="Type Username"
 									placeholder="Username" required>
 								<div class="invalid-feedback">
 									Please enter a username.
@@ -62,7 +62,7 @@
 
 							<div class="mb-2">
 								<label for="userPassword" class="form-label">Password*</label>
-								<input type="password" class="form-control" id="userPassword" title="Type password"
+								<input type="password" style="background-color: #081221; color: white;"class="form-control" id="userPassword" title="Type password"
 									placeholder="Password" required>
 								<div class="invalid-feedback">
 									Please enter a password.
@@ -71,7 +71,7 @@
 
 							<div class="mb-3">
 								<label for="userPassword-repeat" class="form-label">Confirm Password*</label>
-								<input type="password" class="form-control" title="Re-enter password"
+								<input type="password" style="background-color: #081221; color: white;" class="form-control" title="Re-enter password"
 									id="userPassword-repeat" placeholder="Confirm Password" required>
 								<div class="invalid-feedback">
 									Please enter same password.
@@ -79,7 +79,7 @@
 							</div>
 
 							<div class="d-grid">
-								<button type="submit" id="signUpButton" class="btn btn-primary" data-bs-toggle="tooltip"
+								<button type="submit" id="signUpButton" style="background-color: #4d7ab4; color: white;" class="btn btn-primary" data-bs-toggle="tooltip"
 									data-bs-placement="right" title="Sign Up">
 									Sign Up
 								</button>
