@@ -2,10 +2,6 @@ window.addEventListener('DOMContentLoaded', function() {
     readCookie();
     accountButtonText();
     document.getElementById('inner-title').textContent = 'Logged in as ' + firstName + ' ' + lastName + '.';
-    console.log('Account page loaded');
-    console.log('User ID:', userId);
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
 });
 
 function changeUser() {
@@ -98,14 +94,14 @@ function changeUser() {
     btnContainer.style.gap = '10px';
 
     let changeUsernameBtn = document.createElement('button');
-    changeUsernameBtn.textContent = 'Change Username';
+    changeUsernameBtn.innerHTML = '<i class="bi bi-person-gear me-1"></i>Change Username';
     changeUsernameBtn.className = 'btn btn-danger';
     changeUsernameBtn.onclick = function() {
         changeUsernameConfirm(modalBg);
     };
 
     let cancelBtn = document.createElement('button');
-    cancelBtn.textContent = 'Cancel';
+    cancelBtn.innerHTML = '<i class="bi bi-x-circle me-1"></i>Cancel';
     cancelBtn.className = 'btn btn-secondary';
     cancelBtn.style.backgroundColor = '#c0d6df';
     cancelBtn.style.borderColor = '#c0d6df';
@@ -247,14 +243,14 @@ function deleteUser() {
     btnContainer.style.gap = '10px';
 
     let deleteAccountBtn = document.createElement('button');
-    deleteAccountBtn.textContent = 'Delete Account';
+    deleteAccountBtn.innerHTML = '<i class="bi bi-trash3 me-1"></i>Delete Account';
     deleteAccountBtn.className = 'btn btn-danger';
     deleteAccountBtn.onclick = function() {
         deleteUserConfirm();
     };
 
     let cancelBtn = document.createElement('button');
-    cancelBtn.textContent = 'Cancel';
+    cancelBtn.innerHTML = '<i class="bi bi-x-circle me-1"></i>Cancel';
     cancelBtn.className = 'btn btn-secondary';
     cancelBtn.style.backgroundColor = '#c0d6df';
     cancelBtn.style.borderColor = '#c0d6df';
@@ -412,14 +408,14 @@ function editPassword() {
     btnContainer.style.gap = '10px';
 
     let changePasswordBtn = document.createElement('button');
-    changePasswordBtn.textContent = 'Change Password';
+    changePasswordBtn.innerHTML = '<i class="bi bi-key me-1"></i>Change Password';
     changePasswordBtn.className = 'btn btn-danger';
     changePasswordBtn.onclick = function() {
         changePasswordConfirm(modalBg);
     };
 
     let cancelBtn = document.createElement('button');
-    cancelBtn.textContent = 'Cancel';
+    cancelBtn.innerHTML = '<i class="bi bi-x-circle me-1"></i>Cancel';
     cancelBtn.className = 'btn btn-secondary';
     cancelBtn.style.backgroundColor = '#c0d6df';
     cancelBtn.style.borderColor = '#c0d6df';
