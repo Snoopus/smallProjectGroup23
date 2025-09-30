@@ -8,7 +8,7 @@ Request format:
 
 Response format:
 {
-    "userId": User's ID for other requests.
+    "userId": User's UUID for other requests.
     "firstName": User's first name.
     "lastName": User's last name.
     "error": blank if success, else describes the problem.  
@@ -32,13 +32,13 @@ Response format:
 	}	
 
     // Query the database this user's entry. 
-    $stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password =?");
+    $stmt = $conn->prepare("SELECT UUID,FirstName,LastName FROM Users WHERE Login=? AND Password =?");
     $stmt->bind_param("ss", $user, $pass);
     $stmt->execute();
     $result = $stmt->get_result();
     if($row = $result->fetch_assoc())
     {
-        respondWithInfo($row['ID'], $row['firstName'], $row['lastName']);
+        respondWithInfo($row['UUID'], $row['FirstName'], $row['LastName']);
     }
     else
     {
