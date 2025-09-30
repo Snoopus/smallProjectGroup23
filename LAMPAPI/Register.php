@@ -54,7 +54,7 @@ Response format:
 
 	// Insert the new user. 
 	$stmt = $conn->prepare("INSERT INTO Users (FirstName,LastName,Login,Password,UUID) VALUES (?,?,?,?,?)");
-	$stmt->bind_param("ssss", $firstName, $lastName, $login, $password, $uuid);
+	$stmt->bind_param("sssss", $firstName, $lastName, $login, $password, $uuid);
 	if($stmt->execute()) // If query succeeded:
 	{
 		respondWithInfo($uuid);
