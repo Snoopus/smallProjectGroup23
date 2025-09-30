@@ -30,7 +30,7 @@ function searchContact() {
                 }
 
                 // Create table with Bootstrap classes and custom styling
-                let resultHTML = "<table class='table table-hover table-responsive-md' style='border-collapse: separate; border-spacing: 0; border-radius: 15px; overflow: hidden;'>";
+                let resultHTML = "<table class='table-hover table-responsive-md' style='border-collapse: separate; border-spacing: 0; border-radius: 15px; overflow: hidden;'>";
                 resultHTML += "<thead style='background-color: #4d7ab4 !important;'><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Actions</th></tr></thead>";
                 resultHTML += "<tbody>";
 
