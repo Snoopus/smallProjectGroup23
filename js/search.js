@@ -43,8 +43,8 @@ function searchContact() {
                     resultHTML += "<td id='lastName_" + i + "' style='padding: 10px 15px; text-align: center; width: 18%;'>" + contact.lastName + "</td>";
                     resultHTML += "<td id='phone_" + i + "' style='padding: 10px 15px; text-align: center; width: 22%;'>" + formatPhoneNum(contact.phone) + "</td>";
                     resultHTML += "<td id='email_" + i + "' style='padding: 10px 15px; text-align: center; width: 25%;'>" + contact.email + "</td>";
-                    resultHTML += "<td style='padding: 10px 15px; text-align: center; width: 17%;'><button class='btn btn-sm me-2' style='background-color: #c0d6df; border-color: #c0d6df; color: #000;' onclick='editContact(" + i + "," + contact.contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
-                        "<button class='btn btn-danger btn-sm' onclick='deleteContact(" + contact.contactId + ")'><i class='bi bi-trash3'></i></button></td>";
+                    resultHTML += "<td style='padding: 10px 15px; text-align: center; width: 17%;'><button class='btn btn-sm me-2' style='background-color: #c0d6df; border-color: #c0d6df; color: #000;' onclick='editContact(" + i + ",'" + contact.contactId + "')'><i class='bi bi-pencil-square'></i></button>" +
+                        "<button class='btn btn-danger btn-sm' onclick='deleteContact('" + contact.contactId + "')'><i class='bi bi-trash3'></i></button></td>";
                     resultHTML += "</tr>";
                 }
                 resultHTML += "</tbody></table></div>";
@@ -105,7 +105,7 @@ function editContact(rowIndex, contactId) {
 
     // Action buttons Save/Cancel
     let actionOnTd = cellFName.parentElement.querySelector("td:last-child");
-    actionOnTd.innerHTML = "<button class='btn btn-success btn-sm me-2' onclick='saveContact(" + rowIndex + "," + contactId + ")'><i class='bi bi-check2'></i></button>" + "<button class='btn btn-danger btn-sm' onclick='cancelEdit(" + rowIndex + "," + JSON.stringify({ fName, lName, phone, email }) + ")'><i class='bi bi-x-circle'></i></button>"
+    actionOnTd.innerHTML = "<button class='btn btn-success btn-sm me-2' onclick='saveContact(" + rowIndex + ",'" + contactId + "')'><i class='bi bi-check2'></i></button>" + "<button class='btn btn-danger btn-sm' onclick='cancelEdit(" + rowIndex + "," + JSON.stringify({ fName, lName, phone, email }) + ")'><i class='bi bi-x-circle'></i></button>"
 
 }
 
@@ -145,16 +145,16 @@ function saveContact(rowIndex, contactId) {
 
     // Action buttons Save/Cancel - updated with custom edit button styling and padding
     let actionCell = document.getElementById("firstName_" + rowIndex).parentElement.querySelector("td:last-child");
-    actionCell.innerHTML = "<button class='btn btn-sm me-2' style='background-color: #c0d6df; border-color: #c0d6df; color: #000;' onclick='editContact(" + rowIndex + "," + contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
-        "<button class='btn btn-danger btn-sm' onclick='deleteContact(" + contactId + ")'><i class='bi bi-trash3'></i></button>";
+    actionCell.innerHTML = "<button class='btn btn-sm me-2' style='background-color: #c0d6df; border-color: #c0d6df; color: #000;' onclick='editContact(" + rowIndex + ",'" + contactId + "')'><i class='bi bi-pencil-square'></i></button>" +
+        "<button class='btn btn-danger btn-sm' onclick='deleteContact('" + contactId + "')'><i class='bi bi-trash3'></i></button>";
     
     // Apply padding to the action cell
     actionCell.style.padding = '10px 15px';
     actionCell.style.textAlign = 'center';
 
     let payload = {
-        contactId: Number(contactId),
-        userId: Number(userId),
+        contactId,
+        userId,
         firstName,
         lastName,
         phone,
@@ -244,16 +244,16 @@ function deleteContact(contactId) {
     // Clear previous messages
     document.getElementById("contactSearchResult").innerHTML = "";
 
-    let idNum = Number(contactId);
+    let id = contactId;
    
     // Validate contact to delete
-    if (!Number.isInteger(idNum) || idNum <= 0) {
+    if (!(id.length == 36)) {
         showMessage("Invalid contact!", 'danger');
         return;
     }
 
     // Store the contact ID and show modal
-    pendingDeleteId = idNum;
+    pendingDeleteId = id;
     let deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
     deleteModal.show();
 }
