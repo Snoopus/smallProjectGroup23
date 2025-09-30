@@ -30,8 +30,8 @@ function searchContact() {
                 }
 
                 // Create table with Bootstrap classes and custom styling
-                let resultHTML = "<div class='d-flex justify-content-center'><table class='table-hover table-responsive-md' style='border-collapse: separate; border-spacing: 0; border-radius: 15px; overflow: hidden; margin: 0 auto; max-width: 90%;'>";
-                resultHTML += "<thead style='background-color: #4d7ab4 !important;'><tr><th style='padding: 12px 15px; text-align: center;'>First Name</th><th style='padding: 12px 15px; text-align: center;'>Last Name</th><th style='padding: 12px 15px; text-align: center;'>Phone</th><th style='padding: 12px 15px; text-align: center;'>Email</th><th style='padding: 12px 15px; text-align: center;'>Actions</th></tr></thead>";
+                let resultHTML = "<div class='d-flex justify-content-center'><table class='table-hover table-responsive-md' style='border-collapse: separate; border-spacing: 0; border-radius: 10px; overflow: hidden; margin: 0 auto; max-width: 95%; width: 100%;'>";
+                resultHTML += "<thead style='background-color: #4d7ab4 !important;'><tr><th style='padding: 12px 15px; text-align: center; width: 18%;'>First Name</th><th style='padding: 12px 15px; text-align: center; width: 18%;'>Last Name</th><th style='padding: 12px 15px; text-align: center; width: 22%;'>Phone</th><th style='padding: 12px 15px; text-align: center; width: 25%;'>Email</th><th style='padding: 12px 15px; text-align: center; width: 17%;'>Actions</th></tr></thead>";
                 resultHTML += "<tbody>";
 
                 // Add each contact as a row with alternating colors
@@ -39,11 +39,11 @@ function searchContact() {
                     let contact = jsonObject.results[i];
                     let rowColor = (i % 2 === 0) ? '#142f51' : '#24436a';
                     resultHTML += "<tr id='row_" + i + "' data-id='" + contact.contactId + "' style='background-color: " + rowColor + ";'>";
-                    resultHTML += "<td id='firstName_" + i + "' style='padding: 10px 15px; text-align: center;'>" + contact.firstName + "</td>";
-                    resultHTML += "<td id='lastName_" + i + "' style='padding: 10px 15px; text-align: center;'>" + contact.lastName + "</td>";
-                    resultHTML += "<td id='phone_" + i + "' style='padding: 10px 15px; text-align: center;'>" + formatPhoneNum(contact.phone) + "</td>";
-                    resultHTML += "<td id='email_" + i + "' style='padding: 10px 15px; text-align: center;'>" + contact.email + "</td>";
-                    resultHTML += "<td style='padding: 10px 15px; text-align: center;'><button class='btn btn-sm me-2' style='background-color: #c0d6df; border-color: #c0d6df; color: #000;' onclick='editContact(" + i + "," + contact.contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
+                    resultHTML += "<td id='firstName_" + i + "' style='padding: 10px 15px; text-align: center; width: 18%;'>" + contact.firstName + "</td>";
+                    resultHTML += "<td id='lastName_" + i + "' style='padding: 10px 15px; text-align: center; width: 18%;'>" + contact.lastName + "</td>";
+                    resultHTML += "<td id='phone_" + i + "' style='padding: 10px 15px; text-align: center; width: 22%;'>" + formatPhoneNum(contact.phone) + "</td>";
+                    resultHTML += "<td id='email_" + i + "' style='padding: 10px 15px; text-align: center; width: 25%;'>" + contact.email + "</td>";
+                    resultHTML += "<td style='padding: 10px 15px; text-align: center; width: 17%;'><button class='btn btn-sm me-2' style='background-color: #c0d6df; border-color: #c0d6df; color: #000;' onclick='editContact(" + i + "," + contact.contactId + ")'><i class='bi bi-pencil-square'></i></button>" +
                         "<button class='btn btn-danger btn-sm' onclick='deleteContact(" + contact.contactId + ")'><i class='bi bi-trash3'></i></button></td>";
                     resultHTML += "</tr>";
                 }
