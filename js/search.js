@@ -79,8 +79,8 @@ function checkInput() {
         searchButton.classList.add('btn-secondary'); // Add gray color
     }
     // Clear the table and results when input is empty
-    document.getElementById("contactSearchResult").innerHTML = "";
-    document.getElementById("contactList").innerHTML = "";
+    //document.getElementById("contactSearchResult").innerHTML = "";
+    //document.getElementById("contactList").innerHTML = "";
 }
 
 // Edit function to add functionality to edit contact button
