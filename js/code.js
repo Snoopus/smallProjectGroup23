@@ -1,7 +1,7 @@
 const urlBase = 'https://poosd.ilovenarwhals.xyz/LAMPAPI';
 const extension = 'php';
 
-let userId = 0;
+let userId = "";
 let firstName = "";
 let lastName = "";
 
@@ -34,7 +34,7 @@ function readCookie()
 		}
 		else if( tokens[0] == "userId" )
 		{
-			userId = parseInt( tokens[1].trim() );
+			userId = tokens[1];
 		}
 	}
 	
