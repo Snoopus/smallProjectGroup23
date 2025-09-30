@@ -26,16 +26,33 @@ function searchContact() {
                         errorElement.innerHTML = "";
                     }, 1000);
 
+                    // Hide pagination when there's an error
+                    document.getElementById('paginationNav').style.display = 'none';
                     return;
                 }
+
+                // Pagination settings
+                const itemsPerPage = 5; // Number of contacts per page
+                const totalItems = jsonObject.results.length;
+                const totalPages = Math.ceil(totalItems / itemsPerPage);
+                const currentPage = window.currentPage || 1;
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+
+                // Show/hide pagination nav based on results
+                const paginationNav = document.getElementById('paginationNav');
+                paginationNav.style.display = totalPages > 1 ? 'block' : 'none';
+
+                // Update pagination controls
+                updatePagination(currentPage, totalPages);
 
                 // Create table with Bootstrap classes and custom styling
                 let resultHTML = "<div class='d-flex justify-content-center'><table class='table-hover table-responsive-md' style='border-collapse: separate; border-spacing: 0; border-radius: 10px; overflow: hidden; margin: 0 auto; max-width: 95%; width: 100%;'>";
                 resultHTML += "<thead style='background-color: #4d7ab4 !important;'><tr><th style='padding: 12px 15px; text-align: center; width: 18%;'>First Name</th><th style='padding: 12px 15px; text-align: center; width: 18%;'>Last Name</th><th style='padding: 12px 15px; text-align: center; width: 22%;'>Phone</th><th style='padding: 12px 15px; text-align: center; width: 25%;'>Email</th><th style='padding: 12px 15px; text-align: center; width: 17%;'>Actions</th></tr></thead>";
                 resultHTML += "<tbody>";
 
-                // Add each contact as a row with alternating colors
-                for (let i = 0; i < jsonObject.results.length; i++) {   
+                // Add contacts for current page with alternating colors
+                for (let i = startIndex; i < endIndex; i++) {   
                     let contact = jsonObject.results[i];
                     let rowColor = (i % 2 === 0) ? '#142f51' : '#24436a';
                     resultHTML += "<tr id='row_" + i + "' data-id='" + contact.contactId + "' style='background-color: " + rowColor + ";'>";
@@ -185,57 +202,6 @@ function saveContact(rowIndex, contactId) {
     xhr.send(JSON.stringify(payload))
 }
 
-// // NEW: delete function to add functionality to delete contact button
-// function deleteContact(contactId) {
-//     // Clear previous messages
-//     document.getElementById("contactSearchResult").innerHTML = "";
-
-//     let idNum = Number(contactId);
-//     // Validate contact to delete
-//     if (!Number.isInteger(idNum) || idNum <= 0) {
-//         document.getElementById("contactSearchResult").innerHTML = "Invalid contact!";
-//         return;
-//     }
-
-//     // TODO: To be changed to modal component
-//     if (!confirm("You are about to delete this contact! Confirm by clicking okay.")) {
-//         return;
-//     }
-
-//     let tmp = {
-//         contactId: idNum,
-//         userId: userId
-//     };
-
-//     let jsonPayload = JSON.stringify(tmp);
-
-//     let url = urlBase + '/DeleteContact.' + extension;
-
-//     let xhr = new XMLHttpRequest();
-//     xhr.open("POST", url, true);
-//     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-//     try {
-//         xhr.onreadystatechange = function () {
-
-//             if (this.readyState == 4 && this.status == 200) {
-//                 let response = JSON.parse(xhr.responseText);
-//                 if (response.error) {
-//                     document.getElementById("contactSearchResult").innerHTML = response.error;
-//                     return;
-//                 }
-//                 document.getElementById("contactSearchResult").innerHTML = "Contact deleted successfully";
-
-//                 // Refresh the contact list
-//                 searchContact();
-//             }
-//         };
-//         xhr.send(jsonPayload);
-//     }
-//     catch (err) {
-//         document.getElementById("contactSearchResult").innerHTML = err.message;
-//     }
-// }
-
 // Global variable to store the contact ID for deletion
 let pendingDeleteId = null;
 
@@ -315,6 +281,53 @@ function showMessage(message, type = 'danger') {
     setTimeout(() => {
         element.innerHTML = "";
     }, 1000);
+}
+
+// Function to update pagination controls
+function updatePagination(currentPage, totalPages) {
+    const paginationList = document.getElementById('paginationList');
+    let paginationHTML = '';
+
+    // Previous button
+    paginationHTML += `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <button class="page-link" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>
+                <i class="bi bi-chevron-left"></i>
+            </button>
+        </li>`;
+
+    // Page numbers
+    for (let i = 1; i <= totalPages; i++) {
+        paginationHTML += `
+            <li class="page-item ${currentPage === i ? 'active' : ''}">
+                <button class="page-link" onclick="changePage(${i})">${i}</button>
+            </li>`;
+    }
+
+    // Next button
+    paginationHTML += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <button class="page-link" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </li>`;
+
+    paginationList.innerHTML = paginationHTML;
+}
+
+// Function to handle page changes
+function changePage(newPage) {
+    // Validate page number
+    if (newPage < 1) return;
+    
+    // Update current page
+    window.currentPage = newPage;
+    
+    // Re-run search with new page
+    let searchText = document.getElementById('searchText').value;
+    if (searchText.trim() !== '') {
+        searchContact();
+    }
 }
 
 // Formats phone number for consistency 
