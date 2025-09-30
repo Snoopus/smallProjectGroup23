@@ -88,7 +88,7 @@ Response format:
     // Sends response with error code and no useful data.
 	function respondWithError($err)
 	{
-		$retValue = '{"userId":0,"error":"' . $err . '"}';
+		$retValue = '{"userId":"0","error":"' . $err . '"}';
 		sendResponseInfoAsJson($retValue);
 	}
     
@@ -96,7 +96,7 @@ Response format:
     // Sends response with desired data and a blank error code. 
 	function respondWithInfo($id)
 	{
-		$retValue = '{"userId":' . $id . ',"error":""}';
+		$retValue = '{"userId":"' . $id . '","error":""}';
 		sendResponseInfoAsJson($retValue);
 	}
 
