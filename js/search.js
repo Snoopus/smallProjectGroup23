@@ -66,8 +66,8 @@ function searchContact() {
                     resultHTML += "<td id='lastName_" + i + "' style='padding: 10px 15px; text-align: center; width: 18%;'>" + contact.lastName + "</td>";
                     resultHTML += "<td id='phone_" + i + "' style='padding: 10px 15px; text-align: center; width: 22%;'>" + formatPhoneNum(contact.phone) + "</td>";
                     resultHTML += "<td id='email_" + i + "' style='padding: 10px 15px; text-align: center; width: 25%;'>" + contact.email + "</td>";
-                    resultHTML += `<td style='padding: 10px 15px; text-align: center; width: 17%;'><button class='btn btn-sm me-2' style='background-color: #c0d6df; border-color: #c0d6df; color: #000;' onclick='editContact(${i},"${contact.contactId}")'><i class='bi bi-pencil-square'></i></button>`
-                    resultHTML += `<button class='btn btn-danger btn-sm' onclick='deleteContact("${contact.contactId}")'><i class='bi bi-trash3'></i></button></td>`;
+                    resultHTML += `<td style='padding: 10px 15px; text-align: center; width: 17%;'><button class='btn btn-sm me-2' data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit"style='background-color: #c0d6df; border-color: #c0d6df; color: #000;' onclick='editContact(${i},"${contact.contactId}")'><i class='bi bi-pencil-square'></i></button>`
+                    resultHTML += `<button class='btn btn-danger btn-sm' data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete" onclick='deleteContact("${contact.contactId}")'><i class='bi bi-trash3'></i></button></td>`;
                     resultHTML += "</tr>";
                 }
                 resultHTML += "</tbody></table></div>";
@@ -145,35 +145,12 @@ function editContact(rowIndex, contactId) {
     // Action buttons Save/Cancel
     let actionOnTd = cellFName.parentElement.querySelector("td:last-child");
     //actionOnTd.innerHTML = `<button class='btn btn-success btn-sm me-2' onclick='saveContact("${rowIndex}","${contactId}")'><i class='bi bi-check2'></i></button><button class='btn btn-danger btn-sm' onclick='cancelEdit("${rowIndex}","${JSON.stringify({ fName, lName, phone, email })}")'><i class='bi bi-x-circle'></i></button>`
-    actionOnTd.innerHTML = `<button class='btn btn-success btn-sm me-2' onclick='saveContact("${rowIndex}","${contactId}")'><i class='bi bi-check2'></i></button><button class='btn btn-danger btn-sm' onclick='cancelEdit()'><i class='bi bi-x-circle'></i></button>`;
+    actionOnTd.innerHTML = `<button class='btn btn-success btn-sm me-2' data-bs-toggle="tooltip" data-bs-placement="bottom" title="Save" onclick='saveContact("${rowIndex}","${contactId}")'><i class='bi bi-check2'></i></button><button class='btn btn-danger btn-sm' data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cancel" onclick='cancelEdit()'><i class='bi bi-x-circle'></i></button>`;
 }
 
-// NEW: function to cancel the edit action
-// function cancelEdit(rowIndex, original_values) {
-//     // Restore cells to original values
-//     document.getElementById("firstName_" + rowIndex).textContent = original_values.fName;
-//     document.getElementById("lastName_" + rowIndex).textContent = original_values.lName;
-//     document.getElementById("phone_" + rowIndex).textContent = original_values.phone;
-//     document.getElementById("email_" + rowIndex).textContent = original_values.email;
 
-//     // Restores buttons back to Edit/Delete
-//     searchContact();
-// }
 
 function cancelEdit() {
-    // Get original values from global storage
-    // let original_values = window[`originalValues_${rowIndex}`];
-    
-    // // Restore cells to original values
-    // document.getElementById("firstName_" + rowIndex).textContent = original_values.fName;
-    // document.getElementById("lastName_" + rowIndex).textContent = original_values.lName;
-    // document.getElementById("phone_" + rowIndex).textContent = original_values.phone;
-    // document.getElementById("email_" + rowIndex).textContent = original_values.email;
-
-    // // Clean up global storage
-    // delete window[`originalValues_${rowIndex}`];
-
-    // Restores buttons back to Edit/Delete
     searchContact();
 }
 
