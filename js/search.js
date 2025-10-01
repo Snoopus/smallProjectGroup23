@@ -1,6 +1,6 @@
 // This file contains all functions used by the buttons in the search page: Search, Edit (Save/Cancel), Delete
 function searchContact() {
-    window.currentPage = window.currentPage || 1; // Initialize currentPage if not set
+    //window.currentPage = window.currentPage || 1; // Initialize currentPage if not set
     let srch = document.getElementById("searchText").value;
     document.getElementById("contactSearchResult").innerHTML = "";
     document.getElementById("contactList").innerHTML = "";
@@ -112,6 +112,7 @@ function checkInputonSubmit() {
 
     // Strip input of whitespace in front and end of string
     if (searchText.value.trim() !== '') {
+        window.currentPage = 1; // Reset to first page on new search
         searchContact();
     } else {
         return;
