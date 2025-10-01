@@ -36,9 +36,12 @@ function searchContact() {
                 const itemsPerPage = 5; // Number of contacts per page
                 const totalItems = jsonObject.results.length;
                 const totalPages = Math.ceil(totalItems / itemsPerPage);
-                const currentPage = 1;
+                const currentPage = window.currentPage || 1;
                 const startIndex = (currentPage - 1) * itemsPerPage;
                 const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+                if (window.currentPage > totalPages) {
+                    window.currentPage = 1;
+                }
 
                 // Show/hide pagination nav based on results
                 const paginationNav = document.getElementById('paginationNav');
