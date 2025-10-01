@@ -101,6 +101,21 @@ function checkInput() {
     //document.getElementById("contactList").innerHTML = "";
 }
 
+function checkInputonSubmit() {
+    let searchText = document.getElementById('searchText');
+    let searchButton = document.getElementById('searchButton');
+
+    // Strip input of whitespace in front and end of string
+    if (searchText.value.trim() !== '') {
+        searchContact();
+    } else {
+        return;
+    }
+    // Clear the table and results when input is empty
+    //document.getElementById("contactSearchResult").innerHTML = "";
+    //document.getElementById("contactList").innerHTML = "";
+}
+
 // Edit function to add functionality to edit contact button
 function editContact(rowIndex, contactId) {
     // Get current row values
@@ -203,56 +218,7 @@ function saveContact(rowIndex, contactId) {
     xhr.send(JSON.stringify(payload))
 }
 
-// // NEW: delete function to add functionality to delete contact button
-// function deleteContact(contactId) {
-//     // Clear previous messages
-//     document.getElementById("contactSearchResult").innerHTML = "";
 
-//     let idNum = Number(contactId);
-//     // Validate contact to delete
-//     if (!Number.isInteger(idNum) || idNum <= 0) {
-//         document.getElementById("contactSearchResult").innerHTML = "Invalid contact!";
-//         return;
-//     }
-
-//     // TODO: To be changed to modal component
-//     if (!confirm("You are about to delete this contact! Confirm by clicking okay.")) {
-//         return;
-//     }
-
-//     let tmp = {
-//         contactId: idNum,
-//         userId: userId
-//     };
-
-//     let jsonPayload = JSON.stringify(tmp);
-
-//     let url = urlBase + '/DeleteContact.' + extension;
-
-//     let xhr = new XMLHttpRequest();
-//     xhr.open("POST", url, true);
-//     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-//     try {
-//         xhr.onreadystatechange = function () {
-
-//             if (this.readyState == 4 && this.status == 200) {
-//                 let response = JSON.parse(xhr.responseText);
-//                 if (response.error) {
-//                     document.getElementById("contactSearchResult").innerHTML = response.error;
-//                     return;
-//                 }
-//                 document.getElementById("contactSearchResult").innerHTML = "Contact deleted successfully";
-
-//                 // Refresh the contact list
-//                 searchContact();
-//             }
-//         };
-//         xhr.send(jsonPayload);
-//     }
-//     catch (err) {
-//         document.getElementById("contactSearchResult").innerHTML = err.message;
-//     }
-// }
 
 // Global variable to store the contact ID for deletion
 let pendingDeleteId = null;
