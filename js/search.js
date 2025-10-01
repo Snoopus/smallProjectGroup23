@@ -145,7 +145,7 @@ function editContact(rowIndex, contactId) {
     // Action buttons Save/Cancel
     let actionOnTd = cellFName.parentElement.querySelector("td:last-child");
     //actionOnTd.innerHTML = `<button class='btn btn-success btn-sm me-2' onclick='saveContact("${rowIndex}","${contactId}")'><i class='bi bi-check2'></i></button><button class='btn btn-danger btn-sm' onclick='cancelEdit("${rowIndex}","${JSON.stringify({ fName, lName, phone, email })}")'><i class='bi bi-x-circle'></i></button>`
-    actionOnTd.innerHTML = `<button class='btn btn-success btn-sm me-2' onclick='saveContact("${rowIndex}","${contactId}")'><i class='bi bi-check2'></i></button><button class='btn btn-danger btn-sm' onclick='cancelEdit("${rowIndex}")'><i class='bi bi-x-circle'></i></button>`;
+    actionOnTd.innerHTML = `<button class='btn btn-success btn-sm me-2' onclick='saveContact("${rowIndex}","${contactId}")'><i class='bi bi-check2'></i></button><button class='btn btn-danger btn-sm' onclick='cancelEdit()'><i class='bi bi-x-circle'></i></button>`;
 }
 
 // NEW: function to cancel the edit action
@@ -160,18 +160,18 @@ function editContact(rowIndex, contactId) {
 //     searchContact();
 // }
 
-function cancelEdit(rowIndex) {
+function cancelEdit() {
     // Get original values from global storage
-    let original_values = window[`originalValues_${rowIndex}`];
+    // let original_values = window[`originalValues_${rowIndex}`];
     
-    // Restore cells to original values
-    document.getElementById("firstName_" + rowIndex).textContent = original_values.fName;
-    document.getElementById("lastName_" + rowIndex).textContent = original_values.lName;
-    document.getElementById("phone_" + rowIndex).textContent = original_values.phone;
-    document.getElementById("email_" + rowIndex).textContent = original_values.email;
+    // // Restore cells to original values
+    // document.getElementById("firstName_" + rowIndex).textContent = original_values.fName;
+    // document.getElementById("lastName_" + rowIndex).textContent = original_values.lName;
+    // document.getElementById("phone_" + rowIndex).textContent = original_values.phone;
+    // document.getElementById("email_" + rowIndex).textContent = original_values.email;
 
-    // Clean up global storage
-    delete window[`originalValues_${rowIndex}`];
+    // // Clean up global storage
+    // delete window[`originalValues_${rowIndex}`];
 
     // Restores buttons back to Edit/Delete
     searchContact();
