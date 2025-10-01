@@ -2,10 +2,12 @@
 # Group 23
 
 This is a full-stack web application utilizing a LAMP stack.
+
 Contact info can be created per user account, private to that user only. Those contacts can be searched over using partial matching, updated, and more. The user accounts can also be updated to change username/password. 
 
 # Setup
 Place this repository into the /var/www/html folder of an Apache server.
+
 A `.env` file needs to be created like `.env.example` with the credentials for the MySQL user.
 
 ## MySQL Database
@@ -29,12 +31,14 @@ There are two tables: Users and Contacts
     - `UUID`        VARCHAR(50) NOT NULL DEFAULT '' 
 
 All columns of Users will be populated.
+
 All columns except Phone and Email of Contacts are guaranteed to be populated. 
 
 ## API
-Further API documentation can be found at https://____________
+Further API documentation can be found at https://app.swaggerhub.com/apis/group232/Narwhal_Ltd_API/1.1.0
 
 Both requests and responses use application/json. All endpoints are written in PHP. 
+
 The specific keys to use are documented in the link above and in each endpoint's `LAMPAPI` file header comment.
 The "error" response key is always present. It specifies what error happened in the backend logic, if any. 
 
