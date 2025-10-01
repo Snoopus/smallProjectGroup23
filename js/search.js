@@ -1,5 +1,6 @@
 // This file contains all functions used by the buttons in the search page: Search, Edit (Save/Cancel), Delete
 function searchContact() {
+    window.currentPage = 1; // Initialize currentPage if not set
     let srch = document.getElementById("searchText").value;
     document.getElementById("contactSearchResult").innerHTML = "";
     document.getElementById("contactList").innerHTML = "";
@@ -39,10 +40,10 @@ function searchContact() {
                 const currentPage = window.currentPage || 1;
                 const startIndex = (currentPage - 1) * itemsPerPage;
                 const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
-                if (currentPage > totalPages) {
-                    currentPage = 1;
-                    window.currentPage = 1;
-                }
+                // if (currentPage > totalPages) {
+                //     currentPage = 1;
+                //     window.currentPage = 1;
+                // }
 
                 // Show/hide pagination nav based on results
                 const paginationNav = document.getElementById('paginationNav');
