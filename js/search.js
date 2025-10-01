@@ -36,7 +36,7 @@ function searchContact() {
                 const itemsPerPage = 5; // Number of contacts per page
                 const totalItems = jsonObject.results.length;
                 const totalPages = Math.ceil(totalItems / itemsPerPage);
-                const currentPage = window.currentPage || 1;
+                const currentPage = 1;
                 const startIndex = (currentPage - 1) * itemsPerPage;
                 const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
 
