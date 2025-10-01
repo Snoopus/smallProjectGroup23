@@ -1,6 +1,6 @@
 // This file contains all functions used by the buttons in the search page: Search, Edit (Save/Cancel), Delete
 function searchContact() {
-    window.currentPage = 1; // Initialize currentPage if not set
+    window.currentPage = window.currentPage || 1; // Initialize currentPage if not set
     let srch = document.getElementById("searchText").value;
     document.getElementById("contactSearchResult").innerHTML = "";
     document.getElementById("contactList").innerHTML = "";
