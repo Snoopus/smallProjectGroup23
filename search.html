@@ -21,7 +21,8 @@
 
 </head>
 
-<body style="background-color: #081221; background-image: url('images/dim_background.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; min-height: 100vh;">
+<body
+    style="background-color: #081221; background-image: url('images/dim_background.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; min-height: 100vh;">
     <!-- Navigation Section -->
     <nav class="navbar " style="background-color: #142f51;">
         <div class="container-fluid">
@@ -30,12 +31,13 @@
                 Narwhal Ltd
             </a>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" id="goContactsButton" class="btn" style="background-color: #4d7ab4; color: black;" data-bs-toggle="tooltip"
-                    data-bs-placement="bottom" title="Add Contacts."
+                <button type="button" id="goContactsButton" class="btn" style="background-color: #4d7ab4; color: black;"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add Contacts."
                     onclick='window.location.href = "addContacts.html"'>Add Contacts
                 </button>
-                <button type="button" class="btn" style="background-color: #c0d6df; color: black;" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    title="User account" href="#" onclick='window.location.href = "account.html"' id="accountButton">
+                <button type="button" class="btn" style="background-color: #c0d6df; color: black;"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="User account" href="#"
+                    onclick='window.location.href = "account.html"' id="accountButton">
                 </button>
                 <button type="button" id="logout" class="btn btn-danger" data-bs-toggle="tooltip"
                     data-bs-placement="bottom" title="Logout" onclick=doLogout();>Logout</button>
@@ -53,9 +55,10 @@
                     <div class="card-body p-4" style="background-color: #24436a;">
                         <form onsubmit="event.preventDefault(); searchContact();">
                             <div class="d-flex">
-                                <input style="background-color: #081221;" type="text" name="search" class="form-control" id="searchText"
-                                    title="Enter contact information." oninput="checkInput();" />
-                                <button type="button" class="btn btn-sm ms-2" style="background-color: #c0d6df;color: black;" id="searchButton"
+                                <input style="background-color: #081221;" type="text" name="search" class="form-control"
+                                    id="searchText" title="Enter contact information." oninput="checkInput();" />
+                                <button type="button" class="btn btn-sm ms-2"
+                                    style="background-color: #c0d6df;color: black;" id="searchButton"
                                     data-bs-toggle="tooltip" data-bs-placement="right" title="Search" disabled
                                     onclick="searchContact()" disabled>
                                     <i class="bi bi-search"></i>
@@ -70,7 +73,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <div id="contactSearchResult" class="mt-5 text-center"></div>
-                <div id="contactList" class="container mt-5 align-items-center justify-content-center" ></div>
+                <div id="contactList" class="container mt-5 align-items-center justify-content-center"></div>
                 <!-- Pagination -->
                 <nav aria-label="Contact pagination" id="paginationNav" style="display: none;">
                     <ul class="pagination justify-content-center mt-4" id="paginationList">
@@ -90,13 +93,14 @@
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body text-center">
+                <div class="modal-body text-center" style="background-color: #142f51;">
                     <i class="bi bi-trash3 text-danger" style="font-size: 3rem;"></i>
                     <p class="mt-3 mb-2">Are you sure you want to delete this contact?</p>
                     <p class="text-muted">This action cannot be undone.</p>
                 </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">
+                <div class="modal-footer justify-content-center" style="background-color: #142f51;">
+                    <button type="button" class="btn me-2" style="background-color: #c0d6df;color: black;"
+                        data-bs-dismiss="modal">
                         <i class="bi bi-x-circle me-1"></i>Cancel
                     </button>
                     <button type="button" class="btn btn-danger" id="confirmDeleteBtn">

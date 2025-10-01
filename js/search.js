@@ -26,8 +26,26 @@ function searchContact() {
                         errorElement.innerHTML = "";
                     }, 1000);
 
+                    // Hide pagination when there's an error
+                    document.getElementById('paginationNav').style.display = 'none';
+
                     return;
                 }
+
+                // Pagination settings
+                const itemsPerPage = 5; // Number of contacts per page
+                const totalItems = jsonObject.results.length;
+                const totalPages = Math.ceil(totalItems / itemsPerPage);
+                const currentPage = window.currentPage || 1;
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+
+                // Show/hide pagination nav based on results
+                const paginationNav = document.getElementById('paginationNav');
+                paginationNav.style.display = totalPages > 1 ? 'block' : 'none';
+
+                // Update pagination controls
+                updatePagination(currentPage, totalPages);
 
                 // Create table with Bootstrap classes and custom styling
                 let resultHTML = "<div class='d-flex justify-content-center'><table class='table-hover table-responsive-md' style='border-collapse: separate; border-spacing: 0; border-radius: 10px; overflow: hidden; margin: 0 auto; max-width: 95%; width: 100%;'>";
@@ -35,7 +53,7 @@ function searchContact() {
                 resultHTML += "<tbody>";
 
                 // Add each contact as a row with alternating colors
-                for (let i = 0; i < jsonObject.results.length; i++) {   
+                for (let i = startIndex; i < endIndex; i++) {
                     let contact = jsonObject.results[i];
                     let rowColor = (i % 2 === 0) ? '#142f51' : '#24436a';
                     resultHTML += `<tr id='row_"${i}"' data-id='${contact.contactId}' style='background-color: ${rowColor};'>`;
@@ -147,7 +165,7 @@ function saveContact(rowIndex, contactId) {
     let actionCell = document.getElementById("firstName_" + rowIndex).parentElement.querySelector("td:last-child");
     actionCell.innerHTML = `<button class='btn btn-sm me-2' style='background-color: #c0d6df; border-color: #c0d6df; color: #000;' onclick='editContact("${rowIndex}","${contactId}")'><i class='bi bi-pencil-square'></i></button>` +
         `<button class='btn btn-danger btn-sm' onclick='deleteContact("${contactId}")'><i class='bi bi-trash3'></i></button>`;
-    
+
     // Apply padding to the action cell
     actionCell.style.padding = '10px 15px';
     actionCell.style.textAlign = 'center';
@@ -245,7 +263,7 @@ function deleteContact(contactId) {
     document.getElementById("contactSearchResult").innerHTML = "";
 
     let id = contactId;
-   
+
     // Validate contact to delete
     if (!(id.length == 36)) {
         showMessage("Invalid contact!", 'danger');
@@ -292,7 +310,7 @@ function executeDelete() {
                     row.remove();
                 }
                 // Refresh the contact list
-                searchContact(); 
+                searchContact();
                 showMessage("Contact deleted successfully", 'success');
             }
         };
@@ -315,6 +333,53 @@ function showMessage(message, type = 'danger') {
     setTimeout(() => {
         element.innerHTML = "";
     }, 1000);
+}
+
+// Function to update pagination controls
+function updatePagination(currentPage, totalPages) {
+    const paginationList = document.getElementById('paginationList');
+    let paginationHTML = '';
+
+    // Previous button
+    paginationHTML += `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <button class="page-link" style="background-color: #142f51;color: white;" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>
+                <i class="bi bi-chevron-left"></i>
+            </button>
+        </li>`;
+
+    // Page numbers
+    for (let i = 1; i <= totalPages; i++) {
+        paginationHTML += `
+            <li class="page-item ${currentPage === i ? 'active' : ''}">
+                <button class="page-link" style="${currentPage === i ? 'background-color: #c0d6df;color: black;' : 'background-color: #142f51;color: white;'}" onclick="changePage(${i})">${i}</button>
+            </li>`;
+    }
+
+    // Next button
+    paginationHTML += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <button class="page-link" style="background-color: #142f51;color: white;" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </li>`;
+
+    paginationList.innerHTML = paginationHTML;
+}
+
+// Function to handle page changes
+function changePage(newPage) {
+    // Validate page number
+    if (newPage < 1) return;
+    
+    // Update current page
+    window.currentPage = newPage;
+    
+    // Re-run search with new page
+    let searchText = document.getElementById('searchText').value;
+    if (searchText.trim() !== '') {
+        searchContact();
+    }
 }
 
 // Formats phone number for consistency 
